@@ -1,18 +1,19 @@
 import {Col,Row,Typography} from 'antd';
 const { Title} = Typography;
 import CustomCard from './CustomCard';
-const Categories = () =>{
+import Color from '../../../../styles/colors';
+const Categories = (xs=12, sm=11, md=8, lg=5, title="") =>{
     return <>
             <Row justify='center' >
-                 <Title style={{color:"white"}}>Where You Can Donate?</Title>
+                 <Title style={Color.white}>{title}</Title>
             </Row>
             
             <Row justify="center">
                 <Col 
-                xs={{ span: 22 }}  
-                sm={{span: 11}} 
-                md={{ span: 8 }} 
-                lg={{span:5}}>        
+                xs={{ span: xs }}  
+                sm={{span: sm}} 
+                md={{ span: md }} 
+                lg={{span:lg}}>        
                     <CustomCard 
                     title="Orphanage" 
                     donation={1000} 
@@ -22,10 +23,10 @@ const Categories = () =>{
                 </Col>
             
                 <Col 
-                xs={{ span: 22}}  
-                md={{ span: 8}} 
-                sm={{span: 11}} 
-                lg={{span:5}}>
+                xs={{ span: xs}}  
+                md={{ span: sm}} 
+                sm={{span: md}} 
+                lg={{span:lg}}>
                     <CustomCard 
                     title="Food" 
                     donation={1000} 
@@ -34,10 +35,10 @@ const Categories = () =>{
                     />
                 </Col>
                 <Col 
-                xs={{ span: 22 }}  
-                md={{ span: 8 }} 
-                sm={{span: 11}} 
-                lg={{span:5}}>
+                xs={{ span: xs }}  
+                md={{ span: sm }} 
+                sm={{span: md}} 
+                lg={{span:lg}}>
                     <CustomCard 
                     title="Education" 
                     donation={1000} 
