@@ -14,7 +14,9 @@ const NgoCard=({title,src, desc})=>{
             src={src} 
             width={240} 
             height={200} 
+
             className={margin.smallMargin}
+
             />
         </div>
             
