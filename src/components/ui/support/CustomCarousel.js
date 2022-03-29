@@ -27,7 +27,7 @@ const CustomCarousel = () => {
                 <Image 
               height={600}
               width={500}
-              src="/Charity.gif"
+              src="/Charity1.gif"
               className={styles.picture}></Image>
             </Col>
           </Row>
