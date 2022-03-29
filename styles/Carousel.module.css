@@ -1,0 +1,127 @@
+.container {
+    line-height: '160px';
+    width: 100%;
+    height: 100%;
+    position: relative;  
+    background-color: #2f4e71;
+   margin-top: 60px
+  };
+  
+.picture {
+    text-align: right;
+    z-index:  -1;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    margin-top: 30px;
+    overflow-x: hidden !important;
+    margin-top: 60px;
+    }
+
+    .gif {
+        text-align: right;
+        z-index:  -1;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: blue;
+        overflow: hidden;
+        margin-left: 200px;
+        float: right !important;
+        overflow-x: hidden !important;
+        }
+
+.heading {
+    position: absolute; 
+    top: 30%;
+    margin-left: 10px;
+    font-size: 40px;
+    color: white !important;
+    overflow: hidden;   
+    }
+
+    .btn{
+        position: absolute; 
+       font-size: 20px;
+       font-weight: bold;
+        margin-top: 330px !important;
+        margin-left: 10px;
+        border-radius: 30px;
+        width: 150px;
+        height: 40px;
+        overflow: hidden;   
+        z-index: 1;
+    }
+
+    .footerButton{
+        background-color:#e8cc68 !important;
+        border-color: #e8cc68;
+        font-weight: bold;
+        color: #2f4e71;
+    }
+    .footerButton :hover{
+        background-color: #f5d76e !important;
+        border-color: #f5d76e !important;  
+    } 
+    .footerButton :focus{
+        background-color: #d6bc5e !important;
+        border-color: #d6bc5e !important;  
+    } 
+
+    .btn2{
+        position: absolute; 
+        width: 150px !important;
+        height: 40px;
+        font-size: 18px;
+        font-weight: bold;
+        margin-top: 330px !important;
+        margin-left: 180px;
+        border-radius: 30px;
+        width: 180px;
+        z-index: 1;
+    }
+
+
+       @media screen and (max-width: 700px)and (min-width: 500px) {
+        .container{
+           
+            height: 50vh;
+        }
+        .heading{
+            top: 20%;
+        }
+        .btn {
+        margin-top: 300px !important;
+        
+        } 
+        .btn2 {
+            margin-top: 360px !important;
+            margin-left: 10px;
+        }
+       }
+
+       @media screen and (max-width: 500px)and (min-width: 350px) {
+       
+       .heading{
+           font-size: 35px !important;
+       }
+        .container{
+           width: 100% !important;
+            height: 50vh;
+        }
+        .heading{
+            top: 20%;
+        }
+        .btn {
+        margin-top: 350px !important;
+        
+        } 
+        .btn2 {
+            margin-top: 400px !important;
+            margin-left: 10px;
+        }
+       }
+
+        
+    

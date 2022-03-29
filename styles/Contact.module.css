@@ -1,0 +1,43 @@
+.mainContainer{
+    background-color: white;
+}
+.heading{
+    text-align: center;
+    margin-top: 75px;
+}
+ .btn{
+  
+    margin-bottom: 30px;
+} 
+.textFont{
+color: white;
+text-align: center;
+}
+
+.inputField{
+    height: 80px;
+}
+
+.formItem{
+    font-weight: bold;
+    font-size: 70px;
+}
+.form{
+    border-radius: 20px; 
+    box-shadow: 2px 2px 2px 2px #808080;
+    width: 60%; 
+    margin-left: 15%;
+}
+.regbutton{
+    background-color:#243c58 !important;
+    color:white;
+    width: 30%;
+    border-color: #243c58 !important;
+    margin-bottom: 20px !important;
+}
+
+.regbutton :hover{
+     color:white;
+    background-color:#2f4e71 !important;
+    border-color: #2f4e71 !important;
+}

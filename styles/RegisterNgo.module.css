@@ -1,0 +1,29 @@
+.heading{
+    background-color: #2f4e71;
+    color: white !important;
+    width: 100%;
+    /* margin-left: 15%; */
+    text-align: center;
+    border-radius: 20px; 
+}
+.form{
+    border-radius: 20px; 
+    box-shadow: 2px 2px 2px 2px #808080;
+    width: 60%; 
+   margin-left: 15%;
+}
+.nextButton{
+    background-color:#243c58;
+    color:white;
+    width: 40%;
+    border-color: #243c58;
+}
+.nextButton :hover{
+    /* border-radius: 20px;
+    height: 5vh;
+     width: 112px; */
+     color:white;
+    background-color:#2f4e71 !important;
+    border-color: #2f4e71 !important;
+}
+
