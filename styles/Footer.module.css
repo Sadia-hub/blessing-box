@@ -1,5 +1,5 @@
 .footerbgColor{
-    background-color: rgba(42, 5, 143, 1);
+    background: radial-gradient(at center center, rgba(42, 5, 143, 0.8) 0%, rgba(42, 5, 143, 0.8) 100%),  url("/bg.jpg");
 }
 /* .menuclass{
     background-color: #2f4e71;

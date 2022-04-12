@@ -16,7 +16,11 @@ const CustomCard=({title, donation, src, alt})=>{
       height={200} 
       style={image}/>}
   >
-    <Meta title={title} description={`${donation} Rupees Donated`} />
+    <div>
+      <h4  style={{color:"white"}}>{title}</h4>
+      <h5  style={{color:"white"}}>{`${donation} Rupees Donated`}</h5>
+    </div>
+    
   </Card>
 }
 

@@ -1,5 +1,5 @@
 .mainDiv{
-    background: radial-gradient(at center center, rgba(42, 5, 143, 0.76) 0%, rgba(42, 5, 143, 0.76) 100%),  url("/bg11.png");
+    background: radial-gradient(at center center, rgba(42, 5, 143, 0.76) 0%, rgba(42, 5, 143, 0.76) 100%),  url("/bg.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     box-sizing: border-box;
