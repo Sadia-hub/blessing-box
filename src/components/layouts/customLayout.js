@@ -6,11 +6,11 @@ import CustomFooter from './footer';
 
 const CustomLayout = ({children}) =>{
     
-    return <Layout className="layout" style={{color:"white"}}>
+    return <Layout className="layout">
             
             <CustomHeader />
 
-            <Content style={{paddingTop:"100px"}}>
+            <Content>
              
                 <div className="site-layout-content">{children}</div>
             </Content>

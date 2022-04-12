@@ -9,7 +9,7 @@ const CustomCarousel = () => {
   const { Title } = Typography;  
   return (
     <>
-      <Carousel autoplay={true}>
+      <Carousel autoplay={true} dotPosition="right">
         <div className={styles.container} style = {{background: '#2f4e71'}}>
           <Row >
             <Col span={12}>
@@ -24,11 +24,11 @@ const CustomCarousel = () => {
               </Row>
             </Col>
             <Col span={12}>
-                <Image 
+                {/* <Image 
               height={600}
               width={500}
-              src="/Charity1.gif"
-              className={styles.picture}></Image>
+              src="/cr1.png"
+              className={styles.picture}></Image> */}
             </Col>
           </Row>
          
@@ -42,11 +42,11 @@ const CustomCarousel = () => {
               <CustomButton label ="Registration" className = {styles.btn2} onClick = {false}  disabled = {false}  />
             </Col>
             <Col span={12}>
-                <Image 
+                {/* <Image 
               height={600}
               width={500}
               src="/usachildpoverty.jpg"
-              className={styles.picture}></Image>
+              className={styles.picture}></Image> */}
             </Col>
           </Row>
          
@@ -61,11 +61,11 @@ const CustomCarousel = () => {
               <CustomButton label ="Registration" className = {styles.btn2} onClick = {false}  disabled = {false}  />
             </Col>
             <Col span={12}>
-                <Image 
+                {/* <Image 
               height={600}
               width={500}
               src="/Education.jpg"
-              className={styles.picture}></Image>
+              className={styles.picture}></Image> */}
             </Col>
           </Row>
          
@@ -79,11 +79,11 @@ const CustomCarousel = () => {
               <CustomButton label ="Registration" className = {styles.btn2} onClick = {false}  disabled = {false}  />
             </Col>
             <Col span={12}>
-                <Image 
+                {/* <Image 
               height={600}
               width={500}
               src="/Food.gif"
-              className={styles.picture}></Image>
+              className={styles.picture}></Image> */}
             </Col>
           </Row>
          
