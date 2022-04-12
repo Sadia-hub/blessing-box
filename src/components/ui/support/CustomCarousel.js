@@ -9,88 +9,161 @@ const CustomCarousel = () => {
   const { Title } = Typography;  
   return (
     <>
+    <div className={styles.mainDiv}>
+      {/* <Row style={{ backgroundColor:"pink"}}> */}
+
       <Carousel autoplay={true} dotPosition="right">
-        <div className={styles.container} style = {{background: '#2f4e71'}}>
-          <Row >
-            <Col span={12}>
-              <Row >
-             
-              <Title className={styles.heading}>Indvidually We are Drop, But Together We are an Ocean </Title>
-             
-              </Row>
-              <Row>
-              <CustomButton  label ="Donation❤" className = {styles.btn} onClick = {false} type = "submit" disabled = {false}  /> 
-              <CustomButton label ="Registration" className = {styles.btn2} onClick = {false}  disabled = {false}  />
-              </Row>
-            </Col>
-            <Col span={12}>
-                {/* <Image 
-              height={600}
-              width={500}
-              src="/cr1.png"
-              className={styles.picture}></Image> */}
-            </Col>
-          </Row>
-         
-          </div>
 
-          <div className={styles.container} style = {{background: '#2f4e71'}}>
-          <Row >
-            <Col span={12}>
-              <Title className={styles.heading}>Help the poor to get the bright future </Title>
-              <CustomButton  label ="Donation❤" className = {styles.btn} onClick = {false} type = "submit" disabled = {false}  /> 
-              <CustomButton label ="Registration" className = {styles.btn2} onClick = {false}  disabled = {false}  />
-            </Col>
-            <Col span={12}>
-                {/* <Image 
-              height={600}
-              width={500}
-              src="/usachildpoverty.jpg"
-              className={styles.picture}></Image> */}
-            </Col>
-          </Row>
-         
-          </div>
+      <Row style={{ backgroundColor:"pink"}}>
 
+        <Col span={6} style={{ backgroundColor:"red"}}>
+            <Row>
+             
+              <Title className={styles.heading}>
+                Indvidually We are a Drop, But Together We are an Ocean 
+              </Title>
+            
+             </Row>
+             
+             <Row>
+               
+                <CustomButton  label ="Donation❤" className = {styles.btn} onClick = {false} type = "submit" disabled = {false}  /> 
+                <CustomButton label ="Registration" className = {styles.btn2} onClick = {false}  disabled = {false}  />
+             </Row>
+        </Col>
+
+
+        <Col span={6} style={{ backgroundColor:"black"}}>
+
+              <Image 
+            height={600}
+            width={500}
+            src="/blessing.svg"
+            
+            ></Image>
+
+        </Col>
+
+      </Row>
+
+      {/* <Row>
+        <Col span={12} style={{padding: "10%"}}>
+            <Row>
+             
+              <Title className={styles.heading}>
+                Indvidually We are a Drop, But Together We are an Ocean 
+              </Title>
+            
+             </Row>
+             
+             <Row>
+               
+                <CustomButton  label ="Donation❤" className = {styles.btn} onClick = {false} type = "submit" disabled = {false}  /> 
+                <CustomButton label ="Registration" className = {styles.btn2} onClick = {false}  disabled = {false}  />
+             </Row>
+        </Col>
+
+
+        <Col span={12}>
+          <Row align='middle' justify='center'>
+         
+        
+        <Row>
           
-          <div className={styles.container} style = {{background: '#2f4e71'}}>
-          <Row >
-            <Col span={12}>
-              <Title className={styles.heading}>Gift Education, So that they can have bright Future  </Title>
-              <CustomButton  label ="Donation❤" className = {styles.btn} onClick = {false} type = "submit" disabled = {false}  /> 
-              <CustomButton label ="Registration" className = {styles.btn2} onClick = {false}  disabled = {false}  />
-            </Col>
-            <Col span={12}>
-                {/* <Image 
-              height={600}
-              width={500}
-              src="/Education.jpg"
-              className={styles.picture}></Image> */}
-            </Col>
-          </Row>
-         
-          </div>
+          
+              <Image 
+            height={600}
+            width={500}
+            src="/blessing.svg"
+            
+            ></Image>
+            </Row>
+          
+        </Row>
+       
+        </Col>
+      </Row>
 
-          <div className={styles.container} style = {{background: '#2f4e71'}}>
-          <Row >
-            <Col span={12}>
-              <Title className={styles.heading}>Donate Food, So that they can have bright Future  </Title>
-              <CustomButton  label ="Donation❤" className = {styles.btn} onClick = {false} type = "submit" disabled = {false}  /> 
-              <CustomButton label ="Registration" className = {styles.btn2} onClick = {false}  disabled = {false}  />
-            </Col>
-            <Col span={12}>
-                {/* <Image 
-              height={600}
-              width={500}
-              src="/Food.gif"
-              className={styles.picture}></Image> */}
-            </Col>
-          </Row>
+      <Row>
+        <Col span={12} style={{padding: "10%"}}>
+            <Row>
+             
+              <Title className={styles.heading}>
+                Indvidually We are a Drop, But Together We are an Ocean 
+              </Title>
+            
+             </Row>
+             
+             <Row>
+               
+                <CustomButton  label ="Donation❤" className = {styles.btn} onClick = {false} type = "submit" disabled = {false}  /> 
+                <CustomButton label ="Registration" className = {styles.btn2} onClick = {false}  disabled = {false}  />
+             </Row>
+        </Col>
+
+
+        <Col span={12}>
+          <Row align='middle' justify='center'>
          
-          </div>
-      </Carousel>
-      <div  >
-  </div>
+        
+        <Row>
+          
+          
+              <Image 
+            height={600}
+            width={500}
+            src="/blessing.svg"
+            
+            ></Image>
+          
+          </Row>
+        </Row>
+       
+        </Col>
+      </Row>
+
+      <Row>
+        <Col span={12} style={{padding: "10%"}}>
+            <Row>
+             
+              <Title className={styles.heading}>
+                Indvidually We are a Drop, But Together We are an Ocean 
+              </Title>
+            
+             </Row>
+             
+             <Row>
+               
+                <CustomButton  label ="Donation❤" className = {styles.btn} onClick = {false} type = "submit" disabled = {false}  /> 
+                <CustomButton label ="Registration" className = {styles.btn2} onClick = {false}  disabled = {false}  />
+             </Row>
+        </Col>
+
+
+        <Col span={12}>
+          <Row align='middle' justify='center'>
+         
+        
+        <Row>
+          
+          
+              <Image 
+            height={600}
+            width={500}
+            src="/blessing.svg"
+            
+            ></Image>
+          
+        </Row>
+        </Row>
+       
+        </Col>
+      </Row> */}
+
+        </Carousel>
+      {/* </Row> */}
+     
+      </div>
     </>
   );
 };

@@ -1,7 +1,11 @@
-.container {
-    background: radial-gradient(at center center, rgba(211, 201, 224, 0.1) 0%, rgba(206, 195, 235, 0.5) 100%),  url("/bg11.png");
+.mainDiv{
+    background: radial-gradient(at center center, rgba(42, 5, 143, 0.76) 0%, rgba(42, 5, 143, 0.76) 100%),  url("/bg11.png");
     background-repeat: no-repeat;
     background-size: cover;
+    box-sizing: border-box;
+}
+.container {
+   
     
     line-height: '160px';
     width: 100%;
@@ -39,9 +43,9 @@
         }
 
 .heading {
-    position: absolute; 
-    top:50%;
-    margin-left: 10px;
+    /* position: absolute;  */
+    /* top:50%; */
+    
     font-size: 40px;
     color: white !important;
     overflow: hidden;   
@@ -51,13 +55,14 @@
         position: absolute; 
        font-size: 20px;
        font-weight: bold;
-        margin-top: 330px !important;
-        margin-left: 10px;
+        /* margin-top: 330px !important; */
+        /* margin-left: 10px; */
         border-radius: 30px;
         width: 150px;
         height: 40px;
-        overflow: hidden;   
+        /* overflow: hidden;    */
         z-index: 1;
+        
     }
 
     .footerButton{
@@ -81,7 +86,7 @@
         height: 40px;
         font-size: 18px;
         font-weight: bold;
-        margin-top: 330px !important;
+        /* margin-top: 330px !important; */
         margin-left: 180px;
         border-radius: 30px;
         width: 180px;
