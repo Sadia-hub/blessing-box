@@ -82,6 +82,9 @@ const NgoDetails = () =>{
                             <p>CHHIPA WELFARE, a non-profit welfare organization in Pakistan, imbued with a noble mission, having sincere love and affection for the humanity and a strong commitment to serve the COMMON PEOPLE without discrimination of any caste, creed or colour under all circumstances, where frequent road accidents, sudden events and emergencies daily occur.</p>
                             <p>CHHIPA WELFARE, a non-profit welfare organization in Pakistan, imbued with a noble mission, having sincere love and affection for the humanity and a strong commitment to serve the COMMON PEOPLE without discrimination of any caste, creed or colour under all circumstances, where frequent road accidents, sudden events and emergencies daily occur.</p>
                             <ProjectCard/>
+                            <ProjectCard/>
+                            <ProjectCard/>
+                            <ProjectCard/>
                         </Row>
 
                         </div>
