@@ -8,7 +8,7 @@ import FounderInfo from './FounderInfo';
 import AuthorizationDoc from './AuthorizationDoc';
 import Declaration from './Declaration';
 
-const RegisterNGO = () => {
+const RegisterNGO = ({btnLabel, handleRegister}) => {
   const onFinish = (values) => {
     console.log('Success:', values);
   };
@@ -109,7 +109,7 @@ const RegisterNGO = () => {
 <AuthorizationDoc/>
 <Declaration/>
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-  <CustomButton label="Register" className={style.nextButton} type="primary" onClick={false} disabled={false} shape="round"></CustomButton>
+  <CustomButton label={btnLabel} className={style.nextButton} type="primary" onClick={handleRegister} disabled={false} shape="round"></CustomButton>
       </Form.Item>
     </Form>
 
