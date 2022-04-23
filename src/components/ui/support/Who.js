@@ -1,5 +1,6 @@
 import { Row, Col } from 'antd';
 import { Typography } from 'antd';
+import Color from '../../../../styles/colors';
 import Image from 'next/image';
 const Who = () => {
     const {Title} = Typography;
@@ -8,7 +9,7 @@ const Who = () => {
           <Row >
             <Col  md={8} sm = {{span: 16}}  xs={16} lg={8} offset={2}>
               <Row >
-              <Title style={{color : '#2f4e71'}}> Who we are </Title>  
+              <Title style={{ color: Color.primaryV2}}> Who we are </Title>  
               </Row>
               <Row>
               <Title level ={4}> Blessing Box is a generalized web based Donation System.

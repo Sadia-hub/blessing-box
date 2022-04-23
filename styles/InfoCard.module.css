@@ -1,14 +1,20 @@
 .cardInfo{ 
      background-color: white; 
     z-index: 1;
-    margin-top: -20vh;
+    margin-top:  -2vh;
      padding-top: 2%; 
      padding-bottom: 2%;
     box-shadow: 2px 2px 2px 2px #808080;
-     width: 60%; 
+     width: 70%; 
      
      /* border-radius: 20px;  */
-     margin-left: 20%;
+     margin-left: 15%;
      margin-bottom: 10%;
      text-align: center; 
+}
+
+@media screen and (max-width: 800px) {
+.cardInfo{
+     margin-top:  0vh;  
+}
 }

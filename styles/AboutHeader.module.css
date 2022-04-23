@@ -1,7 +1,6 @@
 .mainContainer{
-    /* background-image: linear-gradient(to right, rgba(36, 60, 88, 0.5), rgba(36, 60, 88, 0.5)); */
     margin-top: 75px;
-    background-image: linear-gradient(rgba(47,78,113), rgba(47,78,113));
+    background: radial-gradient(at center center, rgba(42, 5, 143, 0.8) 0%, rgba(42, 5, 143, 0.8) 100%),  url("/bg.jpg");
     z-index: 1;
 }
 

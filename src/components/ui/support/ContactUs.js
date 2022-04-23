@@ -56,7 +56,7 @@ const ContactUS = () => {
         <Input className={styles.inputField} />
         </Form.Item>
 
-      <Form.Item wrapperCol={{ offset: 8, span: 12 }}>
+      <Form.Item wrapperCol={{ span: 12 }}>
       <CustomButton label="Submit" className={styles.regbutton} type="primary" onClick={false} disabled={false} shape=''></CustomButton>
        
       

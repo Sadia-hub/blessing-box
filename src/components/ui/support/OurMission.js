@@ -2,6 +2,7 @@ import { Row, Col } from 'antd';
 import { Typography } from 'antd';
 import styles from '../../../../styles/Mission.module.css';
 import Image from 'next/image';
+import Color from '../../../../styles/colors';
 const OurMission = () => {
     const {Title} = Typography;
     return <>
@@ -17,7 +18,7 @@ const OurMission = () => {
             </Col>
             <Col  md={8} sm = {{span: 16}}  xs={16} lg={8} offset={2}>
               <Row >
-              <Title style={{color : '#2f4e71', marginTop : '5rem'}}> Our Mission </Title>  
+              <Title style={{color : Color.primaryV2, marginTop : '5rem'}}> Our Mission </Title>  
               </Row>
               <Row>
               <Title level ={4}> 
