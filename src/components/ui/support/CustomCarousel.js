@@ -6,7 +6,13 @@ import { Row, Col } from 'antd';
 import { Typography } from 'antd';
 
 const CustomCarousel = () => {
-  const { Title } = Typography;  
+  const { Title } = Typography; 
+  
+  const sm={span:24, style:{marginBottom:"20px"}}
+  const lg={
+    span:12
+  }
+
   return (
     <>
     <div className={styles.mainDiv}>
@@ -16,29 +22,39 @@ const CustomCarousel = () => {
       <div>
         <Row align='middle' justify='center' style={{margin:"5%"}}>
 
-          <Col span={12}>
+          <Col lg={lg} md={sm} sm={sm}>
               <Row>
               
-                <Title className={styles.heading}>
-                  Hurry Up!! Don't miss your chance
-                  <br/>
-                  Let's earn the box of <span style={{color:"#EB2188"}}>BLESSINGS</span>.
-                  <br/>
-                  Want to know How?
-                  
-                </Title>
+                  <Title className={styles.heading}>
+                    Hurry Up!! Don't miss your chance
+                    <br/>
+                    Let's earn the box of <span style={{color:"#EB2188"}}>BLESSINGS</span>.
+                    <br/>
+                    Want to know How?
+                    
+                  </Title>
               
               </Row>
               
               <Row>
-                
-                  <CustomButton  label ="Donation❤" className = {styles.btn} onClick = {false} type = "submit" disabled = {false}  /> 
-                  <CustomButton label ="Registration" className = {styles.btn2} onClick = {false}  disabled = {false}  />
+
+                  <Col lg={12} md={24}>
+
+                      <CustomButton  label ="Donation❤" className = {styles.btn} onClick = {false} type = "submit" disabled = {false}  /> 
+                 
+                  </Col> 
+
+                  <Col lg={12} md={24}>
+
+                   <CustomButton label ="Registration" className = {styles.btn2} onClick = {false}  disabled = {false}  />
+                  
+                  </Col>               
+                 
               </Row>
           </Col>
 
 
-          <Col span={12}>
+          <Col lg={lg} md={sm} sm={sm}>
 
                 <Image 
               height={600}
@@ -54,7 +70,7 @@ const CustomCarousel = () => {
       <div>
         <Row align='middle' justify='center' style={{margin:"5%"}}>
 
-          <Col span={12}>
+          <Col lg={lg} md={sm} sm={sm}>
               <Row>
               
                 <Title className={styles.heading}>
@@ -72,7 +88,7 @@ const CustomCarousel = () => {
           </Col>
 
 
-          <Col span={12}>
+          <Col lg={lg} md={sm} sm={sm}>
 
                 <Image 
               height={600}
@@ -88,7 +104,7 @@ const CustomCarousel = () => {
       <div>
         <Row align='middle' justify='center' style={{margin:"5%"}}>
 
-          <Col span={12}>
+          <Col lg={lg} md={sm} sm={sm}>
               <Row>
               
                 <Title className={styles.heading}>
@@ -108,7 +124,7 @@ const CustomCarousel = () => {
           </Col>
 
 
-          <Col span={12}>
+          <Col lg={lg} md={sm} sm={sm}>
 
                 <Image 
               height={600}
@@ -124,7 +140,7 @@ const CustomCarousel = () => {
       <div>
         <Row align='middle' justify='center' style={{margin:"5%"}}>
 
-          <Col span={12}>
+          <Col lg={lg} md={sm} sm={sm}>
               <Row>
               
                 <Title className={styles.heading}>
@@ -144,14 +160,14 @@ const CustomCarousel = () => {
           </Col>
 
 
-          <Col span={12}>
+          <Col lg={lg} md={sm} sm={sm}>
 
                 <Image 
               height={600}
               width={500}
               src="/education.svg"
               
-              ></Image>
+            ></Image>
 
           </Col>
 

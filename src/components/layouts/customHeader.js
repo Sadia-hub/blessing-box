@@ -89,11 +89,7 @@ const customHeader  = ()=>{
       <a>Register</a>
     </Link>
   </li>
-  <li>
-    <Link href='/events'>
-      <a>Add Project</a>
-    </Link>
-  </li>
+  
   </ul>
   </nav>
 </header>
