@@ -4,14 +4,41 @@ import styles from '../../../../styles/Register.module.css';
 import { CustomButton } from '../buttons/buttons';
 import { Typography } from 'antd';
 import { Card } from 'antd';
-const Register = () => {  
+import { UserContext, UserName } from '../../layouts/customLayout';
+
+import React, {  createContext, useContext, useState } from 'react';
+
+const Register = ({label="Register"}) => {  
+  var namee, emailvalue; 
+  const {name, dispatchname} = useContext(UserName);
+  const {state, dispatch} = useContext(UserContext);
+  const[fine, setFine] = useState(false);
+  const[emailverify, setEmailverify] = useState(true);
     const { Title } = Typography;  
+
     const onFinish = (values) => {
         console.log('Success:', values);
+        setFine(true);
+     
+        dispatch({type: 'USER', payload:true});
       };
       const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
+        setFine(false);
+        dispatch({type: 'USER', payload:false});
       };
+
+      const onSubmission  = () => {
+        console.log(fine);
+      }
+    const onHandleEmail = (e) => {
+      emailvalue = e.target.value;
+    }
+      const onHandleChange = (e) => {  
+        namee = e.target.value;
+        console.log(namee);
+        dispatchname({type: 'USERNAME', payload: namee});
+      }
     return (
         <>
          <div className={styles.mainContainer}>           
@@ -33,16 +60,17 @@ const Register = () => {
         name="Name"
         rules={[{ required: true, message: 'Please input your Name!' }]}
         wrapperCol={{ span: 12 }}
+
       >
-        <Input className={styles.inputField}/>
+        <Input className={styles.inputField} onChange={onHandleChange}/>
       </Form.Item>
       <Form.Item
         label="Email"
         name="Email"
-        rules={[{ required: true, message: 'Please input your Email!' }]}
+        rules={[{ required: true, type:'email', message: 'Please input your Email!' }]}
         wrapperCol={{ span: 12 }}
       >
-        <Input />
+        <Input onChange={onHandleEmail} />
       </Form.Item>
 
       <Form.Item
@@ -81,14 +109,10 @@ const Register = () => {
         <Input className={styles.inputField}/>
       </Form.Item>
 
-
-      <Form.Item wrapperCol={{  span: 12 }}>
-      <CustomButton label="Register" className={styles.regButton} type="primary" onClick={false} disabled={false} shape='round'></CustomButton>
-         
+      <Form.Item wrapperCol={{ span: 12 }}>
+      <CustomButton htmlType="submit" label="Register" className={styles.regButton} type="primary" onClick={onSubmission} disabled={false} shape='round'></CustomButton>     
       </Form.Item>
     </Form>
- 
-  
         </div>
         </>
     );
