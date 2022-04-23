@@ -2,9 +2,10 @@ const cardStyle = {
     width: 240,
     height: 290, 
     padding:20,
+    marginBottom:20,
     borderRadius:40,
     textAlign:"center",
-    background:"#DAE2F5"
+    background:"radial-gradient(at center center, rgba(42, 5, 143, 0.76) 0%, rgba(42, 5, 143, 0.76) 100%)"
 }
 
 const image = {
@@ -16,7 +17,8 @@ const ngoCard = {
     height:280, 
     borderRadius:40, 
     textAlign:"center",
-    background:"#DAE2F5" , margin:10
+    background:"rgba(42, 5, 143, 0.76)" , 
+    margin:10
 }
 
 const margin = {

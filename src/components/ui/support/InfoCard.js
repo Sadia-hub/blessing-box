@@ -13,20 +13,20 @@ const{Title}=Typography;
     <Row>
       <Col xs={{span:xs}} sm={{span:sm}} md={{span:md}} lg={{span:lg}}>
         <Card bordered={false}>
-          <Title type="danger">{ngoRegister}</Title>
+          <Title className={styles.infoHeading}>{ngoRegister}</Title>
           <Title level={5}>TOTAL NGOs REGISTERED</Title>
         </Card>
       </Col>
       <Col xs={{span:xs}} sm={{span:sm}} md={{span:md}} lg={{span:lg}}>
         <Card  bordered={false}>
-          <Title type="danger">{funds}</Title>
+          <Title className={styles.infoHeading}>{funds}</Title>
           <Title level={5}>TOTAL FUNDS COLLECTED</Title>
         </Card>
       </Col>
       <Col xs={{span:xs}} sm={{span:sm}} md={{span:md}} lg={{span:lg}}>
         <Card bordered={false}>
-          <Title type="danger">2999</Title>
-          <Title level={5}>TOTAL PROJECTS COLLECTED</Title>
+          <Title className={styles.infoHeading}>2999</Title>
+          <Title level={5}>TOTAL PROJECTS COMPLETED</Title>
         </Card>
       </Col>
     </Row>

@@ -1,0 +1,39 @@
+.container{
+    margin:30px
+}
+
+.title{
+    color:rgba(235,33,136,1); 
+    margin:70px;
+
+}
+
+.sideBar{
+    font-weight: bold;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.barItems{
+    margin-block: 10px;
+}
+
+.logo{
+
+    border-radius: 40px;
+    overflow: 'hidden'
+}
+
+.ngo{
+    margin:10px;
+     
+     justify-content: space-between;
+}
+
+.mainBar{
+    /* box-shadow: 5px 10px rgba(235,33,136,0.7); */
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    padding: 10px;
+}
+
+.mainBar h1{
+    color:rgba(235,33,136,1)
+}

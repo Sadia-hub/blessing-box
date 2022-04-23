@@ -6,7 +6,7 @@ function FounderInfo(){
 
         <Form.Item
         label="Enter Name"
-        name="name"
+        name="founderName"
         rules={[{ required: true, message: 'Please Enter Your Name!' }]}
       >
         <Input />
@@ -14,7 +14,7 @@ function FounderInfo(){
 
       <Form.Item
         label="Enter CNIC"
-        name="name"
+        name="founderCnic"
         rules={[{ required: true, message: 'Please Enter Your CNIC!' }]}
       >
         <Input />
@@ -22,7 +22,7 @@ function FounderInfo(){
 
       <Form.Item
         label="Enter Contact Number"
-        name="contact"
+        name="founderContact"
         rules={[{ required: true, message: 'Please Enter Contact Number!' }]}
       >
          <Input />
@@ -30,7 +30,7 @@ function FounderInfo(){
 
       <Form.Item
         label="Enter NGO Email"
-        name="email"
+        name="founderEmail"
         rules={[{ required: true, type:'email', message: 'Please Enter NGO email' }]}
       >
         <Input />

@@ -32,3 +32,8 @@ a {
   float: right;
   margin: 16px 0 16px 24px;
 }
+
+.carousel{
+  background: radial-gradient(at center center, rgba(194, 179, 179, 0.1) 0%, rgba(248, 248, 248, 0.5) 100%),  url("/mission.jpg");
+
+}

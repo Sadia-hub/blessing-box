@@ -1,96 +1,204 @@
-import { Carousel} from 'antd';
+import { Carousel, Modal } from 'antd';
 import Image from 'next/image';
 import styles from '../../../../styles/Carousel.module.css';
 import { CustomButton } from '../buttons/buttons';
+import { useState } from 'react';
+import { useRouter } from 'next/router'
 import { Row, Col } from 'antd';
 import { Typography } from 'antd';
 
 const CustomCarousel = () => {
-  const { Title } = Typography;  
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const router = useRouter()
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleDonate = (e) => {
+    e.preventDefault()
+    router.push('/registerdonor');
+    setIsModalVisible(false);
+  }
+  const handleNgo = (e) => {
+    e.preventDefault()
+    router.push('/ngo-registration');
+    setIsModalVisible(false);
+  }
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  }
+
+  const { Title } = Typography;
   return (
     <>
-      <Carousel autoplay={true}>
-        <div className={styles.container} style = {{background: '#2f4e71'}}>
-          <Row >
-            <Col span={12}>
-              <Row >
-             
-              <Title className={styles.heading}>Indvidually We are Drop, But Together We are an Ocean </Title>
-             
-              </Row>
-              <Row>
-              <CustomButton  label ="Donation❤" className = {styles.btn} onClick = {false} type = "submit" disabled = {false}  /> 
-              <CustomButton label ="Registration" className = {styles.btn2} onClick = {false}  disabled = {false}  />
-              </Row>
-            </Col>
-            <Col span={12}>
-                <Image 
-              height={600}
-              width={500}
-              src="/Charity1.gif"
-              className={styles.picture}></Image>
-            </Col>
-          </Row>
-         
+      <div className={styles.mainDiv}>
+
+
+        <Carousel autoplay={true} dotPosition="right" >
+          <div>
+            <Row align='middle' justify='center' style={{ margin: "5%" }}>
+
+              <Col span={12} >
+                <Row>
+
+                  <Title className={styles.heading}>
+                    Hurry Up!! Don't miss your chance
+                    <br />
+                    Let's earn the box of <span style={{ color: "#EB2188" }}>BLESSINGS</span>.
+                    <br />
+                    Want to know How?
+
+                  </Title>
+
+                </Row>
+
+                <Row>
+
+                  <CustomButton label="Donate❤" className={styles.btn} onClick={showModal} type="submit" disabled={false} />
+                  <CustomButton label="Registration" className={styles.btn2} onClick={showModal} disabled={false} />
+                </Row>
+              </Col>
+
+
+              <Col span={12}>
+                <Row >
+                  <Image
+                    height={600}
+                    width={500}
+                    src="/blessing.svg"
+
+                  ></Image>
+                </Row>
+              </Col>
+
+            </Row>
+          </div>
+          <div>
+            <Row align='middle' justify='center' style={{ margin: "5%" }}>
+
+              <Col span={12}>
+                <Row>
+
+                  <Title className={styles.heading}>
+                    Join NGOs to become shelter for the <span style={{ color: "#EB2188" }}>SHELTERLESS</span>!<br />
+                    Get their <span style={{ color: "#EB2188" }}>BLESSINGS</span> in return
+                  </Title>
+
+                </Row>
+
+                <Row>
+
+                  <CustomButton label="Donate❤" className={styles.btn} onClick={showModal} type="submit" disabled={false} />
+                  <CustomButton label="Registration" className={styles.btn2} onClick={showModal} disabled={false} />
+                </Row>
+              </Col>
+
+
+              <Col span={12}>
+                <Row>
+                  <Image
+                    height={600}
+                    width={500}
+                    src="/home.svg"
+
+                  ></Image>
+                </Row>
+              </Col>
+
+            </Row>
+          </div>
+          <div>
+            <Row align='middle' justify='center' style={{ margin: "5%" }}>
+
+              <Col span={12} >
+                <Row >
+
+                  <Title className={styles.heading}>
+                    Donate for the <span style={{ color: "#EB2188" }}>HUNGRY</span>!<br />
+                    They need Us! The need You!
+                    <br />
+                    Get their <span style={{ color: "#EB2188" }}>BLESSINGS</span> in return
+                  </Title>
+
+                </Row>
+
+                <Row>
+
+                  <CustomButton label="Donate❤" className={styles.btn} onClick={showModal} type="submit" disabled={false} />
+                  <CustomButton label="Registration" className={styles.btn2} onClick={showModal} disabled={false} />
+                </Row>
+              </Col>
+
+
+              <Col span={12} >
+                <Row>
+                  <Image
+                    height={600}
+                    width={500}
+                    src="/food2.svg"
+
+                  ></Image>
+                </Row>
+              </Col>
+
+            </Row>
+          </div>
+          <div>
+            <Row align='middle' justify='center' style={{ margin: "5%" }}>
+
+              <Col span={12} >
+                <Row >
+
+                  <Title className={styles.heading}>
+                    Donate for the future of Pakistan-<span style={{ color: "#EB2188" }}>EDUCATION-</span><br />
+                    Let's improve the literacy rate
+                    <br />
+                    Get their <span style={{ color: "#EB2188" }}>BLESSINGS</span> in return
+                  </Title>
+
+                </Row>
+
+                <Row >
+
+                  <CustomButton label="Donate❤" className={styles.btn} onClick={showModal} type="submit" disabled={false} />
+                  <CustomButton label="Registration" className={styles.btn2} onClick={showModal} disabled={false} />
+                </Row>
+              </Col>
+
+
+              <Col span={12} >
+                <Row>
+                  <Image
+                    height={600}
+                    width={500}
+                    src="/education.svg"
+
+                  ></Image>
+                </Row>
+
+              </Col>
+
+            </Row>
           </div>
 
-          <div className={styles.container} style = {{background: '#2f4e71'}}>
-          <Row >
-            <Col span={12}>
-              <Title className={styles.heading}>Help the poor to get the bright future </Title>
-              <CustomButton  label ="Donation❤" className = {styles.btn} onClick = {false} type = "submit" disabled = {false}  /> 
-              <CustomButton label ="Registration" className = {styles.btn2} onClick = {false}  disabled = {false}  />
-            </Col>
-            <Col span={12}>
-                <Image 
-              height={600}
-              width={500}
-              src="/usachildpoverty.jpg"
-              className={styles.picture}></Image>
-            </Col>
-          </Row>
-         
-          </div>
 
-          
-          <div className={styles.container} style = {{background: '#2f4e71'}}>
-          <Row >
-            <Col span={12}>
-              <Title className={styles.heading}>Gift Education, So that they can have bright Future  </Title>
-              <CustomButton  label ="Donation❤" className = {styles.btn} onClick = {false} type = "submit" disabled = {false}  /> 
-              <CustomButton label ="Registration" className = {styles.btn2} onClick = {false}  disabled = {false}  />
-            </Col>
-            <Col span={12}>
-                <Image 
-              height={600}
-              width={500}
-              src="/Education.jpg"
-              className={styles.picture}></Image>
-            </Col>
-          </Row>
-         
-          </div>
 
-          <div className={styles.container} style = {{background: '#2f4e71'}}>
-          <Row >
-            <Col span={12}>
-              <Title className={styles.heading}>Donate Food, So that they can have bright Future  </Title>
-              <CustomButton  label ="Donation❤" className = {styles.btn} onClick = {false} type = "submit" disabled = {false}  /> 
-              <CustomButton label ="Registration" className = {styles.btn2} onClick = {false}  disabled = {false}  />
-            </Col>
-            <Col span={12}>
-                <Image 
-              height={600}
-              width={500}
-              src="/Food.gif"
-              className={styles.picture}></Image>
-            </Col>
-          </Row>
-         
-          </div>
-      </Carousel>
-      <div  >
-  </div>
+
+        </Carousel>
+
+
+      </div>
+
+      <Modal title="Registration" visible={isModalVisible} onCancel={handleCancel}
+        footer={[
+          <CustomButton label="Donar" className={styles.btnModal} onClick={handleDonate} type="danger" disabled={false} shape="round" />,
+          <CustomButton label="NGO" className={styles.btnModal} onClick={handleNgo} type="danger" disabled={false} shape="round" />,
+          <CustomButton label="Close" className={styles.cancelBtn} onClick={handleCancel} type={false} disabled={false} shape="round" />
+        ]}
+      >
+        <p>Registeration as Donor or NGO?</p>
+      </Modal>
     </>
   );
 };
