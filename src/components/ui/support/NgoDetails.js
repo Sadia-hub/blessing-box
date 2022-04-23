@@ -6,7 +6,7 @@ import { useState } from 'react';
 import styles from '../../../../styles/NgoDetails.module.css';
 import ProjectCard from './ProjectCard';
 import NgoSidebar from './NgoSidebar';
-const NgoDetails = () =>{
+const NgoDetails = ({id}) =>{
     const { Title } = Typography;
     const [title, setTitle] = useState("Chippa NGO");
     const [founder, setFounder] = useState("Abdul Sattar Edhi");
@@ -19,7 +19,7 @@ const NgoDetails = () =>{
                 <Title className={styles.title}>{title}</Title> 
             </Row>
       
-            <Row justify="center">
+            <Row justify="center" gutter={12}>
 
                     <Col  span={6} className={styles.sideBar} justify="center">
                         <NgoSidebar/>
