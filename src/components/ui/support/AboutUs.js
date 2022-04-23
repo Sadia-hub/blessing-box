@@ -8,7 +8,7 @@ const AboutUs = () => {
     return <div className={styles.backGround}>
     
     <AboutHeader/>
-    
+    <Who/>
     <OurMission />
     <WhyUs />
     </div>
