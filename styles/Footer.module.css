@@ -1,0 +1,73 @@
+.footerbgColor{
+    background: radial-gradient(at center center, rgba(42, 5, 143, 0.8) 0%, rgba(42, 5, 143, 0.8) 100%),  url("/bg.jpg");
+}
+
+.headingaddress h2{
+ color: white;
+}
+
+.content h5{
+    color: white;
+}
+.content h3{
+    color: white;
+}
+.content a{
+    color: white;
+    font-size: 150%;
+    
+}
+.footerContent{
+    color:rgba(235,33,136,1);
+}
+.footerButton{
+    background-color:rgba(235,33,136,1) !important;
+    border-color: rgba(235,33,136,1) !important;
+    font-weight: bold;
+    color: white;
+}
+.footerButton:hover{
+    background-color: rgb(233, 40, 140) !important;
+    border-color: rgb(233, 40, 140) !important;  
+    color:white;
+} 
+.footerButton:focus{
+    background-color: rgb(212, 55, 136) !important;
+    border-color: rgb(212, 55, 136) !important;  
+    color:white;
+}
+.donatebtn{
+    background-color:#028A0F !important;
+    border-color: #028A0F !important;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+}
+
+.donatebtn:hover{
+    background-color: #0c7c17 !important;
+    border-color: #0c7c17 !important;  
+    color:white;
+} 
+.donatebtn:focus{
+    background-color: #227c2b !important;
+    border-color: #227c2b !important;  
+    color:white;
+} 
+
+.cancelBtn{
+    background-color:rgba(42, 5, 143, 0.8) !important;
+    border-color: rgba(42, 5, 143, 0.8) !important;
+    font-weight: bold;
+    color: white;
+}
+
+.cancelBtn:hover{
+    background-color:rgba(60, 35, 131, 0.8) !important;
+    border-color: rgba(60, 35, 131, 0.8) !important;
+    color: white;
+}
+
+
+
+ 

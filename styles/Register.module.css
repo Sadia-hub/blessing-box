@@ -1,0 +1,53 @@
+.inputField{
+    height: 30px;
+}
+
+
+.heading{
+    background: radial-gradient(at center center, rgba(42, 5, 143, 0.8) 0%, rgba(42, 5, 143, 0.8) 100%),  url("/bg.jpg");
+    color: white !important;
+    width: 100%;
+    text-align: center;
+    border-radius: 20px; 
+}
+.mainContainer{
+    margin-top: 75px;  
+    display: flex;
+    justify-content: center;
+}
+.btn{
+    width: 140px;
+    height: 40px;
+}
+.form{
+    border-radius: 20px; 
+    box-shadow: 2px 2px 2px 2px #808080;
+    width: 60%; 
+    margin-bottom: 20px !important;
+}
+
+.regButton{
+   
+    background: radial-gradient(at center center, rgba(42, 5, 143, 0.8) 0%, rgba(42, 5, 143, 0.8) 100%),  url("/bg.jpg")!important;
+    border-color: radial-gradient(at center center, rgba(42, 5, 143, 0.8) 0%, rgba(42, 5, 143, 0.8) 100%),  url("/bg.jpg");
+    color:white;
+    width: 40%;
+    margin-left: 85%;
+    
+}
+.regButton :hover{
+    background-color:rgba(60, 35, 131, 0.8) !important;
+    border-color: rgba(60, 35, 131, 0.8) !important;
+    color: white;
+}
+@media screen and (max-width: 672px)and (min-width: 576px) {
+.regButton{
+    width: 50%;  
+}
+}
+@media screen and (max-width: 575px){
+    .regButton{
+        margin-left: 30%;
+    }
+}
+

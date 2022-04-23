@@ -1,0 +1,15 @@
+.Stepheading{
+    color:rgba(235,33,136,1) !important;
+    text-align: center;
+}
+.liClass {
+    list-style: decimal-leading-zero;
+    font-size: 3em;
+    margin: 0 0 0 2em;
+    color:rgba(235,33,136,1);
+  }
+  .spanContent {
+    font-size: 0.40em;
+    color:black;
+    font-weight: bold;
+  }

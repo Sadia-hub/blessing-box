@@ -1,0 +1,29 @@
+.heading{
+    /* background-color: #2f4e71; */
+    background: radial-gradient(at center center, rgba(42, 5, 143, 0.8) 0%, rgba(42, 5, 143, 0.8) 100%),  url("/bg.jpg");
+    color: white !important;
+    width: 100%;
+    margin-top: 75px;
+    /* margin-left: 15%; */
+    text-align: center;
+    border-radius: 20px; 
+}
+.form{
+    border-radius: 20px; 
+    box-shadow: 2px 2px 2px 2px #808080;
+    width: 60%; 
+   margin-left: 15%;
+}
+.nextButton{
+    background-color:rgba(42, 5, 143, 0.8);
+    color:white;
+    font-weight: bold;
+    width: 40%;
+    border-color: rgba(42, 5, 143, 0.8);
+}
+.nextButton:hover{
+     color:white;
+    background-color:rgba(60, 35, 131, 0.8) !important;
+    border-color: rgba(60, 35, 131, 0.8) !important;
+}
+

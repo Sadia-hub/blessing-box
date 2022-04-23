@@ -1,0 +1,22 @@
+.mainContainer{
+    /* background-image: linear-gradient(to right, rgba(36, 60, 88, 0.5), rgba(36, 60, 88, 0.5)); */
+    margin-top: 75px;
+    background-image: linear-gradient(rgba(47,78,113), rgba(47,78,113));
+    z-index: 1;
+}
+
+.text{
+    margin: 2rem;
+    color: red;
+    font-size: 35px;
+}
+
+.Paragraph{
+    color: white;
+    margin: 2rem;
+}
+.heading{
+    color: red;
+    text-align: center; 
+    margin: 2rem;
+}
