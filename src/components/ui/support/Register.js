@@ -82,7 +82,7 @@ const Register = () => {
       </Form.Item>
 
 
-      <Form.Item wrapperCol={{ offset: 12, span: 12 }}>
+      <Form.Item wrapperCol={{  span: 12 }}>
       <CustomButton label="Register" className={styles.regButton} type="primary" onClick={false} disabled={false} shape='round'></CustomButton>
          
       </Form.Item>

@@ -38,18 +38,9 @@ const CustomCarousel = () => {
               
               <Row>
 
-                  <Col lg={12} md={24}>
-
-                      <CustomButton  label ="Donation❤" className = {styles.btn} onClick = {false} type = "submit" disabled = {false}  /> 
-                 
-                  </Col> 
-
-                  <Col lg={12} md={24}>
-
-                   <CustomButton label ="Registration" className = {styles.btn2} onClick = {false}  disabled = {false}  />
-                  
-                  </Col>               
-                 
+                
+                  <CustomButton  label ="Donate❤" className = {styles.btn} onClick = {false} type = "submit" disabled = {false}  /> 
+                  <CustomButton label ="Registration" className = {styles.btn2} onClick = {false}  disabled = {false}  />
               </Row>
           </Col>
 
@@ -82,7 +73,7 @@ const CustomCarousel = () => {
               
               <Row>
                 
-                  <CustomButton  label ="Donation❤" className = {styles.btn} onClick = {false} type = "submit" disabled = {false}  /> 
+                  <CustomButton  label ="Donate❤" className = {styles.btn} onClick = {false} type = "submit" disabled = {false}  /> 
                   <CustomButton label ="Registration" className = {styles.btn2} onClick = {false}  disabled = {false}  />
               </Row>
           </Col>
@@ -118,7 +109,7 @@ const CustomCarousel = () => {
               
               <Row>
                 
-                  <CustomButton  label ="Donation❤" className = {styles.btn} onClick = {false} type = "submit" disabled = {false}  /> 
+                  <CustomButton  label ="Donate❤" className = {styles.btn} onClick = {false} type = "submit" disabled = {false}  /> 
                   <CustomButton label ="Registration" className = {styles.btn2} onClick = {false}  disabled = {false}  />
               </Row>
           </Col>
@@ -154,7 +145,7 @@ const CustomCarousel = () => {
               
               <Row>
                 
-                  <CustomButton  label ="Donation❤" className = {styles.btn} onClick = {false} type = "submit" disabled = {false}  /> 
+                  <CustomButton  label ="Donate❤" className = {styles.btn} onClick = {false} type = "submit" disabled = {false}  /> 
                   <CustomButton label ="Registration" className = {styles.btn2} onClick = {false}  disabled = {false}  />
               </Row>
           </Col>

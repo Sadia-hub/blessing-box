@@ -1,5 +1,6 @@
 import { Row, Col } from 'antd';
 import { Typography } from 'antd';
+import Color from '../../../../styles/colors';
 import Image from 'next/image';
 const WhyUs = () => {
     const {Title} = Typography;
@@ -8,7 +9,7 @@ const WhyUs = () => {
           <Row >
             <Col md={8} sm = {{span: 16}}  xs={16} lg={8} offset={2}>
               <Row >
-              <Title style={{color : '#2f4e71', marginTop: '5rem'}}> Why Choose Us </Title>  
+              <Title style={{color : Color.primaryV2, marginTop: '5rem'}}> Why Choose Us </Title>  
               </Row>
               <Row>
               <Title level ={4}> Every NGO has a different purpose of its existence and greatly contributes to societal benefit. 
