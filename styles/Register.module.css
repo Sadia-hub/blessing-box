@@ -4,10 +4,9 @@
 
 
 .heading{
-    background-color: #2f4e71;
+    background: radial-gradient(at center center, rgba(42, 5, 143, 0.8) 0%, rgba(42, 5, 143, 0.8) 100%),  url("/bg.jpg");
     color: white !important;
     width: 100%;
-    /* margin-left: 15%; */
     text-align: center;
     border-radius: 20px; 
 }
@@ -15,7 +14,6 @@
     margin-top: 75px;  
     display: flex;
     justify-content: center;
-    /* border: 1px solid; */
 }
 .btn{
     width: 140px;
@@ -29,16 +27,27 @@
 }
 
 .regButton{
-    background-color:#243c58 !important;
+   
+    background: radial-gradient(at center center, rgba(42, 5, 143, 0.8) 0%, rgba(42, 5, 143, 0.8) 100%),  url("/bg.jpg")!important;
+    border-color: radial-gradient(at center center, rgba(42, 5, 143, 0.8) 0%, rgba(42, 5, 143, 0.8) 100%),  url("/bg.jpg");
     color:white;
     width: 40%;
-    border-color: #243c58 !important;
+    margin-left: 85%;
+    
 }
 .regButton :hover{
-    /* border-radius: 20px;
-    height: 5vh;
-     width: 112px; */
-     color:white;
-    background-color:#2f4e71 !important;
-    border-color: #2f4e71 !important;
+    background-color:rgba(60, 35, 131, 0.8) !important;
+    border-color: rgba(60, 35, 131, 0.8) !important;
+    color: white;
 }
+@media screen and (max-width: 672px)and (min-width: 576px) {
+.regButton{
+    width: 50%;  
+}
+}
+@media screen and (max-width: 575px){
+    .regButton{
+        margin-left: 30%;
+    }
+}
+

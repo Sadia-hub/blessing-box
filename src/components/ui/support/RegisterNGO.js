@@ -36,7 +36,7 @@ const RegisterNGO = ({btnLabel, handleRegister}) => {
       {/* Enter NGO name */}
       <Form.Item
         label="Enter NGO Name"
-        name="name"
+        name="ngoName"
         rules={[{ required: true, message: 'Please enter your NGO name!' }]}
       >
         <Input />
@@ -63,7 +63,7 @@ const RegisterNGO = ({btnLabel, handleRegister}) => {
       {/* NGO Email */}
       <Form.Item
         label="Enter NGO Email"
-        name="email"
+        name="ngoEmail"
         rules={[{ required: true, type:'email', message: 'Please Enter NGO email' }]}
       >
         <Input />
@@ -76,10 +76,35 @@ const RegisterNGO = ({btnLabel, handleRegister}) => {
       >
         <Input.Password />
       </Form.Item>
+
+      <Form.Item
+        name="confirm"
+        label="Confirm Password"
+        dependencies={['password']}
+        hasFeedback
+        rules={[
+          {
+            required: true,
+            message: 'Please confirm your password!',
+          },
+          ({ getFieldValue }) => ({
+            validator(_, value) {
+              if (!value || getFieldValue('password') === value) {
+                return Promise.resolve();
+              }
+              return Promise.reject(new Error('The two passwords that you entered do not match!'));
+            },
+          }),
+        ]}
+      >
+        <Input.Password />
+      </Form.Item>
+
+
        {/* Phone Number */}
        <Form.Item
         label="Enter Contact Number"
-        name="contact"
+        name="ngoContact"
         rules={[{ required: true, message: 'Please Enter Contact Number!' }]}
       >
          <Input />

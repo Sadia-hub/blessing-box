@@ -5,7 +5,9 @@ import { useRouter } from 'next/router'
 import Color from '../../../../styles/colors';
 const Categories = (xs=12, sm=11, md=8, lg=5, title="Choose, where you want to donate") =>{
 
+
     const router = useRouter();
+
 
     return <>
             <Row justify='center' >
@@ -18,6 +20,7 @@ const Categories = (xs=12, sm=11, md=8, lg=5, title="Choose, where you want to d
                 xs={{ span: xs }}  
                 sm={{span: sm}} 
                 md={{ span: md }} 
+
                 lg={{span:lg}}> 
                     <div
                     onClick={()=>{router.push("/categories/orphanage")}}
@@ -29,6 +32,7 @@ const Categories = (xs=12, sm=11, md=8, lg=5, title="Choose, where you want to d
                         alt="Orphanage Category"
                         />
                     </div>       
+
                 </Col>
             
                 <Col 
@@ -37,6 +41,7 @@ const Categories = (xs=12, sm=11, md=8, lg=5, title="Choose, where you want to d
                 md={{ span: sm}} 
                 sm={{span: md}} 
                 lg={{span:lg}}>
+
                     <div
                      onClick={()=>{router.push("/categories/food")}}
                     >
@@ -47,6 +52,7 @@ const Categories = (xs=12, sm=11, md=8, lg=5, title="Choose, where you want to d
                         alt="Food Category"
                         />
                     </div>
+
                 </Col>
                 <Col 
                 key="3"
@@ -54,6 +60,7 @@ const Categories = (xs=12, sm=11, md=8, lg=5, title="Choose, where you want to d
                 md={{ span: sm }} 
                 sm={{span: md}} 
                 lg={{span:lg}}>
+
                     <div
                     onClick={()=>{router.push("/categories/education")}}
                     >
@@ -66,6 +73,7 @@ const Categories = (xs=12, sm=11, md=8, lg=5, title="Choose, where you want to d
                         />
                     </div>
                     
+
                 </Col>
             </Row>
     </>

@@ -11,7 +11,9 @@ const CustomLayout = ({children}) =>{
             <CustomHeader />
 
             <Content>
+
              
+
                 <div className="site-layout-content">{children}</div>
             </Content>
 

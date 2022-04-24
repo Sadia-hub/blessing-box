@@ -1,3 +1,6 @@
+.infoHeading{
+     color:rgba(235,33,136,1) !important;
+}
 .cardInfo{ 
      background-color: white; 
     z-index: 1;

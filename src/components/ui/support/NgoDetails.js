@@ -2,6 +2,7 @@ import {Row, Col, Divider} from 'antd';
 import { Typography } from 'antd';
 import CustomLayout from '../../layouts/customLayout';
 
+
 import { useState } from 'react';
 import styles from '../../../../styles/NgoDetails.module.css';
 import ProjectCard from './ProjectCard';
@@ -94,14 +95,15 @@ const NgoDetails = ({id, editable=false}) =>{
                        
 
                       
-                        
                     
                     </Col>
 
             </Row>
             
+
             
             
+
         </div>
     </CustomLayout>
 }

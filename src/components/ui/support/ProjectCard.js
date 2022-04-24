@@ -44,7 +44,9 @@ const ProjectCard=({title="SIBA Pink Ribbon SIBA Pink Ribbon SIBA Pink Ribbon"})
 
     return<div>
         <div className={styles.main} onClick={showModal}>
+
         <Image src="/education.svg" height={150} width={260} alt="project image"/>
+
         <Row justify='center' align='middle'>
             <Title level={5} style={{color:"rgba(235,33,136,1)"}}>{title}</Title>
         </Row>
