@@ -3,10 +3,10 @@ import styles from '../../../../styles/InfoCard.module.css';
 import { useState } from 'react';
 
 const InfoCard = ({ngoRegister="200",funds="29090"}) =>{
-  const [xs,setXs] = useState(22);
+  const [xs,setXs] = useState(24);
   const [sm,setSm] = useState(11);
-  const [md,setMd] = useState(8);
-  const [lg,setLg] = useState(8);
+  const [md,setMd] = useState(12);
+  const [lg,setLg] = useState(12);
 const{Title}=Typography;
     return(<>  
      <div className={styles.cardInfo}>     
