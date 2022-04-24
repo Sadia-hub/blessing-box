@@ -6,13 +6,16 @@ import ProjectCard from './ProjectCard';
 import { Typography, Row, Col } from 'antd';
 import NgosNavbar from "../../layouts/NgosNavbar"
 import NgoSidebar from './NgoSidebar';
+import CustomLayout from '../../layouts/customLayout';
 const NgoDetails = ({id, editable=false}) =>{
 
     const { Title, Paragraph } = Typography;
     const [title, setTitle] = useState("Chippa NGO");
     const [founder, setFounder] = useState("Abdul Sattar Edhi");
    
-    return      <div className={styles.container}>
+    return  <CustomLayout>
+    
+    <div className={styles.container}>
 
             <Row align="middle" justify='center'>
                 <Title className={styles.title} editable={editable} ellipsis>{title}</Title> 
@@ -106,6 +109,7 @@ const NgoDetails = ({id, editable=false}) =>{
             
 
         </div>
+        </CustomLayout>   
     
 }
 

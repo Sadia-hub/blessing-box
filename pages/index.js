@@ -7,14 +7,14 @@ import ContactUs from "../src/components/ui/support/ContactUs"
 
 export default function Home() {
   return<CustomLayout>
-    <CustomCarousel/>
-    <InfoCard/>
+        <CustomCarousel/>
+        <InfoCard/>
 
-    <Categories />
+        <Categories />
 
-    <DefineStep />
+        <DefineStep />
 
-    <ContactUs />
+        <ContactUs />
 
   </CustomLayout>
 }

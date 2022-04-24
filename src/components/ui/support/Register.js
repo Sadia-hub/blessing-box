@@ -114,7 +114,7 @@ const Register = ({label="Register"}) => {
       <Form.Item wrapperCol={{ span: 12 }}>
 
       <CustomButton htmlType="submit" label="Register" className={styles.regButton} type="primary" onClick={onSubmission} disabled={false} shape='round'></CustomButton>     
- origin/sanjana3
+ 
       </Form.Item>
     </Form>
         </div>

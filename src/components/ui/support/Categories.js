@@ -1,4 +1,4 @@
-import {Col,Row,Typography} from 'antd';
+import {Col,Row,Typography, Divider} from 'antd';
 const { Title} = Typography;
 import CustomCard from './CustomCard';
 import { useRouter } from 'next/router'
@@ -10,9 +10,8 @@ const Categories = (xs=12, sm=11, md=8, lg=5, title="Choose, where you want to d
 
 
     return <>
-            <Row justify='center' >
-                 <Title style={{color:"#EB2188"}}>{title}</Title>
-            </Row>
+            
+            <Divider level={1}><Title style={{color:"#EB2188"}}>{title}</Title></Divider>
             
             <Row justify="center">
                 <Col 
