@@ -11,12 +11,13 @@ export default function Home() {
   return<CustomLayout>
     <CustomCarousel/>
     <InfoCard/>
-    {/* <WhyChooseUs/> */}
+    <WhyChooseUs/>
     <ProvideServices/>
     <Categories />
 
     <DefineStep/>
 
+    <ContactUS/>
    
 
   </CustomLayout>

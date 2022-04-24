@@ -8,7 +8,7 @@ import styles from '../../../../styles/NgoDetails.module.css';
 import ProjectCard from './ProjectCard';
 import NgoSidebar from './NgoSidebar';
 import LeftMenu from '../../layouts/NgosNavbar';
-const NgoDetails = ({id, editable=false}) =>{
+const NgoDetails = ({id, editable=true}) =>{
     
     const { Title, Paragraph } = Typography;
     const [title, setTitle] = useState("Chippa NGO");

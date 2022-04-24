@@ -129,13 +129,13 @@
 @media (max-width:1300px) {
     
 .logo {
-    color: rgba(42, 5, 143, 0.8);
+    color: #EB2188;
     font-size: 40px;
     text-transform: uppercase;
     }
     
     .logo a {
-    color: rgba(42, 5, 143, 0.8);
+    color: #EB2188;
     }
 
 .slider{
@@ -144,7 +144,7 @@
     height:100vh;
     top:-120%;
     
-    background-color: rgba(235,33,136,1);
+    background-color: rgba(42, 5, 143, 0.8);
     transition: 1s ease;
 }
 

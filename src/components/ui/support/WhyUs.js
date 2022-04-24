@@ -1,14 +1,15 @@
 import { Row, Col } from 'antd';
 import { Typography } from 'antd';
+import Color from '../../../../styles/colors';
 import Image from 'next/image';
 const WhyUs = () => {
     const {Title} = Typography;
     return <>
      <div >
           <Row >
-            <Col md={8} sm = {{span: 16}}  xs={16} lg={8} offset={2}>
-              <Row >
-              <Title style={{color : '#2f4e71', marginTop: '5rem'}}> Why Choose Us </Title>  
+            <Col md={{span:8, order:1}} sm = {{span: 16, order:2}}  xs={{span:20,  order:2}} lg={{span:8, order:1}} offset={2}>
+              <Row justify='center'>
+              <Title style={{color : Color.primaryV2, marginTop: '5rem'}}> Why Choose Us </Title>  
               </Row>
               <Row>
               <Title level ={4}> Every NGO has a different purpose of its existence and greatly contributes to societal benefit. 
@@ -18,7 +19,7 @@ const WhyUs = () => {
                </Title>
               </Row>
             </Col>
-            <Col md={8} offset={2} sm = {{span: 16}} lg={8} xs={16} style={{marginTop: '5rem'}}>
+            <Col  md={{span:8, order:2, offset:2}} sm = {{span: 16, order:1}}  xs={{span:20,  order:1, offset:4}} lg={{span:8, offset:2}} style={{marginTop: '5rem'}}>
             <Image  
               height={350}
               width={350}

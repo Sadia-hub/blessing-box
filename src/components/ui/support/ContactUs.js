@@ -15,7 +15,7 @@ const ContactUS = () => {
 
   return (
       <>
-    <Title className={styles.heading}>We would love to hear from you</Title>
+    <Title id="contact" className={styles.heading}>We would love to hear from you</Title>
     <Title level = {5} className={styles.heading}>Thank you for contacting Blessing Box. Someone from 
     our team member will reply to your query very soon</Title>
 
@@ -56,7 +56,7 @@ const ContactUS = () => {
         <Input className={styles.inputField} />
         </Form.Item>
 
-      <Form.Item wrapperCol={{ offset: 8, span: 12 }}>
+      <Form.Item wrapperCol={{ span: 12 }}>
       <CustomButton label="Submit" className={styles.regbutton} type="primary" onClick={false} disabled={false} shape=''></CustomButton>
        
       
