@@ -5,7 +5,7 @@
     overflow: hidden;
     position: absolute; 
     z-index: 1;
-    height: 4rem;
+    height: 3.5rem;
     position: fixed;
     background-color: rgba(42, 5, 143, 0.75);
     z-index: 1;
@@ -89,8 +89,8 @@
 }
 
 .slider ul li a:hover{
-    color: white;
-    background-color: black;
+    /* color: white; */
+    color: #EB2188;
     /* font-size: 22px; */
    
    
@@ -114,7 +114,7 @@
 .closed{
     display: none;
     justify-content: flex-start;
-    width: 100%;
+    width: 60%;
     
 }
 
@@ -128,15 +128,23 @@
 
 @media (max-width:1300px) {
     
-
+.logo {
+    color: rgba(42, 5, 143, 0.8);
+    font-size: 40px;
+    text-transform: uppercase;
+    }
+    
+    .logo a {
+    color: rgba(42, 5, 143, 0.8);
+    }
 
 .slider{
     position: fixed;
     min-width: 100%;
     height:100vh;
-    top:-100%;
+    top:-120%;
     
-    background-color: rgba(222,20,60,1);
+    background-color: rgba(235,33,136,1);
     transition: 1s ease;
 }
 
@@ -164,7 +172,7 @@
 .slider ul li a{
     font-size: 25px;
     text-decoration: none;
-    color: #002244;
+    color: white;
 }
 
 .menuIcon .menu{
@@ -172,7 +180,7 @@
     font-size: 55px;
     cursor: pointer;
     color: #ffffff;
-    width: 120px;
+    width: 100px;
     float: right;
    
 }
@@ -192,7 +200,7 @@
 
 .closed .close{
     color:white;
-    font-size: 60px;
+    font-size: 30px;
     cursor: pointer;
 }
 }

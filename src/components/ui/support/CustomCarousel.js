@@ -32,15 +32,15 @@ const CustomCarousel = () => {
   const { Title } = Typography;
   return (
     <>
-      <div className={styles.mainDiv}>
+      <div >
 
 
         <Carousel autoplay={true} dotPosition="right" >
-          <div>
-            <Row align='middle' justify='center' style={{ margin: "5%" }}>
+          <div className={styles.mainDiv}>
+            <Row align='middle'>
 
-              <Col span={12} >
-                <Row>
+              <Col xs={{ span: 24, order:2 }} sm={{ span: 24, order:2 }} md={{ span: 12, order:2 }} lg={{ span: 12, order:1 }}>
+                <Row justify='center'>
 
                   <Title className={styles.heading}>
                     Hurry Up!! Don't miss your chance
@@ -53,7 +53,8 @@ const CustomCarousel = () => {
 
                 </Row>
 
-                <Row>
+                <Row justify="center">
+                  
 
                   <CustomButton label="Donate❤" className={styles.btn} onClick={showModal} type="submit" disabled={false} />
                   <CustomButton label="Registration" className={styles.btn2} onClick={showModal} disabled={false} />
@@ -61,7 +62,7 @@ const CustomCarousel = () => {
               </Col>
 
 
-              <Col span={12}>
+              <Col  xs={{ span: 24, order:1 }} sm={{ span: 24, order:1 }} md={{ span: 12, order:1 }} lg={{ span: 12, order:2 }}>
                 <Row >
                   <Image
                     height={600}
@@ -74,11 +75,11 @@ const CustomCarousel = () => {
 
             </Row>
           </div>
-          <div>
-            <Row align='middle' justify='center' style={{ margin: "5%" }}>
+          <div className={styles.mainDiv}>
+            <Row align='middle' >
 
-              <Col span={12}>
-                <Row>
+              <Col xs={{ span: 24, order:2 }} sm={{ span: 24, order:2 }} md={{ span: 12, order:2 }} lg={{ span: 12, order:1 }}>
+                <Row justify='center'>
 
                   <Title className={styles.heading}>
                     Join NGOs to become shelter for the <span style={{ color: "#EB2188" }}>SHELTERLESS</span>!<br />
@@ -87,7 +88,7 @@ const CustomCarousel = () => {
 
                 </Row>
 
-                <Row>
+                <Row justify="center">
 
                   <CustomButton label="Donate❤" className={styles.btn} onClick={showModal} type="submit" disabled={false} />
                   <CustomButton label="Registration" className={styles.btn2} onClick={showModal} disabled={false} />
@@ -95,7 +96,7 @@ const CustomCarousel = () => {
               </Col>
 
 
-              <Col span={12}>
+              <Col  xs={{ span: 24, order:1 }} sm={{ span: 24, order:1 }} md={{ span: 12, order:2 }} lg={{ span: 12, order:2 }}>
                 <Row>
                   <Image
                     height={600}
@@ -108,11 +109,11 @@ const CustomCarousel = () => {
 
             </Row>
           </div>
-          <div>
-            <Row align='middle' justify='center' style={{ margin: "5%" }}>
+          <div className={styles.mainDiv}>
+            <Row align='middle'>
 
-              <Col span={12} >
-                <Row >
+              <Col xs={{ span: 24, order:2 }} sm={{ span: 24, order:2 }} md={{ span: 12, order:2 }} lg={{ span: 12, order:1 }}>
+                <Row  justify='center'>
 
                   <Title className={styles.heading}>
                     Donate for the <span style={{ color: "#EB2188" }}>HUNGRY</span>!<br />
@@ -123,7 +124,7 @@ const CustomCarousel = () => {
 
                 </Row>
 
-                <Row>
+                <Row justify="center">
 
                   <CustomButton label="Donate❤" className={styles.btn} onClick={showModal} type="submit" disabled={false} />
                   <CustomButton label="Registration" className={styles.btn2} onClick={showModal} disabled={false} />
@@ -131,7 +132,7 @@ const CustomCarousel = () => {
               </Col>
 
 
-              <Col span={12} >
+              <Col  xs={{ span: 24, order:1 }} sm={{ span: 24, order:1 }} md={{ span: 12, order:2 }} lg={{ span: 12, order:2 }}>
                 <Row>
                   <Image
                     height={600}
@@ -144,11 +145,11 @@ const CustomCarousel = () => {
 
             </Row>
           </div>
-          <div>
-            <Row align='middle' justify='center' style={{ margin: "5%" }}>
+          <div className={styles.mainDiv}>
+            <Row align='middle' >
 
-              <Col span={12} >
-                <Row >
+              <Col xs={{ span: 24, order:2 }} sm={{ span: 24, order:2 }} md={{ span: 12, order:2 }} lg={{ span: 12, order:1 }}>
+                <Row justify='center'>
 
                   <Title className={styles.heading}>
                     Donate for the future of Pakistan-<span style={{ color: "#EB2188" }}>EDUCATION-</span><br />
@@ -159,7 +160,7 @@ const CustomCarousel = () => {
 
                 </Row>
 
-                <Row >
+                <Row justify="center">
 
                   <CustomButton label="Donate❤" className={styles.btn} onClick={showModal} type="submit" disabled={false} />
                   <CustomButton label="Registration" className={styles.btn2} onClick={showModal} disabled={false} />
@@ -167,7 +168,7 @@ const CustomCarousel = () => {
               </Col>
 
 
-              <Col span={12} >
+              <Col xs={{ span: 24, order:1 }} sm={{ span: 24, order:1 }} md={{ span: 12, order:2 }} lg={{ span: 12, order:2 }}>
                 <Row>
                   <Image
                     height={600}

@@ -1,0 +1,10 @@
+.heading{
+    color: rgba(235,33,136,1) !important;
+    text-align: center;   
+}
+.text{
+    text-align: justify;
+}
+.chooseImg{
+    margin-top: -8% !important;
+}

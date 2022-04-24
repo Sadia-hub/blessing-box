@@ -10,23 +10,21 @@ import React, {  createContext, useContext, useState } from 'react';
 
 const Register = ({label="Register"}) => {  
   var namee, emailvalue; 
-  const {name, dispatchname} = useContext(UserName);
-  const {state, dispatch} = useContext(UserContext);
+  
   const[fine, setFine] = useState(false);
-  const[lbl, setLbl] = useState(label);
   const[emailverify, setEmailverify] = useState(true);
     const { Title } = Typography;  
 
     const onFinish = (values) => {
         console.log('Success:', values);
         setFine(true);
-        setLbl("Cancel")
-        dispatch({type: 'USER', payload:true});
+       
+       
       };
       const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
         setFine(false);
-        dispatch({type: 'USER', payload:false});
+       
       };
 
       const onSubmission  = () => {
@@ -38,7 +36,7 @@ const Register = ({label="Register"}) => {
       const onHandleChange = (e) => {  
         namee = e.target.value;
         console.log(namee);
-        dispatchname({type: 'USERNAME', payload: namee});
+     
       }
     return (
         <>
@@ -63,7 +61,7 @@ const Register = ({label="Register"}) => {
         wrapperCol={{ span: 12 }}
 
       >
-        <Input className={styles.inputField} onChange={onHandleChange}/>
+        <Input className={styles.inputField} />
       </Form.Item>
       <Form.Item
         label="Email"
@@ -71,7 +69,7 @@ const Register = ({label="Register"}) => {
         rules={[{ required: true, type:'email', message: 'Please input your Email!' }]}
         wrapperCol={{ span: 12 }}
       >
-        <Input onChange={onHandleEmail} />
+        <Input />
       </Form.Item>
 
       <Form.Item
@@ -111,7 +109,7 @@ const Register = ({label="Register"}) => {
       </Form.Item>
 
       <Form.Item wrapperCol={{ span: 12 }}>
-      <CustomButton htmlType="submit" label={lbl} className={styles.regButton} type="primary" onClick={onSubmission} disabled={false} shape='round'></CustomButton>     
+      <CustomButton htmlType="submit" label="Register" className={styles.regButton} type="primary" onClick={onSubmission} disabled={false} shape='round'></CustomButton>     
       </Form.Item>
     </Form>
         </div>
