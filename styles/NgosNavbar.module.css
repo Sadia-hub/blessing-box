@@ -1,0 +1,67 @@
+.navbar{
+    background-color: white;
+    box-shadow: 2px 2px 2px 2px #808080;
+    height: 70px;
+    width:100%;
+}
+.navbar .menulist{
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+.navbar .menulist li{
+    display: inline-block;
+    line-height: 80px;
+    margin: 0 15px;
+    font-weight: bold;
+}
+.navbar .menulist li a{
+   color: black;
+   font-size: 16px;
+}
+.menulist li a:hover{
+    color:rgba(235,33,136,1);
+    border-bottom: 2px solid rgba(235,33,136,1);
+    font-weight: bold;
+}
+/* .menuiocn{
+    font-size: 30px;
+    float: right;
+    line-height: 80px;
+    cursor: pointer;
+    display: none;
+} */
+@media (max-width:952px){
+    .navbar .menulist li a{
+        font-size: 12px;
+     }
+}
+@media(max-width:858px){
+    .navbar{
+        overflow-y: hidden;
+        overflow-x: scroll;
+        white-space: nowrap; 
+     } 
+    /* .menuiocn{
+        display: block;
+    }
+    .menulist{
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        top:80px;
+        left:-100%;
+        text-align: center;
+
+    }
+    .navbar .menulist li{
+        display: block;
+    }
+     .menuicon:checked ~ ul{
+        left:0;
+    }  */
+ } 

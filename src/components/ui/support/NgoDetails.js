@@ -1,11 +1,9 @@
-import {Row, Col, Divider} from 'antd';
-import { Typography } from 'antd';
-import CustomLayout from '../../layouts/customLayout';
-
+import {BookOutlined} from '@ant-design/icons';
+import Image from 'next/image';
 import { useState } from 'react';
 import styles from '../../../../styles/NgoDetails.module.css';
 import ProjectCard from './ProjectCard';
-import NgoSidebar from './NgoSidebar';
+import NgosNavbar from '../../layouts/NgosNavbar';
 const NgoDetails = ({id}) =>{
     const { Title, Paragraph } = Typography;
     const [title, setTitle] = useState("Chippa NGO");
@@ -18,6 +16,10 @@ const NgoDetails = ({id}) =>{
 
             <Row align="middle" justify='center'>
                 <Title className={styles.title} editable={editable} ellipsis>{title}</Title> 
+            </Row>
+
+            <Row>
+                <NgosNavbar/>
             </Row>
       
             <Row justify="center" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} className={styles.container}>
@@ -86,14 +88,14 @@ const NgoDetails = ({id}) =>{
                        
 
                       
+
                         
                     
                     </Col>
 
             </Row>
             
-            
-            
+
         </div>
     </CustomLayout>
 }

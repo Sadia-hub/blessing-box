@@ -1,5 +1,5 @@
 import { Layout } from 'antd';
-import { MenuOutlined , CloseOutlined } from '@ant-design/icons';
+import { MenuOutlined, CloseOutlined } from '@ant-design/icons';
 import styles from '../../../styles/Navbarr.module.css';
 import React, { useState, useEffect, useContext } from 'react';
 import 'antd/dist/antd.css';
@@ -8,11 +8,13 @@ import { Menu, Dropdown, message } from 'antd';
 import { Avatar, Image } from 'antd';
 import { UserContext, UserName } from './customLayout';
 
+
 const customHeader  = ()=>{
   const{name, dispatchname} = useContext(UserName);
   const{state, dispatch} = useContext(UserContext);
+
   const [active, setActive] = useState(false);
-  const showMenu =()=>{setActive(!active);}
+  const showMenu = () => { setActive(!active); }
   const [click, setClick] = useState(false);
   
   console.log("name is " + name)
@@ -158,6 +160,7 @@ const customHeader  = ()=>{
   </nav>
 </header>
     );
+
 }
 
-export default customHeader ;
+export default customHeader;

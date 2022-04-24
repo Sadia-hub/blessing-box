@@ -10,6 +10,7 @@ const UserContext = createContext();
 export { UserContext };
 export const UserName = createContext();
 const CustomLayout = ({children}) =>{
+
     const [name, dispatchname] = useReducer(reducername, initialStatename);
     const [state, dispatch] = useReducer(reducer, initialState);
     return <Layout className="layout">
@@ -17,6 +18,7 @@ const CustomLayout = ({children}) =>{
             <UserName.Provider value ={{ name, dispatchname}}>    
             <CustomHeader />
             <Content>  
+
                 <div className="site-layout-content">{children}</div>
             </Content>
             <CustomFooter/>

@@ -13,13 +13,15 @@ const Register = ({label="Register"}) => {
   const {name, dispatchname} = useContext(UserName);
   const {state, dispatch} = useContext(UserContext);
   const[fine, setFine] = useState(false);
+
+
   const[emailverify, setEmailverify] = useState(true);
     const { Title } = Typography;  
 
     const onFinish = (values) => {
         console.log('Success:', values);
         setFine(true);
-     
+
         dispatch({type: 'USER', payload:true});
       };
       const onFinishFailed = (errorInfo) => {
@@ -110,7 +112,9 @@ const Register = ({label="Register"}) => {
       </Form.Item>
 
       <Form.Item wrapperCol={{ span: 12 }}>
+
       <CustomButton htmlType="submit" label="Register" className={styles.regButton} type="primary" onClick={onSubmission} disabled={false} shape='round'></CustomButton>     
+ origin/sanjana3
       </Form.Item>
     </Form>
         </div>

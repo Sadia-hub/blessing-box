@@ -1,11 +1,14 @@
-import { Carousel} from 'antd';
+import { Carousel, Modal } from 'antd';
 import Image from 'next/image';
 import styles from '../../../../styles/Carousel.module.css';
 import { CustomButton } from '../buttons/buttons';
+import { useState } from 'react';
+import { useRouter } from 'next/router'
 import { Row, Col } from 'antd';
 import { Typography } from 'antd';
 
 const CustomCarousel = () => {
+
   const { Title } = Typography; 
   
   const sm={span:24, style:{marginBottom:"20px"}}
@@ -172,6 +175,7 @@ const CustomCarousel = () => {
       
      
       </div>
+
     </>
   );
 };
