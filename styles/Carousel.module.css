@@ -3,18 +3,11 @@
     background-repeat: no-repeat;
     background-size: cover;
     box-sizing: border-box;
+    height: 100%;
 }
-.container {
-   
-    
-    line-height: '160px';
+.container { 
     width: 100%;
     height: 100vh;
-    position: relative; 
-    z-index: -1; 
-    /* background-color: #2f4e71; */
-   /* margin-top: 60px */
-
   };
   
 .picture {
@@ -42,10 +35,8 @@
         overflow-x: hidden !important;
         }
 
+
 .heading {
-    /* position: absolute;  */
-    /* top:50%; */
-    
     font-size: 40px;
     color: white !important;
     overflow: hidden;   
@@ -55,14 +46,19 @@
         position: absolute; 
        font-size: 20px;
        font-weight: bold;
-        /* margin-top: 330px !important; */
-        /* margin-left: 10px; */
         border-radius: 30px;
         width: 150px;
         height: 40px;
-        /* overflow: hidden;    */
         z-index: 1;
+        background-color:#028A0F !important;
+        border-color: #028A0F !important;
+        color: white;
+        text-transform: uppercase;
         
+    }
+    .btn2{
+        background-color: #0c7c17 !important;
+    border-color: #0c7c17 !important;  
     }
 
     .footerButton{
@@ -86,32 +82,183 @@
         height: 40px;
         font-size: 18px;
         font-weight: bold;
-        /* margin-top: 330px !important; */
         margin-left: 180px;
         border-radius: 30px;
         width: 180px;
         z-index: 1;
+        background-color:rgba(235,33,136,1) !important;
+        border-color: rgba(235,33,136,1) !important;
+        color: white;
     }
 
+    .btn2 :hover{
+        background-color: rgb(233, 40, 140) !important;
+        border-color: rgb(233, 40, 140) !important;  
+        color: white;
+    }
+    .cancelBtn{
+        background-color:rgba(42, 5, 143, 0.8) !important;
+        border-color: rgba(42, 5, 143, 0.8) !important;
+        font-weight: bold;
+        color: white;
+    }
+    .btnModal{
+        background-color:rgba(235,33,136,1) !important;
+        border-color: rgba(235,33,136,1) !important;
+        font-weight: bold;
+        color: white;
+    }
+    .btnModal:hover{
+    background-color: rgb(233, 40, 140) !important;
+    border-color: rgb(233, 40, 140) !important;  
+    color:white;
+    }
+    .btnModal:focus{
+    background-color: rgb(212, 55, 136) !important;
+    border-color: rgb(212, 55, 136) !important;  
+    color:white;
+    }
+    .cancelBtn:hover{
+        background-color:rgba(60, 35, 131, 0.8) !important;
+        border-color: rgba(60, 35, 131, 0.8) !important;
+        color: white;
+    }
 
-       @media screen and (max-width: 700px)and (min-width: 500px) {
-        .container{
-           
-            height: 50vh;
+       @media screen and (max-width: 800px)and (min-width: 730px) {
+        .maindiv{   
+            height: 100vh;
         }
         .heading{
             top: 20%;
         }
         .btn {
-        margin-top: 300px !important;
+        margin-top: 520px !important;
         
         } 
         .btn2 {
-            margin-top: 360px !important;
-            margin-left: 10px;
+            margin-top: 520px !important;
+            margin-left: 160px;
+        }
+
+        .heading{
+            font-size: 28px !important;
         }
        }
 
+       @media screen and (max-width: 729px)and (min-width: 670px) {
+        .maindiv{
+           
+            height: 100vh;
+        }
+        .heading{
+            top: 20%;
+        }
+        .btn {
+        margin-top: 490px !important;
+        
+        } 
+        .btn2 {
+            margin-top: 490px !important;
+            margin-left: 160px;
+        }
+        .heading{
+            font-size: 28px !important;
+        }
+       }
+
+       @media screen and (max-width: 669px)and (min-width: 625px) {
+        .maindiv{
+            height: 100vh;
+        }
+        .heading{
+            top: 18%;
+        }
+        .btn {
+        margin-top: 450px !important;
+        
+        } 
+        .btn2 {
+            margin-top: 450px !important;
+            margin-left: 160px;
+        }
+        .heading{
+            font-size: 24px !important;
+        }
+       }
+
+       @media screen and (max-width: 624px)and (min-width: 580px) {
+        .maindiv{
+            margin-top: 40px;
+        }
+       
+        .btn {
+        margin-top: 410px !important;
+        
+        } 
+        .btn2 {
+            margin-top: 410px !important;
+            margin-left: 160px;
+        }
+        .heading{
+            font-size: 26px !important;
+        }
+       }
+
+       @media screen and (max-width: 579px)and (min-width: 550px) {
+        .btn {
+        margin-top: 360px !important;
+        
+        }  
+        .btn2 {
+            margin-top: 415px !important;
+            margin-left: 0px;
+        }
+         .heading{
+            font-size: 20px !important;
+             margin-top: -20px;
+        }
+       }
+
+       
+       @media screen and (max-width: 549px)and (min-width: 500px) {
+         .maindiv{
+            /* height: 120vh !important; */
+         margin-top: 20px;  
+        } 
+       
+        .btn {
+        margin-top: 340px !important;
+        
+        }  
+        .btn2 {
+            margin-top: 385px !important;
+            margin-left: 0px;
+        }
+         .heading{
+            font-size: 16px !important;
+        }
+       }
+
+       @media screen and (max-width: 499px)and (min-width: 480px) {
+        .maindiv{
+        margin-top: 20px;  
+       } 
+      
+       .btn {
+       margin-top: 320px !important;
+       
+       }  
+       .btn2 {
+           margin-top: 365px !important;
+           margin-left: 0px;
+       }
+        .heading{
+           font-size: 16px !important;
+       }
+      }
+
+
+/* 
        @media screen and (max-width: 500px)and (min-width: 350px) {
        
        .heading{
@@ -132,7 +279,7 @@
             margin-top: 400px !important;
             margin-left: 10px;
         }
-       }
+       } */
 
         
     
