@@ -4,16 +4,57 @@ import styles from '../../../../styles/Register.module.css';
 import { CustomButton } from '../buttons/buttons';
 import { Typography } from 'antd';
 import { Card } from 'antd';
+import {useState} from "react";
+import { useRouter } from 'next/router'
+import { Modal } from 'antd';
 const Register = () => {  
-    const { Title } = Typography;  
+    const { Title } = Typography; 
+    const router = useRouter(); 
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const[success, setSuccess] = useState(false);
+    const[name, setName] =useState('');
+    const showModal = () => {
+      setIsModalVisible(true);     
+    };
+
+    const handleCancel = () => {
+      setIsModalVisible(false);
+    };
+
+    const onHandleok = (e) => {
+      e.preventDefault()
+      router.push('/');
+      setIsModalVisible(false);
+    }
+
+    // const onClick= () => {
+    //   console.log('Success:');
+    //   alert('success');
+    // }
+   
     const onFinish = (values) => {
         console.log('Success:', values);
+        setSuccess(true);
       };
       const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
+        setSuccess(false);
       };
+
     return (
         <>
+    <Modal  title="Confirmation" visible={isModalVisible}  onCancel={handleCancel}  footer={[
+            <Button onClick={handleCancel} type="primary">
+             Cancel
+            </Button>,
+            <Button onClick={onHandleok}  type="primary">
+            Ok
+            </Button>,
+            ]}
+            >
+            <p>Kindly, Check Your Email for confirmation</p>   
+            </Modal> 
+
          <div className={styles.mainContainer}>           
     <Form
       name="basic"
@@ -39,7 +80,7 @@ const Register = () => {
       <Form.Item
         label="Email"
         name="Email"
-        rules={[{ required: true, message: 'Please input your Email!' }]}
+        rules={[{ required: true, message: 'Please input your Email!', type: 'email' }]}
         wrapperCol={{ span: 12 }}
       >
         <Input />
@@ -83,7 +124,7 @@ const Register = () => {
 
 
       <Form.Item wrapperCol={{  span: 12 }}>
-      <CustomButton label="Register" className={styles.regButton} type="primary" onClick={false} disabled={false} shape='round'></CustomButton>
+      <CustomButton htmlType="submit" label="Register" className={styles.regButton} type="primary" onClick={success==true? showModal: null} disabled={false} shape='round'></CustomButton>
          
       </Form.Item>
     </Form>

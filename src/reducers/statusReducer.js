@@ -1,18 +1,12 @@
-export const initialStatus = "pending";
+export const initialState = "pending";
 
-export const statusreducer = (status, action) => {
-    // if(action.type==="approved"){
-    //     return action.payload;
-    // }
-
-    // if(action.type==="rejected"){
-
-    //     return action.payload;
-    // }
-
-    if(action.type==="pending"){
-        return action.payload;
+export const statusReducer = (state=initialState, action) => {
+    
+    switch(action.type){
+        case "APPROVED": return state ="approved";
+        case "REJECTED": return state ="rejected";
+        case "PENDING": return state ="pending";
+        default: return state;
     }
-  
-    return status;
+
 }

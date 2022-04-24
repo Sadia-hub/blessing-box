@@ -2,36 +2,43 @@ import {Col,Row,Typography} from 'antd';
 const { Title} = Typography;
 import CustomAdminCard from './CustomAdminCard';
 import Color from '../../../../styles/colors';
-
+import { useSelector, useDispatch } from 'react-redux';
 import { useState, createContext, useReducer, useContext } from 'react';
-import { StatusContext } from './Context';
+import { Router, useRouter } from 'next/router'
+import { approved, rejected, pending } from '../../../actions';
+
 import PendingRequest from './PendingRequest';
 
 const MainAdmin = (xs=12, sm=11, md=8, lg=5, title="Main Dashboard") =>{
-    // const{status, dispatchstatus} = useContext(StatusContext);
-//  const [state, dispatch] = useReducer(statusreducer, initialStatus);
-    const [statuss,  setStatus] = useState("pending");
+     const myState = useSelector((state)=> state.statusReducer);
+    console.log("In"+myState);
+    const dispatch = useDispatch();
+    const router = useRouter();
+    const[status, setStatus] = useState("pending");
      const [heading,  setHeading] = useState("Pending Requests");
    
     const Approved = () => {
-        var name = "approved"
         setStatus(()=>"approved");
+        // router.push('/approved');
+        // dispatch(approved())
         // setTitle("Approved Requests");
-        // dispatchstatus({type: 'approved', payload: name}); 
    } 
 
-   const Rejected = () => {
-    var name = "rejected"
+   const Rejected = () => { 
     setStatus(()=>"rejected");
+    // dispatch(rejected())
+
+    }
+    
+  
     // setTitle("Rejected Requests");
-    //   dispatchstatus({type: 'rejected', payload: name});
-    } 
+    
+    
 
     const Pending = () => {
         setStatus(()=>"pending"); 
+        // dispatch(pending())
         // setTitle("Pending Requests");
-        var name = "pending"
-        // dispatchstatus({type: 'pending', payload: name}); 
     }
           
    return <>
@@ -93,7 +100,7 @@ const MainAdmin = (xs=12, sm=11, md=8, lg=5, title="Main Dashboard") =>{
                 </Col>
             </Row>
               
-                <PendingRequest statuss = {statuss} />
+                <PendingRequest status = {status} />
                
     </>
 }

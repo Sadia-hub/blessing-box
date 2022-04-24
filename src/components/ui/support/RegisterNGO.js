@@ -3,12 +3,14 @@ import style from '../../../../styles/RegisterNgo.module.css';
 import { CustomButton } from '../buttons/buttons';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
+import { Modal} from 'antd';
 import Link from 'next/link';
 import FounderInfo from './FounderInfo';
 import AuthorizationDoc from './AuthorizationDoc';
 import Declaration from './Declaration';
 
-const RegisterNGO = ({btnLabel, handleRegister}) => {
+const RegisterNGO = () => {
+	 const [success, setSuccess] = useState(false);
   const onFinish = (values) => {
     console.log('Success:', values);
   };
@@ -16,10 +18,37 @@ const RegisterNGO = ({btnLabel, handleRegister}) => {
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
-  
-  const { Title } = Typography;
+   const [isModalVisible, setIsModalVisible] = useState(false);
   const router=useRouter();
+  const showModal = (k) => {
+    setIsModalVisible(true);     
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  const onHandleok = (e) => {
+    e.preventDefault()
+    router.push('/');
+    setIsModalVisible(false);
+  }
+   
+  const { Title } = Typography;
+ 
   return (<>
+  
+	 <Modal  title="Confirmation" visible={isModalVisible}  onCancel={handleCancel}  footer={[
+            <Button onClick={handleCancel} type="primary">
+             Cancel
+            </Button>,
+            <Button onClick={onHandleok}  type="primary">
+            Ok
+            </Button>,
+            ]}
+            >
+            <p>Kindly, Check Your Email for confirmation</p>   
+     </Modal> 
   
     <Form
       name="basic"
@@ -36,7 +65,7 @@ const RegisterNGO = ({btnLabel, handleRegister}) => {
       {/* Enter NGO name */}
       <Form.Item
         label="Enter NGO Name"
-        name="name"
+        name="ngoName"
         rules={[{ required: true, message: 'Please enter your NGO name!' }]}
       >
         <Input />
@@ -63,7 +92,7 @@ const RegisterNGO = ({btnLabel, handleRegister}) => {
       {/* NGO Email */}
       <Form.Item
         label="Enter NGO Email"
-        name="email"
+        name="ngoEmail"
         rules={[{ required: true, type:'email', message: 'Please Enter NGO email' }]}
       >
         <Input />
@@ -76,10 +105,35 @@ const RegisterNGO = ({btnLabel, handleRegister}) => {
       >
         <Input.Password />
       </Form.Item>
+
+      <Form.Item
+        name="confirm"
+        label="Confirm Password"
+        dependencies={['password']}
+        hasFeedback
+        rules={[
+          {
+            required: true,
+            message: 'Please confirm your password!',
+          },
+          ({ getFieldValue }) => ({
+            validator(_, value) {
+              if (!value || getFieldValue('password') === value) {
+                return Promise.resolve();
+              }
+              return Promise.reject(new Error('The two passwords that you entered do not match!'));
+            },
+          }),
+        ]}
+      >
+        <Input.Password />
+      </Form.Item>
+
+
        {/* Phone Number */}
        <Form.Item
         label="Enter Contact Number"
-        name="contact"
+        name="ngoContact"
         rules={[{ required: true, message: 'Please Enter Contact Number!' }]}
       >
          <Input />
@@ -102,14 +156,11 @@ const RegisterNGO = ({btnLabel, handleRegister}) => {
       </Form.Item>
 
 
-       
-      
-
 <FounderInfo/>
 <AuthorizationDoc/>
 <Declaration/>
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-  <CustomButton label={btnLabel} className={style.nextButton} type="primary" onClick={handleRegister} disabled={false} shape="round"></CustomButton>
+	   <CustomButton htmlType="submit" label="Register" className={style.nextButton} type="primary" onClick={success==true? showModal: null} disabled={false} shape="round"></CustomButton>
       </Form.Item>
     </Form>
 

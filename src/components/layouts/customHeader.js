@@ -9,13 +9,12 @@ import { Avatar, Image } from 'antd';
 import { UserContext, UserName } from './customLayout';
 
 const customHeader  = ()=>{
-  const{name, dispatchname} = useContext(UserName);
-  const{state, dispatch} = useContext(UserContext);
+ 
   const [active, setActive] = useState(false);
   const showMenu =()=>{setActive(!active);}
   const [click, setClick] = useState(false);
   
-  console.log("name is " + name)
+  
     const[navBarColor, setnavBarColor] = useState(false);
    
     
@@ -39,17 +38,6 @@ const customHeader  = ()=>{
     //   message.info(`Click on item ${key}`);
     // };
   
-    const signIn = (
-      <Menu >
-         <Menu.Item key="1">Signed in as <br/> <span className={styles.uname}>{name}</span> </Menu.Item>
-        <Menu.Item key="2"> Profile </Menu.Item>
-        <Menu.Item key="3">
-        <Link href='/logout'>
-         <a>Logout</a>
-        </Link>
-        </Menu.Item>
-      </Menu>
-    );
     const onClick = ({ key }) => {
       // message.info(`Click on item ${key}`);
       console.log("clicked");
@@ -71,45 +59,45 @@ const customHeader  = ()=>{
       </Menu>
     );
    
-    const RenderMenu = () => {
-      if(state ){
-        return(
-          <> 
-          <li>  
-      <Dropdown overlay={signIn}  className={styles.drop} >
-      <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-      <Avatar size="large" style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>U</Avatar>    
-      </a>
-    </Dropdown>
-    </li> 
-        <li  className={styles.listdisplay}>
-        <Avatar size="large" style={{ color: '#f56a00', backgroundColor: '#fde3cf', size: '50px' }}>U</Avatar> 
-       <span className={styles.uname}> {name} </span>  
-        </li>
+//     const RenderMenu = () => {
+//       if(state ){
+//         return(
+//           <> 
+//           <li>  
+//       <Dropdown overlay={signIn}  className={styles.drop} >
+//       <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
+//       <Avatar size="large" style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>U</Avatar>    
+//       </a>
+//     </Dropdown>
+//     </li> 
+//         <li  className={styles.listdisplay}>
+//         <Avatar size="large" style={{ color: '#f56a00', backgroundColor: '#fde3cf', size: '50px' }}>U</Avatar> 
+//        <span className={styles.uname}> {name} </span>  
+//         </li>
         
-         <li className={styles.listdisplay} >
-         <Link href='/registerdonor'>
-         <a>Profile</a>
-         </Link>
-        </li>
+//          <li className={styles.listdisplay} >
+//          <Link href='/registerdonor'>
+//          <a>Profile</a>
+//          </Link>
+//         </li>
 
-        <li className={styles.listdisplay} >
-          <Link href='/logout'>
-          <a>Logout</a>
-         </Link>
-          </li>      
-</>
-        )
-      }         
-  else {
-    return (
-      <li className={styles.sliderUlLi}>
-    <Link href='/registerdonor'>
-      <a>Register</a>
-    </Link>
-    </li>
-    )
-  }}
+//         <li className={styles.listdisplay} >
+//           <Link href='/logout'>
+//           <a>Logout</a>
+//          </Link>
+//           </li>      
+// </>
+//         )
+//       }         
+//   else {
+//     return (
+//       <li className={styles.sliderUlLi}>
+//     <Link href='/registerdonor'>
+//       <a>Register</a>
+//     </Link>
+//     </li>
+//     )
+//   }}
     
     return(  
     <header className={navBarColor ? styles.header2 : styles.header}>
@@ -151,7 +139,11 @@ const customHeader  = ()=>{
       <a>About Us</a>
     </Link>
   </li>
-  <RenderMenu /> 
+  <li className={styles.sliderUlLi}>
+    <Link href='/registerdonor'>
+      <a>Register</a>
+    </Link>
+    </li>
   </ul>
   </nav>
 </header>
