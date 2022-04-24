@@ -144,7 +144,7 @@ const customHeader  = ()=>{
   </li>
  
   <li className={styles.sliderUlLi}>
-    <Link href='/contactpage'>
+    <Link href='#contact'>
       <a>Contact</a>
     </Link>
   </li>

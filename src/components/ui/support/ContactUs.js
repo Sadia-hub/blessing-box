@@ -1,5 +1,5 @@
 import { Form, Input, Button, Checkbox } from 'antd';
-import { Typography } from 'antd';
+import { Typography, Divider } from 'antd';
 import styles from '../../../../styles/Contact.module.css';
 import { CustomButton } from '../buttons/buttons';
 const ContactUS = () => {
@@ -15,7 +15,8 @@ const ContactUS = () => {
 
   return (
       <>
-    <Title className={styles.heading}>We would love to hear from you</Title>
+    <Divider><Title id="contact" className={styles.heading} level={1}>We would love to hear from you</Title></Divider>
+    
     <Title level = {5} className={styles.heading}>Thank you for contacting Blessing Box. Someone from 
     our team member will reply to your query very soon</Title>
 

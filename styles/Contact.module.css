@@ -3,7 +3,8 @@
 }
 .heading{
     text-align: center;
-    margin-top: 75px;
+    
+    color:rgba(235,33,136,1) !important;
 }
  .btn{
     margin-bottom: 30px;

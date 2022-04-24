@@ -3,16 +3,16 @@ import Image from 'next/image';
 import { useState } from 'react';
 import styles from '../../../../styles/NgoDetails.module.css';
 import ProjectCard from './ProjectCard';
-import NgosNavbar from '../../layouts/NgosNavbar';
-const NgoDetails = ({id}) =>{
+import { Typography, Row, Col } from 'antd';
+import NgosNavbar from "../../layouts/NgosNavbar"
+import NgoSidebar from './NgoSidebar';
+const NgoDetails = ({id, editable=false}) =>{
+
     const { Title, Paragraph } = Typography;
     const [title, setTitle] = useState("Chippa NGO");
     const [founder, setFounder] = useState("Abdul Sattar Edhi");
-    const [editable,setEditable] = useState(true);
-
-    return <CustomLayout>
-        
-        <div className={styles.container}>
+   
+    return      <div className={styles.container}>
 
             <Row align="middle" justify='center'>
                 <Title className={styles.title} editable={editable} ellipsis>{title}</Title> 
@@ -34,7 +34,10 @@ const NgoDetails = ({id}) =>{
 
                             <Row justify='center'>
                             
-                                <Title editable={editable} level={3}>About Us</Title>
+                                <Title 
+                                id="about"
+                                editable={editable} 
+                                level={3}>About Us</Title>
                                 <Paragraph editable={editable}>
                                     CHHIPA WELFARE, a non-profit welfare organization in Pakistan, imbued with a noble mission, having sincere love and affection for the humanity and a strong commitment to serve the COMMON PEOPLE without discrimination of any caste, creed or colour under all circumstances, where frequent road accidents, sudden events and emergencies daily occur.
                                     CHHIPA WELFARE, a non-profit welfare organization in Pakistan, imbued with a noble mission, having sincere love and affection for the humanity and a strong commitment to serve the COMMON PEOPLE without discrimination of any caste, creed or colour under all circumstances, where frequent road accidents, sudden events and emergencies daily occur.
@@ -45,7 +48,10 @@ const NgoDetails = ({id}) =>{
                             
                             <Row justify='center'>
                                 
-                                <Title editable={editable} level={3}>Our Services</Title>
+                                <Title 
+                                id="services"
+                                editable={editable} 
+                                level={3}>Our Services</Title>
                                 <Paragraph editable={editable}>
                                     CHHIPA WELFARE, a non-profit welfare organization in Pakistan, imbued with a noble mission, having sincere love and affection for the humanity and a strong commitment to serve the COMMON PEOPLE without discrimination of any caste, creed or colour under all circumstances, where frequent road accidents, sudden events and emergencies daily occur.
                                     CHHIPA WELFARE, a non-profit welfare organization in Pakistan, imbued with a noble mission, having sincere love and affection for the humanity and a strong commitment to serve the COMMON PEOPLE without discrimination of any caste, creed or colour under all circumstances, where frequent road accidents, sudden events and emergencies daily occur.
@@ -55,7 +61,10 @@ const NgoDetails = ({id}) =>{
                             </Row>
                             <Row justify='center' style={{margin:"15px"}}>
 
-                                <Title editable={editable} level={3}>Projects</Title>
+                                <Title 
+                                id="projects"
+                                editable={editable} 
+                                level={3}>Projects</Title>
 
                                 <Paragraph editable={editable}>
                                     CHHIPA WELFARE, a non-profit welfare organization in Pakistan, imbued with a noble mission, having sincere love and affection for the humanity and a strong commitment to serve the COMMON PEOPLE without discrimination of any caste, creed or colour under all circumstances, where frequent road accidents, sudden events and emergencies daily occur.
@@ -97,7 +106,7 @@ const NgoDetails = ({id}) =>{
             
 
         </div>
-    </CustomLayout>
+    
 }
 
 export default NgoDetails;
