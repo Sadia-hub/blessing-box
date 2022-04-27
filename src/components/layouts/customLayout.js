@@ -12,8 +12,6 @@ const CustomLayout = ({children}) =>{
 
             <Content>
 
-             
-
                 <div className="site-layout-content">{children}</div>
             </Content>
 
