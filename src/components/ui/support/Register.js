@@ -4,22 +4,22 @@ import styles from '../../../../styles/Register.module.css';
 import { CustomButton } from '../buttons/buttons';
 import { Typography } from 'antd';
 import { Card } from 'antd';
-import { UserContext, UserName } from '../../layouts/customLayout';
+import { useSelector } from 'react-redux';
+import { isLogin, isLogout } from '../../../actions';
 
 import React, {  createContext, useContext, useState } from 'react';
 
 const Register = ({label="Register"}) => {  
   var namee, emailvalue; 
-  
+  const islogin = useSelector((state)=> state.loginReducer);
+  console.log("In register "+islogin);
   const[fine, setFine] = useState(false);
   const[emailverify, setEmailverify] = useState(true);
     const { Title } = Typography;  
 
     const onFinish = (values) => {
         console.log('Success:', values);
-        setFine(true);
-       
-       
+        setFine(true); 
       };
       const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
@@ -40,7 +40,8 @@ const Register = ({label="Register"}) => {
       }
     return (
         <>
-         <div className={styles.mainContainer}>           
+         <div className={styles.mainContainer}>  
+      
     <Form
       name="basic"
       labelCol={{ span: 8 }}
@@ -52,7 +53,7 @@ const Register = ({label="Register"}) => {
       style={{marginTop: '10px'}}
       className = {styles.form}
     >
-      <Title level = {2} className={styles.heading}>Donor Registeration</Title>
+      <Title level = {2} className={styles.heading}>Sign up as Donor</Title>
         
       <Form.Item
         label="Name"
@@ -109,7 +110,7 @@ const Register = ({label="Register"}) => {
       </Form.Item>
 
       <Form.Item wrapperCol={{ span: 12 }}>
-      <CustomButton htmlType="submit" label="Register" className={styles.regButton} type="primary" onClick={onSubmission} disabled={false} shape='round'></CustomButton>     
+      <CustomButton htmlType="submit" label={ islogin==true? "Cancel" : "Register" }className={styles.regButton} type="primary" onClick={onSubmission} disabled={false} shape='round'></CustomButton>     
       </Form.Item>
     </Form>
         </div>

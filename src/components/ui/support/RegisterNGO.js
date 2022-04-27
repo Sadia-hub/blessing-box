@@ -4,11 +4,13 @@ import { CustomButton } from '../buttons/buttons';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Link from 'next/link';
+import { useSelector } from 'react-redux';
 import FounderInfo from './FounderInfo';
 import AuthorizationDoc from './AuthorizationDoc';
 import Declaration from './Declaration';
 
-const RegisterNGO = ({btnLabel, handleRegister}) => {
+const RegisterNGO = ({ handleRegister}) => {
+  const islogin = useSelector((state)=> state.loginReducer);
   const onFinish = (values) => {
     console.log('Success:', values);
   };
@@ -134,7 +136,7 @@ const RegisterNGO = ({btnLabel, handleRegister}) => {
 <AuthorizationDoc/>
 <Declaration/>
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-  <CustomButton label={btnLabel} className={style.nextButton} type="primary" onClick={handleRegister} disabled={false} shape="round"></CustomButton>
+  <CustomButton label={ islogin==true? "Cancel" : "Register" } className={style.nextButton} type="primary" onClick={handleRegister} disabled={false} shape="round"></CustomButton>
       </Form.Item>
     </Form>
 

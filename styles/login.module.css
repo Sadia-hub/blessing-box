@@ -1,0 +1,51 @@
+.mainDiv{
+    margin-top: 55px;
+    background-color: white;
+    justify-content: center;
+    display: flex;
+}
+.form{
+    border-radius: 20px; 
+    box-shadow: 2px 2px 2px 2px #808080;
+    width: 60%; 
+    margin-top: 2% !important;
+    margin-bottom: 2% !important;
+}
+/* .picture{
+    border-radius: 10%;
+} */
+
+.col{
+    margin-top: 70px;
+    
+    margin-bottom: 70px;
+}
+.heading{
+    margin-left: 24%;
+}
+
+.regButton{   
+    background: radial-gradient(at center center, rgba(42, 5, 143, 0.8) 0%, rgba(42, 5, 143, 0.8) 100%),  url("/bg.jpg")!important;
+    border-color: radial-gradient(at center center, rgba(42, 5, 143, 0.8) 0%, rgba(42, 5, 143, 0.8) 100%),  url("/bg.jpg") !important;
+    color:white;
+    width: 40%;
+    margin-left: 38%;
+}
+
+.regButton :hover{
+    background-color:rgba(60, 35, 131, 0.8) !important;
+    border-color: rgba(60, 35, 131, 0.8) !important;
+    color: white;
+}
+
+@media (max-width:600px) {
+    .form{
+        border-radius: 0px;
+        width: 100%; 
+    }
+    .heading{
+        margin-left: 0px;
+        text-align: center;
+    }
+    
+}

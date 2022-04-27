@@ -10,7 +10,7 @@ const NGORegistration = () =>{
 
 
     return<CustomLayout>
-        <RegisterNGO btnLabel="Register" handleRegister={handleRegister}/>
+        <RegisterNGO  handleRegister={handleRegister}/>
     </CustomLayout>
 }
 
