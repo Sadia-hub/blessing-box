@@ -8,7 +8,6 @@ const Categories = (xs=12, sm=11, md=8, lg=5, title="Choose, where you want to d
 
     const router = useRouter();
 
-
     return <>
             <Row justify='center' >
                  <Title style={{color:"#EB2188"}}>{title}</Title>

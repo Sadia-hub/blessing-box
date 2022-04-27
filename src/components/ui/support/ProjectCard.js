@@ -1,10 +1,20 @@
 import {Row, Col, Divider, Modal, Typography, Progress} from 'antd';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { CloseOutlined } from '@ant-design/icons';
+
 import styles from '../../../../styles/ProjectCard.module.css';
 
-const ProjectCard=({title="SIBA Pink Ribbon SIBA Pink Ribbon SIBA Pink Ribbon"})=>{
-
+// const cardData={title:'',url:'',desc:'',status:"active",percent:90,targetAmount:''}
+const ProjectCard=({
+// cardData,
+status="active",
+percent=90,
+title="",
+pic="/education.svg",
+desc="",
+targetAmount=""
+})=>{
     useEffect(()=>{
         if(percent==100){
             setStatus("success");
@@ -12,20 +22,26 @@ const ProjectCard=({title="SIBA Pink Ribbon SIBA Pink Ribbon SIBA Pink Ribbon"})
     },[]);
 
     const { Title } = Typography;
-    const [status, setStatus] = useState("active");
-    const [percent, setPercent] =useState(90);
-    const [target, setTarget] = useState(100000);
-    const [collected, setCollected] = useState(900000);
+    // const [status, setStatus] = useState("active");
+    // const [percent, setPercent] =useState(90);
+    // const [target, setTarget] = useState(100000);
+    // const [collected, setCollected] = useState(900000);
     const [visible, setVisible] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
-    const [modalText, setModalText] = useState('Content of the modal');
+    const [modalText, setModalText] = useState();
+    const[close,setClose]=useState(false);
+    
+    const handleClose=()=>{
+       setClose(true);
+       setVisible(false);
+    }
 
     const showModal = () => {
         setVisible(true);
     };
 
     const handleOk = () => {
-        setModalText('The modal will be closed after two seconds The modal will be closed after two seconds The modal will be closed after two seconds The modal will be closed after two seconds The modal will be closed after two seconds The modal will be closed after two secondsThe modal will be closed after two seconds');
+        setModalText(desc);
         setConfirmLoading(true);
         setTimeout(() => {
         setVisible(false);
@@ -38,23 +54,27 @@ const ProjectCard=({title="SIBA Pink Ribbon SIBA Pink Ribbon SIBA Pink Ribbon"})
     setVisible(false);
   };
 
+  
     
     
 
 
     return<div>
+
+         {/* {cardData.map((data)=>{
+             return(<> */}
         <div className={styles.main} onClick={showModal}>
+        
+        <Image src={pic} height={150} width={260} alt="project image"/>
 
-        <Image src="/education.svg" height={150} width={260} alt="project image"/>
-
-        <Row justify='center' align='middle'>
+        <Row justify='center' align='middle' >
             <Title level={5} style={{color:"rgba(235,33,136,1)"}}>{title}</Title>
         </Row>
 
         <Row justify='center' align='middle' gutter={10}>
            <Col span={8} >
                <div className={styles.amount}>
-                    Target:<br/>{target} Rs
+                    Target:<br/>{targetAmount} Rs
                </div>
                 
            </Col>
@@ -70,9 +90,8 @@ const ProjectCard=({title="SIBA Pink Ribbon SIBA Pink Ribbon SIBA Pink Ribbon"})
        <Row justify="end" >
                 <h4 className={styles.text}>Details</h4>
        </Row>
-       
-    </div>
-                
+     
+    </div>      
     <Modal
         title={title}
         visible={visible}
@@ -82,6 +101,8 @@ const ProjectCard=({title="SIBA Pink Ribbon SIBA Pink Ribbon SIBA Pink Ribbon"})
       >
         <p>{modalText}</p>
       </Modal>
+      {/* </>)
+})} */}
     </div>
 }
 

@@ -1,0 +1,20 @@
+.ngosBtn{
+    background-color:rgba(235,33,136,1) !important;
+    border-color: rgba(235,33,136,1) !important;
+    font-weight: bold;
+    color: white !important;
+}
+.ngosBtn:hover{
+    background-color: rgb(233, 40, 140) !important;
+    border-color: rgb(233, 40, 140) !important;  
+    color: white !important;
+}
+
+.footerButton:focus{
+    background-color: rgb(212, 55, 136) !important;
+    border-color: rgb(212, 55, 136) !important;  
+    color: white !important;
+}
+.heading{
+    color:rgba(235,33,136,1) !important;
+}
