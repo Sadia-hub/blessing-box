@@ -7,8 +7,8 @@ import NgoSidebar from './NgoSidebar';
 import LeftMenu from '../../layouts/NgosNavbar';
 import { useRouter } from 'next/router'
 
-const NgoDetails = ({ id, editable = true }) => {
-
+const NgoDetails = ({ id, editable=false  }) => {
+   
     const { Title, Paragraph } = Typography;
     const [title, setTitle] = useState("Chippa NGO");
     const [founder, setFounder] = useState("Abdul Sattar Edhi");
@@ -34,29 +34,33 @@ const NgoDetails = ({ id, editable = true }) => {
                     <NgoSidebar />
                 </Col>
                 <Col lg={{ span: 18 }} md={{ span: 18 }} sm={{ span: 24 }} justify="center">
-                    <Row justify='center'>
-                        <Title editable={editable} level={3}>About Us</Title>
+                    <Row justify='center' id="about">
+                        <Title editable={editable} level={3} >About Us</Title>
                         <Paragraph editable={editable}>
                             CHHIPA WELFARE, a non-profit welfare organization in Pakistan, imbued with a noble mission, having sincere love and affection for the humanity and a strong commitment to serve the COMMON PEOPLE without discrimination of any caste, creed or colour under all circumstances, where frequent road accidents, sudden events and emergencies daily occur.
                             CHHIPA WELFARE, a non-profit welfare organization in Pakistan, imbued with a noble mission, having sincere love and affection for the humanity and a strong commitment to serve the COMMON PEOPLE without discrimination of any caste, creed or colour under all circumstances, where frequent road accidents, sudden events and emergencies daily occur.
                         </Paragraph>
                     </Row>
-                    <Row justify='center'>
+                    <Row justify='center' id="services">
                         <Title editable={editable} level={3}>Our Services</Title>
                         <Paragraph editable={editable}>
                             CHHIPA WELFARE, a non-profit welfare organization in Pakistan, imbued with a noble mission, having sincere love and affection for the humanity and a strong commitment to serve the COMMON PEOPLE without discrimination of any caste, creed or colour under all circumstances, where frequent road accidents, sudden events and emergencies daily occur.
                             CHHIPA WELFARE, a non-profit welfare organization in Pakistan, imbued with a noble mission, having sincere love and affection for the humanity and a strong commitment to serve the COMMON PEOPLE without discrimination of any caste, creed or colour under all circumstances, where frequent road accidents, sudden events and emergencies daily occur.
                         </Paragraph>
                     </Row>
-                    <Row justify='center' style={{ margin: "15px" }}>
+                    <Row justify='center' id="projects" style={{ margin: "15px" }}>
                         <Title editable={editable} level={3}>Projects</Title>
                         <Paragraph editable={editable}>
                             CHHIPA WELFARE, a non-profit welfare organization in Pakistan, imbued with a noble mission, having sincere love and affection for the humanity and a strong commitment to serve the COMMON PEOPLE without discrimination of any caste, creed or colour under all circumstances, where frequent road accidents, sudden events and emergencies daily occur.
                             CHHIPA WELFARE, a non-profit welfare organization in Pakistan, imbued with a noble mission, having sincere love and affection for the humanity and a strong commitment to serve the COMMON PEOPLE without discrimination of any caste, creed or colour under all circumstances, where frequent road accidents, sudden events and emergencies daily occur.
                         </Paragraph>
                     </Row>
+
                     {/* add by sanjna */}
-                    <Button type="primary" onClick={handleClick}>Add project</Button>
+                    {
+                      editable?<Button type="primary" onClick={handleClick}>Add project</Button>:null  
+                    }
+                    
 
                     <Row justify="center">
                         <ProjectCard />

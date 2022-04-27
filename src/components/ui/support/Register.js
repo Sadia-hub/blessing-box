@@ -110,7 +110,7 @@ const Register = ({label="Register"}) => {
       </Form.Item>
 
       <Form.Item wrapperCol={{ span: 12 }}>
-      <CustomButton htmlType="submit" label={ islogin==true? "Cancel" : "Register" }className={styles.regButton} type="primary" onClick={onSubmission} disabled={false} shape='round'></CustomButton>     
+      <CustomButton htmlType="submit" label={ islogin==true? "Edit" : "Register" }className={styles.regButton} type="primary" onClick={onSubmission} disabled={false} shape='round'></CustomButton>     
       </Form.Item>
     </Form>
         </div>

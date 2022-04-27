@@ -136,7 +136,7 @@ const RegisterNGO = ({ handleRegister}) => {
 <AuthorizationDoc/>
 <Declaration/>
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-  <CustomButton label={ islogin==true? "Cancel" : "Register" } className={style.nextButton} type="primary" onClick={handleRegister} disabled={false} shape="round"></CustomButton>
+  <CustomButton label={ islogin==true? "Edit" : "Register" } className={style.nextButton} type="primary" onClick={handleRegister} disabled={false} shape="round"></CustomButton>
       </Form.Item>
     </Form>
 

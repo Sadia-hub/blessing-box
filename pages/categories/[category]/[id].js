@@ -6,7 +6,7 @@ const Id = () =>{
     const router = useRouter();
     const {id} = router.query;
     return<>
-        <NgoDetails id={id}/>
+        <NgoDetails id={id} editable={false}/>
     </>
 }
 

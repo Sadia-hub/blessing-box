@@ -10,10 +10,10 @@ const ProjectCard=({
 // cardData,
 status="active",
 percent=90,
-title="",
+title="SIBA Pink Ribon",
 pic="/education.svg",
 desc="",
-targetAmount=""
+targetAmount="9000"
 })=>{
     useEffect(()=>{
         if(percent==100){
