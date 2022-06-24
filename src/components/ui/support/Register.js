@@ -5,6 +5,7 @@ import { CustomButton } from '../buttons/buttons';
 import { Typography } from 'antd';
 import { Card } from 'antd';
 import { useSelector } from 'react-redux';
+import {  Radio } from 'antd';
 import { isLogin, isLogout } from '../../../actions';
 
 import React, {  createContext, useContext, useState } from 'react';
@@ -56,14 +57,36 @@ const Register = ({label="Register"}) => {
       <Title level = {2} className={styles.heading}>Sign up as Donor</Title>
         
       <Form.Item
+        label="UserName"
+        name="Name"
+        rules={[{ required: true, message: 'Please input your Name!' }]}
+        wrapperCol={{ span: 12 }}
+
+      >
+     <Row>
+     <Col xs={{ span: 2 }} sm={{ span: 4 }} md={{ span: 3 }} lg={{ span: 2}}>
+       <button disabled={true} className={styles.userInputBtn}>D_ </button>
+       </Col>
+       <Col xs={{ span: 22}} sm={{ span: 20 }} md={{ span: 21 }} lg={{ span: 22 }}>
+       <Input className={styles.userInput} />
+       </Col>
+       </Row>
+      </Form.Item>
+
+      <Form.Item
         label="Name"
         name="Name"
         rules={[{ required: true, message: 'Please input your Name!' }]}
         wrapperCol={{ span: 12 }}
 
       >
-        <Input className={styles.inputField} />
+    
+    
+     
+       <Input className={styles.inputField} />
+     
       </Form.Item>
+
       <Form.Item
         label="Email"
         name="Email"
