@@ -1,7 +1,7 @@
 import NgoDetails from "../src/components/ui/support/NgoDetails";
 const ngodetails = () =>{
     return<>
-        <NgoDetails editable={true}/>
+        <NgoDetails editable={false}/>
     </>
 }
 

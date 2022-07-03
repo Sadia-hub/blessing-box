@@ -7,7 +7,7 @@ import NgoSidebar from './NgoSidebar';
 import LeftMenu from '../../layouts/NgosNavbar';
 import { useRouter } from 'next/router'
 
-const NgoDetails = ({ id, editable=false  }) => {
+const NgoDetails = ({ id, editable=true  }) => {
    
     const { Title, Paragraph } = Typography;
     const [title, setTitle] = useState("Chippa NGO");

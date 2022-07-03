@@ -7,6 +7,8 @@ import { useRouter } from 'next/router'
 import { Row, Col } from 'antd';
 import { Typography } from 'antd';
 
+import Zoom from 'react-reveal/Zoom';
+import Swing from 'react-reveal/Swing';
 const CustomCarousel = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const router = useRouter()
@@ -42,6 +44,7 @@ const CustomCarousel = () => {
               <Col xs={{ span: 24, order:2 }} sm={{ span: 24, order:2 }} md={{ span: 12, order:2 }} lg={{ span: 12, order:1 }}>
                 <Row justify='center'>
 
+                <Zoom cascade>
                   <Title className={styles.heading}>
                     Hurry Up!! Don't miss your chance
                     <br />
@@ -50,14 +53,15 @@ const CustomCarousel = () => {
                     Want to know How?
 
                   </Title>
-
+                </Zoom>
                 </Row>
 
                 <Row justify="center">
                   
-
-                  <CustomButton label="Donate❤" className={styles.btn} onClick={showModal} type="submit" disabled={false} />
-                  <CustomButton label="Registration" className={styles.btn2} onClick={showModal} disabled={false} />
+                  <Swing>
+                    <CustomButton label="Donate❤" className={styles.btn} onClick={showModal} type="submit" disabled={false} />
+                    <CustomButton label="Registration" className={styles.btn2} onClick={showModal} disabled={false} />
+                  </Swing>
                 </Row>
               </Col>
 
