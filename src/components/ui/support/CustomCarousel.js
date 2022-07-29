@@ -2,17 +2,20 @@ import { Carousel, Modal } from 'antd';
 import Image from 'next/image';
 import styles from '../../../../styles/Carousel.module.css';
 import { CustomButton } from '../buttons/buttons';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router'
 import { Row, Col } from 'antd';
+import { useSelector, useDispatch } from 'react-redux';
+import { setFoodInfo, setEducationInfo, setNGOInfo, setOrphangeInfo } from '../../../redux/ngo/Action';
 import { Typography } from 'antd';
 
-import Zoom from 'react-reveal/Zoom';
-import Swing from 'react-reveal/Swing';
 const CustomCarousel = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [details, setDetails] = useState([]);
+  const dispatch = useDispatch();
   const router = useRouter()
-
+  
+  
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -31,7 +34,27 @@ const CustomCarousel = () => {
     setIsModalVisible(false);
   }
 
-  const { Title } = Typography;
+useEffect(()=>{
+  async function getDetails()  {
+    try{
+    await fetch('http://localhost:8080/ngodetails', {
+    method: "GET",  
+    headers: {
+        'Content-Type': 'application/json',
+      },
+    }).then(res=> res.json()).then((data)=> { 
+      dispatch(setNGOInfo(data))
+  })
+    }
+    catch(err){
+      console.log(err);
+    }
+  }
+  getDetails();
+},[])
+const data = useSelector((state)=> state.detailsReducer);
+console.log(data.food);
+   const { Title } = Typography;
   return (
     <>
       <div >
@@ -44,7 +67,6 @@ const CustomCarousel = () => {
               <Col xs={{ span: 24, order:2 }} sm={{ span: 24, order:2 }} md={{ span: 12, order:2 }} lg={{ span: 12, order:1 }}>
                 <Row justify='center'>
 
-                <Zoom cascade>
                   <Title className={styles.heading}>
                     Hurry Up!! Don't miss your chance
                     <br />
@@ -53,15 +75,12 @@ const CustomCarousel = () => {
                     Want to know How?
 
                   </Title>
-                </Zoom>
+
                 </Row>
 
                 <Row justify="center">
-                  
-                  <Swing>
-                    <CustomButton label="Donate❤" className={styles.btn} onClick={showModal} type="submit" disabled={false} />
-                    <CustomButton label="Registration" className={styles.btn2} onClick={showModal} disabled={false} />
-                  </Swing>
+                  <CustomButton label="Donate❤" className={styles.btn} onClick={showModal} type="submit" disabled={false} />
+                  <CustomButton label="Add NGO" className={styles.btn2} onClick={handleNgo} disabled={false} />
                 </Row>
               </Col>
 
@@ -95,7 +114,7 @@ const CustomCarousel = () => {
                 <Row justify="center">
 
                   <CustomButton label="Donate❤" className={styles.btn} onClick={showModal} type="submit" disabled={false} />
-                  <CustomButton label="Registration" className={styles.btn2} onClick={showModal} disabled={false} />
+                  <CustomButton label="Add NGO" className={styles.btn2} onClick={handleNgo} disabled={false} />
                 </Row>
               </Col>
 
@@ -131,7 +150,7 @@ const CustomCarousel = () => {
                 <Row justify="center">
 
                   <CustomButton label="Donate❤" className={styles.btn} onClick={showModal} type="submit" disabled={false} />
-                  <CustomButton label="Registration" className={styles.btn2} onClick={showModal} disabled={false} />
+                  <CustomButton label="Add NGO" className={styles.btn2} onClick={handleNgo} disabled={false} />
                 </Row>
               </Col>
 
@@ -167,7 +186,7 @@ const CustomCarousel = () => {
                 <Row justify="center">
 
                   <CustomButton label="Donate❤" className={styles.btn} onClick={showModal} type="submit" disabled={false} />
-                  <CustomButton label="Registration" className={styles.btn2} onClick={showModal} disabled={false} />
+                  <CustomButton label="Add NGO" className={styles.btn2} onClick={handleNgo} disabled={false} />
                 </Row>
               </Col>
 

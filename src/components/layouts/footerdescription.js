@@ -46,7 +46,7 @@ export function Description() {
                         <Row>
                             <Col span={21}>
                                 <CustomButton label="Donate❤" className={style.donatebtn} onClick={showModal} type="danger" disabled={false} shape="round" />{' '}
-                                <CustomButton label="Registeration" className={style.footerButton} onClick={showModal} type={false} disabled={false} shape="round" />
+                                <CustomButton label="Add NGO" className={style.footerButton} onClick={handleNgo} type={false} disabled={false} shape="round" />
                             </Col>
                         </Row>
                     </a>

@@ -10,6 +10,7 @@ function AuthorizationDoc(){
         }
         return e && e.fileList;
       };
+      
     return(<>
 
          <Divider>Authorization Document</Divider>

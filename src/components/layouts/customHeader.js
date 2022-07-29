@@ -1,27 +1,29 @@
-import { Layout } from 'antd';
 import { MenuOutlined, CloseOutlined } from '@ant-design/icons';
 import styles from '../../../styles/Navbarr.module.css';
 import React, { useState, useEffect } from 'react';
 import 'antd/dist/antd.css';
 import Link from "next/link";
 import { useRouter } from 'next/router'
-import {  Modal } from 'antd';
 import { CustomButton } from '../ui/buttons/buttons';
 import { Avatar, Image } from 'antd';
 import { Menu, Dropdown, message } from 'antd';
-import { isLogin, isLogout } from '../../actions';
+//import { isLogin, isLogout } from '../../actions';
+//import { isLogout } from '../../../redux/user/Action';
+import { isLogout } from '../../redux/user/Action';
 import { useSelector, useDispatch } from 'react-redux';
 
 const customHeader = () => {
   const myState = useSelector((state)=> state.loginReducer);
-  console.log("In Header "+myState);
-  const myName = useSelector((state)=> state.userNameReducer);
-  console.log("In Header "+myName);
+  // console.log("In Header "+myState);
+  
   const [active, setActive] = useState(false);
   const showMenu = () => { setActive(!active); }
   const [click, setClick] = useState(false);
   const dispatch = useDispatch();
-  const userType = useSelector((state)=> state.userTypeReducer);
+  const state = useSelector((state)=> state.userReducer);
+  const userType = state.type;
+  const myName = state.name;
+//  console.log("In Header name"+myName);
   const [navBarColor, setnavBarColor] = useState(false);
   useEffect(() => {
     const changeBackground = () => {
@@ -40,27 +42,10 @@ const customHeader = () => {
   }, []);
 
 
-  const [isModalVisible, setIsModalVisible] = useState(false);
   const router = useRouter()
 
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleDonate = (e) => {
-    e.preventDefault()
-    router.push('/registerdonor');
-    setIsModalVisible(false);
-  }
-  const handleNgo = (e) => {
-    e.preventDefault()
-    router.push('/ngo-registration');
-    setIsModalVisible(false);
-  }
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  }
-
+  
+ 
 
   const changeBack = () => {
     return <div className={styles.navBack}>
@@ -99,7 +84,7 @@ const customHeader = () => {
     <Menu onClick={onClick}>
       <Menu.Item key="1"><Link href="/categories/education"> Education </Link></Menu.Item>
       <Menu.Item key="2"><Link href="/categories/food">Food</Link></Menu.Item>
-      <Menu.Item key="3"><Link href="/categories/orphanage">Orphanages</Link></Menu.Item>
+      <Menu.Item key="3"><Link href="/categories/orphange">Orphanages</Link></Menu.Item>
     </Menu>
   );
 
@@ -147,8 +132,8 @@ const customHeader = () => {
 else {
   return (
   <>
-    <li onClick={showModal}>
-    <Link href=''>
+    <li >
+    <Link href='/registerdonor'>
       <a>Signup</a>
     </Link>
   </li>
@@ -161,8 +146,6 @@ else {
   )
 }
   }
-
-
 
   return (
 <>
@@ -209,30 +192,11 @@ else {
     </Link>
   </li>
   <RenderMenu />
-  {/* <li onClick={showModal}>
-    <Link href=''>
-      <a>Signup</a>
-    </Link>
-  </li>
-  <li>
-    <Link href='/login'>
-      <a>Login</a>
-    </Link>
-  </li> */}
-  
   </ul>
   </nav>
 </header>
 
-<Modal title="Registration" visible={isModalVisible} onCancel={handleCancel}
-        footer={[
-          <CustomButton label="Donar" className={styles.btnModal} onClick={handleDonate} type="danger" disabled={false} shape="round" />,
-          <CustomButton label="NGO" className={styles.btnModal} onClick={handleNgo} type="danger" disabled={false} shape="round" />,
-          <CustomButton label="Close" className={styles.cancelBtn} onClick={handleCancel} type={false} disabled={false} shape="round" />
-        ]}
-      >
-        <p>Registeration as Donor or NGO?</p>
-      </Modal>
+
 </>
 
     );

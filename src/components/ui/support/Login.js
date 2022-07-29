@@ -6,18 +6,20 @@ import { Form, Input } from 'antd';
 import { Typography } from 'antd';
 import styles from '../../../../styles/login.module.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { isLogin, userType, userName } from '../../../actions';
+import { isLogin, IS_LOGOUT, setUserInfo } from '../../../redux/user/Action';
 import { CustomButton } from '../buttons/buttons';
+
 const Login =() =>{
 const dispatch = useDispatch();
 const router = useRouter();
-const myState = useSelector((state)=> state.loginReducer);
 
- console.log("In login "+ myState);
+const myState = useSelector((state)=> state.detailsReducer);
+ console.log("In login "+ myState.food);
 
     const[user,setUser]=useState();
     const[valid,setValid]=useState(false);
     const[password,setPassword]=useState();
+    const[allUsers, setAllusers] = useState({}); 
     const { Title } = Typography;
     const onFinish = (values) => {
         console.log('Success:', values);
@@ -26,12 +28,32 @@ const myState = useSelector((state)=> state.loginReducer);
         console.log('Failed:', errorInfo);
       };
 
-      const list = [{id: 1, type: "Donor", email:"k@gmail.com", name:"MK", password:"1234"},
-      {id: 2, type: "NGO", email:"sadia@gmail.com", name:"sadia",password:"5678"},
-      {id: 3, type: "Donor", email:"sanju@gmail.com", name:"sanju", password:"981011"},
-      {id: 4, type: "NGO", email:"mk@gmail.com", name:"megha", password:"mk"},
-    ]
+      const submission = {
+        email: user,
+        password: password
+      };
+   
 
+    useEffect(() => {
+    async function getLogin()  {
+      try{
+      await fetch('http://localhost:8080/user', {
+      method: "POST",  
+      headers: {
+          'Content-Type': 'application/json',
+          //'Authorization': `Bearer ${token}`,
+         
+        },
+        body:JSON.stringify(submission),
+      }).then(res=> res.json()).then((data)=> { 
+        setAllusers(data)});
+      }
+      catch(err){
+        console.log(err);
+      }
+    }
+    getLogin();
+  })
     
     function handleChangeUser(event) {
       const value = event.target.value;
@@ -43,46 +65,22 @@ const myState = useSelector((state)=> state.loginReducer);
       setPassword(value);
     }
 
-    // const  validate = async() => {
-    //   const response = await fetch(`https://jsonplaceholder.typicode.com/todos`);
-    //   const datat = await response.json();
-    //    datat.map((obj)=>{  
-    //        if(user==obj.id){
-    //           console.log("id",obj.id)
-    //           console.log("uder",user)
-    //           setValid(true); 
-    //        }
-    //       else if(valid!=true){
-    //         setValid(false);
-    //        }
-           
-           
-    //       } ); 
-    //       console.log(valid);
-    //   if(valid==true){
-    //        console.log("In async Function validate" );
-    //     }
-    //     else if(valid!=true) {
-    //       console.log("In async Function Not validate" );
-    //     }
-    //     }  
+    
+
     const verifyUser =() =>{
       let breakCondition = false;
-     return list.map((obj)=>{
-        if(user==obj.email && password==obj.password ){
+        if(user==allUsers.user.email  ){
+          localStorage.setItem(allUsers.user.id, allUsers.token);
           dispatch(isLogin());
-          dispatch(userType(obj.type));
-          dispatch(userName(obj.name));
+          dispatch(setUserInfo(allUsers.user));
           router.push('/');
           setValid(true);
           breakCondition =true; 
         }
         else if(!breakCondition){
-    
+          
           setValid(false);
-        }
-      })
-     
+        } 
     }
     console.log(valid);
     return(

@@ -3,21 +3,16 @@ const { Title} = Typography;
 import CustomCard from './CustomCard';
 import { useRouter } from 'next/router'
 import Color from '../../../../styles/colors';
-import Bounce from 'react-reveal/Bounce';
 const Categories = (xs=12, sm=11, md=8, lg=5, title="Choose, where you want to donate") =>{
-
 
     const router = useRouter();
 
     return <>
-
-
             <Row justify='center' >
                  <Title style={{color:"#EB2188"}}>{title}</Title>
             </Row>
             
             <Row justify="center">
-            <Bounce top>
                 <Col 
                 key="1"
                 xs={{ span: xs }}  
@@ -37,8 +32,7 @@ const Categories = (xs=12, sm=11, md=8, lg=5, title="Choose, where you want to d
                     </div>       
 
                 </Col>
-            </Bounce>
-            <Bounce top>
+            
                 <Col 
                 key="2"
                 xs={{ span: xs}}  
@@ -58,8 +52,6 @@ const Categories = (xs=12, sm=11, md=8, lg=5, title="Choose, where you want to d
                     </div>
 
                 </Col>
-                </Bounce>
-                <Bounce top>
                 <Col 
                 key="3"
                 xs={{ span: xs }}  
@@ -81,9 +73,7 @@ const Categories = (xs=12, sm=11, md=8, lg=5, title="Choose, where you want to d
                     
 
                 </Col>
-                </Bounce>
             </Row>
-            
     </>
 }
 export default Categories;

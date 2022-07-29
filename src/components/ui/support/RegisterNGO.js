@@ -2,18 +2,99 @@ import { Form, Input, Button, Checkbox,InputNumber,TextArea,Select, Typography,D
 import style from '../../../../styles/RegisterNgo.module.css';
 import { CustomButton } from '../buttons/buttons';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
-import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import FounderInfo from './FounderInfo';
+import { Radio } from 'antd';
 import AuthorizationDoc from './AuthorizationDoc';
 import Declaration from './Declaration';
+import Dropdown from './Dropdown';
 
 const RegisterNGO = ({ handleRegister}) => {
-  const islogin = useSelector((state)=> state.loginReducer);
+  const [service, setService] = useState('');
+  const [serviceArea, setServicearea] = useState([]);
+  const [serviceAreas, setServiceareas] = useState('');
+  const[ngoEmail, setNgoemail] =useState('');
+  const[ngoName, setNgoname] =useState('');
+  const[year, setYear] =useState(''); 
+  const[contact, setContact] =useState('');
+  const[f_contact, setFcontact] =useState('');
+  const[f_email, setFemail] =useState('');
+  const[f_cnic, setFcnic] =useState('');
+  const[f_name, setFname] =useState('');
+  const[address, setAddress] =useState('');
+
+  const state = useSelector((state)=> state.userReducer);
+
+  const submission ={  
+    ngoEmail: ngoEmail,
+    name: ngoName,
+    logo: 'logo',
+    year: year,
+    contact: contact,
+    address: address,
+    founderName: f_name,
+    founderCNIC: f_cnic,
+    founderContact: f_contact,
+    serviceType: service,
+    serviceArea: serviceArea,
+    certificate:'Microsoft',
+    userId: `${state.id}`,
+  }
+  console.log(localStorage.getItem(state.id));
+    async function postNgo()  {
+      try{
+      await fetch('http://localhost:8080/ngo', {
+      method: "POST",  
+      headers: {
+          'Content-Type': 'application/json',
+          //'Authorization': `Bearer ${token}`,
+        },
+        body:JSON.stringify(submission),
+      }).then(res=> res.json()).then((data)=> { 
+        console.log("data is posted")
+        });
+      }
+      catch(err){
+        console.log(err);
+      }
+    }
+ 
+
   const onFinish = (values) => {
     console.log('Success:', values);
   };
+
+  const onChange = (e) => {
+    console.log('radio checked', e.target.value);
+    setService(e.target.value);
+  };
+
+  const handleCnic = (e) =>{
+    setFcnic(e.target.value)
+  }
+
+  const handleFoundername = (e) =>{
+    setFname(e.target.value)
+  }
+
+  const handleFoundercontact = (e) =>{
+    setFcontact(e.target.value)
+  }
+
+  const handleFounderemail = (e) =>{
+    setFemail(e.target.value)  
+  }
+var data = ' ';
+  const handleServiceareas = (value) => {
+    data = data + ' ' +value;
+    setServicearea(data);
+  };
+
+ 
+  const handleYear = (value) => {
+    setYear(value)
+  }
 
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
@@ -41,7 +122,8 @@ const RegisterNGO = ({ handleRegister}) => {
         name="ngoName"
         rules={[{ required: true, message: 'Please enter your NGO name!' }]}
       >
-        <Input />
+        <Input onChange={(e)=>setNgoname(e.target.value)}/>
+      
       </Form.Item>
 
        {/* Enter Service type */}
@@ -49,9 +131,11 @@ const RegisterNGO = ({ handleRegister}) => {
          label="Service Type"
          rules={[{ required: true, message: 'Please select service!' }]}
       >
-        <Checkbox>Education</Checkbox>
-        <Checkbox>Orphange</Checkbox>
-        <Checkbox>Food</Checkbox>
+        <Radio.Group onChange={onChange} value={service}>
+        <Radio value="education">Education</Radio>
+        <Radio value="orphange">Orphange</Radio>
+        <Radio value="food">Food</Radio>
+        </Radio.Group>
       </Form.Item>
      
 
@@ -59,7 +143,7 @@ const RegisterNGO = ({ handleRegister}) => {
       <Form.Item label="Enter Year Of Existance"
         rules={[{ required: true, message: 'Please Enter Year of Existance!' }]}
       >
-        <InputNumber />
+        <InputNumber onChange={handleYear}/>
       </Form.Item>
       
       {/* NGO Email */}
@@ -68,40 +152,8 @@ const RegisterNGO = ({ handleRegister}) => {
         name="ngoEmail"
         rules={[{ required: true, type:'email', message: 'Please Enter NGO email' }]}
       >
-        <Input />
+        <Input onChange={(e)=>setNgoemail(e.target.value)}/>
       </Form.Item>
-      
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[{ required: true, message: 'Please input your password!' }]}
-      >
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item
-        name="confirm"
-        label="Confirm Password"
-        dependencies={['password']}
-        hasFeedback
-        rules={[
-          {
-            required: true,
-            message: 'Please confirm your password!',
-          },
-          ({ getFieldValue }) => ({
-            validator(_, value) {
-              if (!value || getFieldValue('password') === value) {
-                return Promise.resolve();
-              }
-              return Promise.reject(new Error('The two passwords that you entered do not match!'));
-            },
-          }),
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
-
 
        {/* Phone Number */}
        <Form.Item
@@ -109,7 +161,7 @@ const RegisterNGO = ({ handleRegister}) => {
         name="ngoContact"
         rules={[{ required: true, message: 'Please Enter Contact Number!' }]}
       >
-         <Input />
+         <Input onChange={(e)=>setContact(e.target.value)}/>
       </Form.Item>
 
        {/* Address of Main Branch */}
@@ -118,25 +170,19 @@ const RegisterNGO = ({ handleRegister}) => {
         name="address"
         rules={[{ required: true, message: 'Please Enter Address!' }]}
       >
-         <Input.TextArea />
+         <Input.TextArea onChange={(e)=>setAddress(e.target.value)}/>
       </Form.Item>
      
          {/* Service Areas */}
          <Form.Item label="Service Areas">
-        <Select>
-          <Select.Option value="demo">Demo</Select.Option>
-        </Select>
+        <Dropdown onChange={handleServiceareas} />
       </Form.Item>
-
-
-       
       
-
-<FounderInfo/>
+<FounderInfo onChangeCnic= {handleCnic } onChangeName={handleFoundername} onChangeEmail = {handleFounderemail} onChangeContact = {handleFoundercontact}/>
 <AuthorizationDoc/>
 <Declaration/>
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-  <CustomButton label={ islogin==true? "Edit" : "Register" } className={style.nextButton} type="primary" onClick={handleRegister} disabled={false} shape="round"></CustomButton>
+  <CustomButton label={  "Register" } className={style.nextButton} type="primary" onClick={postNgo} disabled={false} shape="round"></CustomButton>
       </Form.Item>
     </Form>
 

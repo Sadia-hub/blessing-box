@@ -1,6 +1,7 @@
 import { Form, Input, Button, Checkbox,InputNumber,TextArea,Select, Typography,Divider } from 'antd';
-function FounderInfo(){
+function FounderInfo({onChangeCnic, onChangeName, onChangeContact, onChangeEmail}){
 
+ 
     return(<>
         <Divider>FOUNDER INFORMATION</Divider>
 
@@ -9,7 +10,7 @@ function FounderInfo(){
         name="founderName"
         rules={[{ required: true, message: 'Please Enter Your Name!' }]}
       >
-        <Input />
+        <Input onChange={onChangeName}/>
       </Form.Item>
 
       <Form.Item
@@ -17,7 +18,7 @@ function FounderInfo(){
         name="founderCnic"
         rules={[{ required: true, message: 'Please Enter Your CNIC!' }]}
       >
-        <Input />
+        <Input onChange={onChangeCnic}/>
       </Form.Item>
 
       <Form.Item
@@ -25,15 +26,15 @@ function FounderInfo(){
         name="founderContact"
         rules={[{ required: true, message: 'Please Enter Contact Number!' }]}
       >
-         <Input />
+         <Input onChange={onChangeContact}/>
       </Form.Item>
 
       <Form.Item
-        label="Enter NGO Email"
+        label="Enter Email"
         name="founderEmail"
         rules={[{ required: true, type:'email', message: 'Please Enter NGO email' }]}
       >
-        <Input />
+        <Input onChange={onChangeEmail}/>
       </Form.Item>
 
     </>)

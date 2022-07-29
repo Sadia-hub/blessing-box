@@ -1,6 +1,7 @@
 import Image from 'next/image';
 const { Meta } = Card;
 import { Card} from 'antd';
+//import styles from '../../../../styles/NgoCard.module.css';
 import { ngoCard, margin, imgDiv } from '../../../../styles/customCard';
 
 const NgoCard=({title,src, desc})=>{
@@ -13,10 +14,8 @@ const NgoCard=({title,src, desc})=>{
             alt={title+ " image"} 
             src={src} 
             width={240} 
-            height={200} 
-
+            height={220} 
             className={margin.smallMargin}
-
             />
         </div>
             

@@ -2,7 +2,9 @@ import {Col, Divider, Row, Typography} from 'antd';
 import styles from '../../../../styles/NgoDetails.module.css';
 import {BookOutlined} from '@ant-design/icons';
 import Image from 'next/image';
+import { useSelector } from 'react-redux';
 import { useState } from 'react';
+import { useRouter } from 'next/router'
 const NgoSidebar = () =>{
 
     const { Title } = Typography;
@@ -15,7 +17,10 @@ const NgoSidebar = () =>{
     const [founder, setFounder] = useState("Abdul Sattar Edhi");
     const [founderContact, setFounderContact] = useState("03229087654");
     const [founderEmail, setFounderEmail] = useState("sadiashah059@gmail.com");
-
+    const router = useRouter()
+    const { category, id } = router.query
+    const myState = useSelector((state)=> state.detailsReducer);
+    const ngos = myState[category].filter((ngo)=>ngo.ngo.id==id)
     return<>
         <div>
                         <Row justify='center'>
@@ -37,7 +42,7 @@ const NgoSidebar = () =>{
                             <Row align='middle' justify='center' className={styles.barItems}>
 
                                 <Col span={10}><BookOutlined/>Founded</Col>
-                                <Col span={14}> {founded} </Col>
+                                <Col span={14}> {ngos[0].ngo.year} </Col>
 
                             </Row>
                             
@@ -46,7 +51,7 @@ const NgoSidebar = () =>{
 
                                 <Col span={10}><BookOutlined/>Services</Col>
                                 <Col span={14}>
-                                    {
+                                    {/* {
                                         services.map((service)=>{
                                             return<>
                                                 {
@@ -54,7 +59,8 @@ const NgoSidebar = () =>{
                                                 }
                                             </>
                                         })
-                                    }
+                                    } */}
+                                    {ngos[0].ngo.serviceArea}
                                 </Col>
                                 
                                 
@@ -63,19 +69,19 @@ const NgoSidebar = () =>{
                             <Row align='middle' justify='center' className={styles.barItems}>
 
                                 <Col span={10}><BookOutlined/>Email</Col>
-                                <Col span={14}> {email} </Col>
+                                <Col span={14}> {ngos[0].ngo.ngoEmail} </Col>
 
                             </Row>
                             <Row align='middle' justify='center' className={styles.barItems}>
 
                                 <Col span={10}><BookOutlined/>Contact</Col>
-                                <Col span={14}> {contact} </Col>
+                                <Col span={14}> {ngos[0].ngo.contact} </Col>
 
                             </Row>
                             <Row justify='center' className={styles.barItems}>
 
                                 <Col span={10}><BookOutlined/>Main Branch</Col>
-                                <Col span={14}> {address} </Col>
+                                <Col span={14}> {ngos[0].ngo.address} </Col>
 
                             </Row>
                             
@@ -89,14 +95,14 @@ const NgoSidebar = () =>{
                             <Row justify='center' className={styles.barItems}>
 
                                 <Col span={10}><BookOutlined/>Founder</Col>
-                                <Col span={14}> {founder} </Col>
+                                <Col span={14}> {ngos[0].ngo.founderName} </Col>
 
                             </Row>
 
                             <Row justify='center' className={styles.barItems}>
 
                                 <Col span={10}><BookOutlined/>Contact</Col>
-                                <Col span={14}> {contact} </Col>
+                                <Col span={14}> {ngos[0].ngo.founderContact} </Col>
 
                             </Row>
 
