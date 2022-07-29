@@ -7,33 +7,14 @@ import WhyChooseUs from '../src/components/ui/support/WhyChooseUs';
 import ProvideServices from '../src/components/ui/support/ProvideServices';
 import ContactUS from '../src/components/ui/support/ContactUs'
 
-import Roll from 'react-reveal/Roll';
-import Jump from 'react-reveal/Jump';
 export default function Home() {
   return<CustomLayout>
     <CustomCarousel/>
-    <Roll top>
-      <InfoCard/> 
-    </Roll>
-    <Roll left>
-      <WhyChooseUs/>
-    </Roll>
-   
-   <Roll right>
-   <ProvideServices/>
-   </Roll>
-    
-   <Roll left>
+    <InfoCard/>
+    <WhyChooseUs/>
+    <ProvideServices/>
     <Categories />
-    </Roll>
-
-    <Roll right>
     <DefineStep/>
-    </Roll>
-
-    <Roll left>
     <ContactUS/>
-    </Roll>
-
   </CustomLayout>
 }

@@ -9,7 +9,6 @@ import LeftMenu from '../../layouts/NgosNavbar';
 import { useRouter } from 'next/router'
 
 const NgoDetails = ({ editable }) => {
-   
     const { Title, Paragraph } = Typography;
     const [title, setTitle] = useState("Chippa NGO");
     const [founder, setFounder] = useState("Abdul Sattar Edhi");
@@ -40,6 +39,8 @@ const NgoDetails = ({ editable }) => {
                 <Col lg={{ span: 18 }} md={{ span: 18 }} sm={{ span: 24 }} justify="center">
                     <Row justify='center' id="about">
                         <Title editable={editable} level={3} >About Us</Title>
+                        <br/>
+                        <br/>
                         <Paragraph editable={editable}>
                             
                             {ngos[0].about_us}

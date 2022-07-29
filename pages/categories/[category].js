@@ -2,6 +2,7 @@ import NgoCard from "../../src/components/ui/support/NgoCard";
 import CustomLayout from "../../src/components/layouts/customLayout";
 import { Row, Col, Pagination } from "antd";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { useRouter } from 'next/router'
 
 const ngos = [
@@ -96,15 +97,13 @@ const ngos = [
     }
 ];
 
-
-
 const Categories = (xs=22, sm=11, md=8, lg=5) =>{
-
     const router = useRouter()
     const { category } = router.query
-
-    const filterdNgos = ngos.filter((ngo)=>ngo.category==category);
-
+    const details = useSelector((state)=> state.detailsReducer);
+    console.log("In details ", details);
+    const ngos = details[category]
+    console.log("food is",ngos);
     const [pageNo, setPageNo] = useState(0);
     const [pageSize,setPageSize] = useState(10);
     const [totalNgos, setTotalNgos] = useState(0);
@@ -116,19 +115,16 @@ const Categories = (xs=22, sm=11, md=8, lg=5) =>{
         let startIndex = page-1;
         setPageNo(()=>startIndex*size);
         setPageSize(()=>size*page);
-
     }
-
+   
     return <CustomLayout>
                 {/* <Row justify='center'>
                     <Title>Where You Can Donate?</Title>
                 </Row> */}
                 <div>
-
                     <Row justify="center" style={{marginTop:"100px"}}>
                         {
-
-                            filterdNgos.slice(pageNo, pageSize).map((ngo)=>{
+                        ngos.slice(pageNo, pageSize).map((ngo)=>{
                          return <Col 
                                 key={ngo.id}
                                 xs={{ span: 22 }}  
@@ -136,9 +132,9 @@ const Categories = (xs=22, sm=11, md=8, lg=5) =>{
                                 md={{ span: 8 }} 
                                 lg={{span:5}}> 
                                 <div
-                                onClick={()=>router.push(`${ngo.category}/${ngo.id}`)}
+                                onClick={()=>router.push(`${ngo.ngo.serviceType}/${ngo.ngo.id}`)}
                                 >
-                                    <NgoCard title={ngo.title}  desc={ngo.description} src="/c2.svg"/>
+                                    <NgoCard title={ngo.ngo.name}  desc={ngo.about_us} src={ngo.image}/>
                                 </div>       
                                 
                             </Col>
@@ -148,22 +144,15 @@ const Categories = (xs=22, sm=11, md=8, lg=5) =>{
                     </Row>
 
                     <Row justify="center">
-                        <Pagination size="small" total={filterdNgos.length} 
+                        <Pagination size="small" total={ngos.length} 
                         showSizeChanger 
                         showQuickJumper 
                         onChange={handlePageChange}/>
-                        
-                        
                     </Row>
                     <Row justify="center">
-                        {` Total Pages : ${Math.ceil(filterdNgos.length/pageSize)}`}
+                        {` Total Pages : ${Math.ceil(ngos.length/pageSize)}`}
                     </Row>
-
-                </div>
-            
-                
-                
-                
+                </div>        
                      
         </CustomLayout>
 }

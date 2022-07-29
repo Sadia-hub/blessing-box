@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router'
 import { Row, Col } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
-import { setFoodInfo, setEducationInfo, setNGOInfo, setOrphangeInfo } from '../../../redux/ngo/Action';
+import { setFoodInfo,  setNGOInfo } from '../../../redux/ngo/Action';
 import { Typography } from 'antd';
 
 const CustomCarousel = () => {

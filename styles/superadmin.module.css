@@ -1,0 +1,53 @@
+.mainDiv{
+    margin-top: 65px;
+    background-color: white;
+    justify-content: center;
+    
+    display: flex;
+}
+.table {
+    margin-top: 35px;  
+}
+
+
+.approve_btn{  
+    background-color:#028A0F !important;
+    border-color: #028A0F !important;
+    font-weight: bold !important;
+    color: white !important;
+    text-transform: uppercase;
+}
+
+.disapprove_btn{
+    background-color:rgba(235,33,136,1) !important;
+    border-color: rgba(235,33,136,1) !important;
+    font-weight: bold !important;
+    color: white !important;
+    margin-left: 5px;
+    /* text-transform: uppercase; */
+}
+
+.disapprove_btn :hover{
+    background-color: rgb(233, 40, 140) !important;
+    border-color: rgb(233, 40, 140) !important;  
+    color:white;
+}
+
+.disapprove_btn :focus{
+    background-color: rgb(212, 55, 136) !important;
+    border-color: rgb(212, 55, 136) !important;  
+    color:white;
+}
+
+.approve_btn :hover{
+    background-color: #0c7c17 !important;
+    border-color: #0c7c17 !important;  
+    color:white;
+}
+
+
+.approve_btn :focus{
+    background-color: #227c2b !important;
+    border-color: #227c2b !important;  
+    color:white;
+}

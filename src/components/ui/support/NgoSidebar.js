@@ -49,17 +49,9 @@ const NgoSidebar = () =>{
                             
                             <Row justify='center' className={styles.barItems}>
 
-                                <Col span={10}><BookOutlined/>Services</Col>
+                                <Col span={10}><BookOutlined/>Service Areas</Col>
                                 <Col span={14}>
-                                    {/* {
-                                        services.map((service)=>{
-                                            return<>
-                                                {
-                                                    `${ service}, `
-                                                }
-                                            </>
-                                        })
-                                    } */}
+                                    
                                     {ngos[0].ngo.serviceArea}
                                 </Col>
                                 

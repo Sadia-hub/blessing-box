@@ -1,7 +1,12 @@
 import NgoDetails from "../src/components/ui/support/NgoDetails";
+import { useSelector } from "react-redux";
 const ngodetails = () =>{
-    return<>
-        <NgoDetails editable={false}/>
+    const state = useSelector((state)=> state.userReducer);
+    console.log(state.type)
+    const {id} = router.query;
+   return<>
+    {state.type=="donor"?<NgoDetails  editable={false}/>:<NgoDetails  editable={true}/>}
+        {/* <NgoDetails editable={true}/> */}
     </>
 }
 
