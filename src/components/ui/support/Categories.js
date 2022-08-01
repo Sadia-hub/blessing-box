@@ -21,7 +21,7 @@ const Categories = (xs=12, sm=11, md=8, lg=5, title="Choose, where you want to d
 
                 lg={{span:lg}}> 
                     <div
-                    onClick={()=>{router.push("/categories/orphanage")}}
+                    onClick={()=>{router.push("/categories/orphange")}}
                     >
                         <CustomCard                        
                         title="Orphanage" 
@@ -63,7 +63,6 @@ const Categories = (xs=12, sm=11, md=8, lg=5, title="Choose, where you want to d
                     onClick={()=>{router.push("/categories/education")}}
                     >
                         <CustomCard 
-                        
                         title="Education" 
                         donation={1000} 
                         src="/education.svg"

@@ -1,6 +1,6 @@
 import { Row, Col } from 'antd';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Form, Input } from 'antd';
 import { Typography } from 'antd';

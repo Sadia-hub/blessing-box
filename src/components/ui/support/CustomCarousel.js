@@ -52,6 +52,7 @@ useEffect(()=>{
   }
   getDetails();
 },[])
+
 const data = useSelector((state)=> state.detailsReducer);
 console.log(data.food);
    const { Title } = Typography;

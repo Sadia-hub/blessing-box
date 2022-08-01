@@ -1,0 +1,94 @@
+.table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    margin-top: 65px;
+    width: 100%;
+  }
+  
+  .table_tr{
+    color: rgba(42, 5, 143, 0.8);
+  }
+  .table_td  {
+    border: 1px solid black;
+    padding: 8px;
+  }
+
+  .table_heading {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  /* .table_tr:nth-child(even){background-color: #f2f2f2;} */
+  
+  .table_tr:hover {background-color: rgba(42, 5, 143, 0.8); 
+                  color: white;
+                  }
+  
+  .table_heading{
+    padding-top: 12px;
+    padding-bottom: 12px;
+  
+    text-align: left;
+    background-color: #ddd;
+    color: white;
+  }
+
+  .text_center{
+    text-align: center;
+  }
+
+  .disApprove{
+    background-color:rgba(235,33,136,1) !important;
+    border-color: rgba(235,33,136,1) !important;
+    font-weight: bold;
+    color: white !important;
+}
+.disApprove:hover{
+    background-color: rgb(233, 40, 140) !important;
+    border-color: rgb(233, 40, 140) !important;  
+    color:white !important;
+} 
+.disApprove:focus{
+    background-color: rgb(212, 55, 136) !important;
+    border-color: rgb(212, 55, 136) !important;  
+    color:white !important;
+}
+
+.approve{
+  background-color:#028A0F !important;
+  border-color: #028A0F !important;
+  font-weight: bold;
+  color: white !important;
+  text-transform: uppercase;
+}
+
+.approve:hover{
+  background-color: #0c7c17 !important;
+  border-color: #0c7c17 !important;  
+  color:white !important;
+} 
+.approve:focus{
+  background-color: #227c2b !important;
+  border-color: #227c2b !important;  
+  color:white !important;
+} 
+
+
+.view{
+  background-color:rgba(42, 5, 143, 0.8) !important;
+  border-color: rgba(42, 5, 143, 0.8) !important;
+  font-weight: bold;
+  color: white !important;
+  
+}
+
+.view:hover{
+  background-color:rgba(60, 35, 131, 0.8) !important;
+  border-color: rgba(60, 35, 131, 0.8) !important;
+  color: white !important;
+} 
+.view:focus{
+  background-color:rgba(60, 35, 131, 0.8) !important;
+  border-color: rgba(60, 35, 131, 0.8) !important;
+  color: white;
+} 

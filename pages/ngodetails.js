@@ -5,7 +5,7 @@ const ngodetails = () =>{
     console.log(state.type)
     const {id} = router.query;
    return<>
-    {state.type=="donor"?<NgoDetails  editable={false}/>:<NgoDetails  editable={true}/>}
+    {state.type=="Ngo"?<NgoDetails  editable={true}/>:<NgoDetails  editable={false}/>}
         {/* <NgoDetails editable={true}/> */}
     </>
 }

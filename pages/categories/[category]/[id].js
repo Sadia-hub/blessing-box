@@ -7,10 +7,8 @@ const Id = () =>{
     const state = useSelector((state)=> state.userReducer);
     console.log(state.type)
     const router = useRouter();
-   
     return<>
-        {state.type=="donor"?<NgoDetails  editable={false}/>:<NgoDetails  editable={true}/>}
-        
+        {state.type=="Ngo"?<NgoDetails  editable={true}/>:<NgoDetails  editable={false}/>} 
     </>
 }
 
