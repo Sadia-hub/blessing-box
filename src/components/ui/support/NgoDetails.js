@@ -1,6 +1,5 @@
 import { Row, Col, Divider, Button, Typography } from 'antd';
 import CustomLayout from '../../layouts/customLayout';
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import styles from '../../../../styles/NgoDetails.module.css';
 import ProjectCard from './ProjectCard';
@@ -10,8 +9,6 @@ import { useRouter } from 'next/router'
 
 const NgoDetails = ({ editable }) => {
     const { Title, Paragraph } = Typography;
-    const [title, setTitle] = useState("Chippa NGO");
-    const [founder, setFounder] = useState("Abdul Sattar Edhi");
     const router = useRouter()
     const { category, id } = router.query
     const myState = useSelector((state)=> state.detailsReducer);
@@ -50,18 +47,14 @@ const NgoDetails = ({ editable }) => {
                     <Row justify='center' id="services">
                         <Title editable={editable} level={3}>Our Services</Title>
                         <Paragraph editable={editable}>
-                        {ngos[0].services}  {ngos[0].services}  {ngos[0].services}  {ngos[0].services} 
-                        {ngos[0].services}  {ngos[0].services}  {ngos[0].services}  {ngos[0].services}  {ngos[0].services} 
-                        {ngos[0].services}  {ngos[0].services}  
+                        {ngos[0].services}  
+                        
                         </Paragraph>
                     </Row>
                     <Row justify='center' id="projects" style={{ margin: "5px" }}>
                         <Title editable={editable} level={3}>Projects</Title>
                         <Paragraph editable={editable}>
-                        {ngos[0].projects}  {ngos[0].projects}   {ngos[0].projects}   
                         {ngos[0].projects}   
-                        {ngos[0].projects}    {ngos[0].projects}    {ngos[0].projects}    {ngos[0].projects}   
-                        {ngos[0].projects}   {ngos[0].projects}   
                         </Paragraph>
                     </Row>
 
@@ -92,10 +85,6 @@ const NgoDetails = ({ editable }) => {
                 </Col>
 
             </Row>
-
-
-
-
 
         </div>
     </CustomLayout>

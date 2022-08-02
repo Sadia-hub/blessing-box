@@ -4,6 +4,10 @@
     justify-content: center;
     display: flex;
 }
+.center{
+    text-align: center !important;
+    color: #E10600;
+}
 .form{
     border-radius: 20px; 
     box-shadow: 2px 2px 2px 2px #808080;

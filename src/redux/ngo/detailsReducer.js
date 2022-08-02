@@ -15,14 +15,6 @@ const detailsReducer = (state=initialState, action) =>{
             console.log("In redux state is ",updatedState)
             return updatedState;
         
-        case "SET_FOOD_INFO":
-            return state = action.payload;
-        
-        case "SET_Education_INFO":
-            return state = action.payload;    
-                
-        case "SET_Orphange_INFO":
-            return state = action.payload;        //return {...state, user:action.payload}
         default:
             return state;
     }

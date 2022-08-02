@@ -41,7 +41,7 @@ const RegisterNGO = ({ handleRegister}) => {
     certificate:'Microsoft',
     userId: `${state.id}`,
   }
-  console.log(localStorage.getItem(state.id));
+  //console.log(localStorage.getItem(state.id));
     async function postNgo()  {
       try{
       await fetch('http://localhost:8080/ngo', {
@@ -85,7 +85,8 @@ const RegisterNGO = ({ handleRegister}) => {
   const handleFounderemail = (e) =>{
     setFemail(e.target.value)  
   }
-var data = ' ';
+  
+  var data = ' ';
   const handleServiceareas = (value) => {
     data = data + ' ' +value;
     setServicearea(data);

@@ -3,13 +3,14 @@ import style from '../../../../styles/table.module.css';
 import { useTable, usePagination } from 'react-table';
 import { useMemo, useEffect, useState } from 'react';
 import apiCall from './apiCall';
+import { useRouter } from 'next/router';
 import { CustomButton } from '../buttons/buttons';
 
 const BasicTable = () => {
  const [ngoData, setNgoData] = useState([]);
  const [ngoDetails, setNgoDetails] = useState({});
  const[count,setCount] = useState(0);
-  
+ const router = useRouter();
  const Columns = [
         {
           Header: 'NGO Id',
@@ -33,41 +34,17 @@ const BasicTable = () => {
         {
           Header: 'View',
           accessor: 'view'          
-      }
+         },
+        //  {
+        //   Header: 'Report',
+        //   accessor: '',
+        //  }
     ];
 
-
-    //get NGO BY ID
-    const seeNgoDetails = (id)=>{
-      apiCall(`ngo/${id}`,null, "GET", null, null)
-      .then((res)=>{
-        console.log("In NGO Details"+res.name)
-        setNgoDetails(res)
-      })
-      .catch((err)=>{
-        console.log(err.message)
-      })
-    } 
    
     //get All Pending NGOs
-         useEffect(()=> {
-        const pending_Ngos = () =>{
-          apiCall(`pendingngos`,null, "GET", null, null)
-          .then((res)=>{
-            console.log(res)
-            setNgoData(res)
-          })
-          .catch((err)=>{
-            console.log(err.messae)
-          })
-        } 
-      pending_Ngos();
-      },[])
-
-
-     
-      // useEffect(()=> {
-      //   const pending_Ngos = () =>{
+      //    useEffect(()=> {
+      //  async function pending_Ngos() {
       //     apiCall(`pendingngos`,null, "GET", null, null)
       //     .then((res)=>{
       //       console.log(res)
@@ -77,8 +54,25 @@ const BasicTable = () => {
       //       console.log(err.messae)
       //     })
       //   } 
-      // pending_Ngos()
-      // },[count])
+    
+      // },[])
+
+
+   const token= localStorage.getItem("token");
+   console.log("token is"+token)
+      useEffect(()=> {
+       const pending_Ngos = async() =>{
+          apiCall('pendingngos',null, "GET", null, token)
+          .then((res)=>{
+            console.log(res)
+            setNgoData(res)
+          })
+          .catch((err)=>{
+            console.log(err.message)
+          })
+        } 
+      pending_Ngos()
+      },[])
 
 
     
@@ -99,7 +93,7 @@ const BasicTable = () => {
           ngoName: ngo.name,
           approve:    <CustomButton label="Approve" className={style.approve} onClick={()=>approveNgo(ngo.id, 1)} disabled={false} shape='round'/>,    
           disapprove: <CustomButton label="Disapprove" className={style.disApprove} onClick={()=>approveNgo( ngo.id, 0)} disabled={false} shape='round'/>,      
-          view:      <CustomButton label="View NGO" className={style.view} onClick={()=>seeNgoDetails(ngo.id)} disabled={false} shape='round'/>
+          view:      <CustomButton label="View NGO" className={style.view} onClick={()=>router.push(`viewngo/${ngo.id}`)} disabled={false} shape='round'/>
         }
       })     
         const columns = useMemo(()=> Columns, [])

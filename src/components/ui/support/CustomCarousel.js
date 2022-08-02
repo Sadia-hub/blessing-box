@@ -6,12 +6,12 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router'
 import { Row, Col } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
-import { setFoodInfo,  setNGOInfo } from '../../../redux/ngo/Action';
+import { setNGOInfo } from '../../../redux/ngo/Action';
+import apiCall from './apiCall';
 import { Typography } from 'antd';
 
 const CustomCarousel = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [details, setDetails] = useState([]);
   const dispatch = useDispatch();
   const router = useRouter()
   
@@ -34,33 +34,26 @@ const CustomCarousel = () => {
     setIsModalVisible(false);
   }
 
-useEffect(()=>{
-  async function getDetails()  {
-    try{
-    await fetch('http://localhost:8080/ngodetails', {
-    method: "GET",  
-    headers: {
-        'Content-Type': 'application/json',
-      },
-    }).then(res=> res.json()).then((data)=> { 
-      dispatch(setNGOInfo(data))
-  })
-    }
-    catch(err){
-      console.log(err);
-    }
-  }
-  getDetails();
-},[])
+  useEffect(()=> {
+    async function getDetails(){
+      apiCall('ngodetails',null, "GET", null, null)
+      .then((res)=>{
+        dispatch(setNGOInfo(res))
+      })
+      .catch((err)=>{
+        console.log(err.message)
+      })
+    } 
+    getDetails();
+  },[])
+
 
 const data = useSelector((state)=> state.detailsReducer);
-console.log(data.food);
+
    const { Title } = Typography;
   return (
     <>
       <div >
-
-
         <Carousel autoplay={true} dotPosition="right" >
           <div className={styles.mainDiv}>
             <Row align='middle'>

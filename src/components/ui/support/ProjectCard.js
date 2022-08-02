@@ -1,7 +1,6 @@
 import {Row, Col, Divider, Modal, Typography, Progress} from 'antd';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { CloseOutlined } from '@ant-design/icons';
 
 import styles from '../../../../styles/ProjectCard.module.css';
 
@@ -53,11 +52,6 @@ targetAmount="9000"
     console.log('Clicked cancel button');
     setVisible(false);
   };
-
-  
-    
-    
-
 
     return<div>
 

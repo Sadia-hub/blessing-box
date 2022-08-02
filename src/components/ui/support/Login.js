@@ -8,19 +8,17 @@ import styles from '../../../../styles/login.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { isLogin, IS_LOGOUT, setUserInfo } from '../../../redux/user/Action';
 import { CustomButton } from '../buttons/buttons';
-
+import apiCall from './apiCall';
 const Login =() =>{
-const dispatch = useDispatch();
-const router = useRouter();
-
-const myState = useSelector((state)=> state.detailsReducer);
- console.log("In login "+ myState.food);
-
+    const dispatch = useDispatch();
+    const router = useRouter();
+    const[email, setEmail] =useState();
     const[user,setUser]=useState();
-    const[valid,setValid]=useState(false);
+    const[valid,setValid]=useState();
     const[password,setPassword]=useState();
-    const[allUsers, setAllusers] = useState({}); 
+    const[userData, setuserData] = useState({}); 
     const { Title } = Typography;
+    
     const onFinish = (values) => {
         console.log('Success:', values);
       };
@@ -32,8 +30,22 @@ const myState = useSelector((state)=> state.detailsReducer);
         email: user,
         password: password
       };
-   
+      
 
+      // useEffect(()=> {
+      //   const Login = async() =>{
+      //      apiCall('user',JSON.stringify(submission), "POST", null, null)
+      //      .then(res=> res.json()).then((data)=> { 
+      //       setVerify(data)
+      //       setEmail(data.user.email)
+      //     })
+      //      .catch((err)=>{
+      //        console.log(err.message)
+      //      })
+      //    } 
+      //  Login()
+      //  },[])
+      
     useEffect(() => {
     async function getLogin()  {
       try{
@@ -42,11 +54,12 @@ const myState = useSelector((state)=> state.detailsReducer);
       headers: {
           'Content-Type': 'application/json',
           //'Authorization': `Bearer ${token}`,
-         
         },
         body:JSON.stringify(submission),
       }).then(res=> res.json()).then((data)=> { 
-        setAllusers(data)});
+        setuserData(data)
+        setEmail(data.user.email)
+      });
       }
       catch(err){
         console.log(err);
@@ -54,6 +67,8 @@ const myState = useSelector((state)=> state.detailsReducer);
     }
     getLogin();
   })
+
+  //console.log("type of user is"+userinfo.type)
     
     function handleChangeUser(event) {
       const value = event.target.value;
@@ -65,15 +80,13 @@ const myState = useSelector((state)=> state.detailsReducer);
       setPassword(value);
     }
 
-    
-
     const verifyUser =() =>{
       let breakCondition = false;
-        if(user==allUsers.user.email  ){
-          localStorage.setItem(allUsers.user.id, allUsers.token);
+        if(user==email){
+          localStorage.setItem("token", userData.token);
           dispatch(isLogin());
-          dispatch(setUserInfo(allUsers.user));
-          router.push('/');
+          dispatch(setUserInfo(userData.user));
+         {user=='admin@gmail.com'? router.push('/superadmin') :router.push('/')}
           setValid(true);
           breakCondition =true; 
         }
@@ -127,6 +140,9 @@ const myState = useSelector((state)=> state.detailsReducer);
       <Form.Item >
       <CustomButton htmlType="submit" label="Sign in" className={styles.regButton} type="primary" onClick={verifyUser} disabled={false} shape=''></CustomButton>     
       </Form.Item>
+      <span >
+      {valid==false? <p className={styles.center}>This user is not registered</p>: ''}
+      </span>
        </Form>
         </Col>
     </Row>

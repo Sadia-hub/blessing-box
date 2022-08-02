@@ -8,14 +8,6 @@ import { useRouter } from 'next/router'
 const NgoSidebar = () =>{
 
     const { Title } = Typography;
-    const [founded, setFounded] = useState(1998);
-    const [services, setServices] = useState(["Education", "Orphanage", "Food"]);
-    const [email, setEmail] = useState("chippa@gmail.com");
-    const [contact, setContact] = useState("03227865342");
-    const [address, setAddress] = useState("Sukkur IBA main branch, airport road Sukkur");
-
-    const [founder, setFounder] = useState("Abdul Sattar Edhi");
-    const [founderContact, setFounderContact] = useState("03229087654");
     const [founderEmail, setFounderEmail] = useState("sadiashah059@gmail.com");
     const router = useRouter()
     const { category, id } = router.query
@@ -26,7 +18,7 @@ const NgoSidebar = () =>{
                         <Row justify='center'>
 
                             <div style={{borderRadius:"360px", overflow:"hidden"}}>
-                                <Image src="/we.png" height={150} width={150} layout="intrinsic"/>
+                                <Image src={ngos[0].image} height={150} width={150} layout="intrinsic"/>
                             </div>
                             
                         </Row>
@@ -101,7 +93,7 @@ const NgoSidebar = () =>{
                             <Row justify='center' className={styles.barItems}>
 
                                 <Col span={10}><BookOutlined/>Email</Col>
-                                <Col span={14}> {founderEmail} </Col>
+                                <Col span={14}> {ngos[0].ngo.userEmail}  </Col>
 
                             </Row>
 

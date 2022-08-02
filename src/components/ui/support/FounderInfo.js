@@ -1,4 +1,4 @@
-import { Form, Input, Button, Checkbox,InputNumber,TextArea,Select, Typography,Divider } from 'antd';
+import { Form, Input, Divider } from 'antd';
 function FounderInfo({onChangeCnic, onChangeName, onChangeContact, onChangeEmail}){
 
  
