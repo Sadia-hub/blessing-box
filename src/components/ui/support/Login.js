@@ -5,97 +5,61 @@ import { useRouter } from 'next/router';
 import { Form, Input } from 'antd';
 import { Typography } from 'antd';
 import styles from '../../../../styles/login.module.css';
+
+//redux
 import { useSelector, useDispatch } from 'react-redux';
 import { isLogin, IS_LOGOUT, setUserInfo } from '../../../redux/user/Action';
+
+
 import { CustomButton } from '../buttons/buttons';
 import apiCall from './apiCall';
+
+
+
 const Login =() =>{
     const dispatch = useDispatch();
     const router = useRouter();
-    const[email, setEmail] =useState();
-    const[user,setUser]=useState();
-    const[valid,setValid]=useState();
-    const[password,setPassword]=useState();
-    const[userData, setuserData] = useState({}); 
+
+  //if set to false will display errors 
+   const[valid,setValid]=useState(true);
+  
     const { Title } = Typography;
     
-    const onFinish = (values) => {
-        console.log('Success:', values);
-      };
-      const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
-      };
+    const onFinish = (values) => {  
+          apiCall('user',JSON.stringify(values), "POST", null, null)
+          .then((res)=> { 
 
-      const submission = {
-        email: user,
-        password: password
-      };
-      
+          if(res.user.email==values.email){
 
-      // useEffect(()=> {
-      //   const Login = async() =>{
-      //      apiCall('user',JSON.stringify(submission), "POST", null, null)
-      //      .then(res=> res.json()).then((data)=> { 
-      //       setVerify(data)
-      //       setEmail(data.user.email)
-      //     })
-      //      .catch((err)=>{
-      //        console.log(err.message)
-      //      })
-      //    } 
-      //  Login()
-      //  },[])
-      
-    useEffect(() => {
-    async function getLogin()  {
-      try{
-      await fetch('http://localhost:8080/user', {
-      method: "POST",  
-      headers: {
-          'Content-Type': 'application/json',
-          //'Authorization': `Bearer ${token}`,
-        },
-        body:JSON.stringify(submission),
-      }).then(res=> res.json()).then((data)=> { 
-        setuserData(data)
-        setEmail(data.user.email)
-      });
-      }
-      catch(err){
-        console.log(err);
-      }
-    }
-    getLogin();
-  })
+            //set token into local storage
+            localStorage.setItem("token", res.token);
 
-  //console.log("type of user is"+userinfo.type)
+            //dispatch state whether user is loggeg in or not
+            dispatch(isLogin());
+
+            //store user details into redux
+            dispatch(setUserInfo(res.user));
+
+            //if user type equals admin then admin page should b displayed else homepage
+            res.user.type=='admin'? router.push('/superadmin') :router.push('/') 
+
+          }
+          else{    
+
+            setValid(false);
+          } 
+         })
+          .catch((err)=>{
+            console.log(err.message)
+          })
+        
     
-    function handleChangeUser(event) {
-      const value = event.target.value;
-      setUser(value);  
-    }
+      };
 
-    function handleChangePassword(event) {
-      const value = event.target.value;
-      setPassword(value);
-    }
+    const onFinishFailed = (errorInfo) => {
+        console.log('Failed:', errorInfo);
+    };
 
-    const verifyUser =() =>{
-      let breakCondition = false;
-        if(user==email){
-          localStorage.setItem("token", userData.token);
-          dispatch(isLogin());
-          dispatch(setUserInfo(userData.user));
-         {user=='admin@gmail.com'? router.push('/superadmin') :router.push('/')}
-          setValid(true);
-          breakCondition =true; 
-        }
-        else if(!breakCondition){
-          
-          setValid(false);
-        } 
-    }
-    console.log(valid);
     return(
     <div className={styles.mainDiv}>
     <Row className={styles.form}>
@@ -126,7 +90,7 @@ const Login =() =>{
         name="email"
         rules={[{ required: true,  message: 'Please input your username!' }]}
       >
-        <Input onChange={handleChangeUser}/>
+        <Input />
       </Form.Item>
 
       <Form.Item
@@ -134,11 +98,11 @@ const Login =() =>{
         name="password"
         rules={[{ required: true, message: 'Please input your password!' }]}
       >
-        <Input.Password onChange={handleChangePassword}/>
+        <Input.Password />
       </Form.Item>
 
       <Form.Item >
-      <CustomButton htmlType="submit" label="Sign in" className={styles.regButton} type="primary" onClick={verifyUser} disabled={false} shape=''></CustomButton>     
+      <CustomButton htmlType="submit" label="Sign in" className={styles.regButton} type="primary" disabled={false} shape=''></CustomButton>     
       </Form.Item>
       <span >
       {valid==false? <p className={styles.center}>This user is not registered</p>: ''}
