@@ -41,38 +41,32 @@ const BasicTable = () => {
         //  }
     ];
 
+    const details =[];
    
-    //get All Pending NGOs
-      //    useEffect(()=> {
-      //  async function pending_Ngos() {
-      //     apiCall(`pendingngos`,null, "GET", null, null)
-      //     .then((res)=>{
-      //       console.log(res)
-      //       setNgoData(res)
-      //     })
-      //     .catch((err)=>{
-      //       console.log(err.messae)
-      //     })
-      //   } 
     
-      // },[])
-
-
-   const token= localStorage.getItem("token");
-   console.log("token is"+token)
+ 
       useEffect(()=> {
-       const pending_Ngos = async() =>{
-          apiCall('pendingngos',null, "GET", null, token)
-          .then((res)=>{
-            console.log(res)
-            setNgoData(res)
-          })
-          .catch((err)=>{
-            console.log(err.message)
-          })
-        } 
-      pending_Ngos()
-      },[])
+        const token= localStorage.getItem("token");
+        apiCall('pendingngos',null, "GET", null, token)
+        .then((res)=>{
+          console.log("res",res)
+         
+            
+          details =res.map((ngo)=>{
+            return {
+              id: ngo.id,
+              ngoName: ngo.name,
+              approve:    <CustomButton label="Approve" className={style.approve} onClick={()=>approveNgo(ngo.id, 1)} disabled={false} shape='round'/>,    
+              disapprove: <CustomButton label="Disapprove" className={style.disApprove} onClick={()=>approveNgo( ngo.id, 0)} disabled={false} shape='round'/>,      
+              view:      <CustomButton label="View NGO" className={style.view} onClick={()=>router.push(`viewngo/${ngo.id}`)} disabled={false} shape='round'/>
+            }
+          }) 
+
+        })
+        .catch((err)=>{
+          console.log(err.message)
+        })
+      })
 
 
     
@@ -85,17 +79,8 @@ const BasicTable = () => {
           console.log(err.messae)
         })   
       }
-
-  
-      const details = ngoData.map((ngo)=>{
-        return {
-          id: ngo.id,
-          ngoName: ngo.name,
-          approve:    <CustomButton label="Approve" className={style.approve} onClick={()=>approveNgo(ngo.id, 1)} disabled={false} shape='round'/>,    
-          disapprove: <CustomButton label="Disapprove" className={style.disApprove} onClick={()=>approveNgo( ngo.id, 0)} disabled={false} shape='round'/>,      
-          view:      <CustomButton label="View NGO" className={style.view} onClick={()=>router.push(`viewngo/${ngo.id}`)} disabled={false} shape='round'/>
-        }
-      })     
+     
+     
         const columns = useMemo(()=> Columns, [])
         const data = useMemo(()=> details, [])
 
@@ -133,8 +118,7 @@ const BasicTable = () => {
                     row.cells.map((cell) =>{
                       return <td className={style.table_td} {...cell.getCellProps()}>{cell.render('Cell')}</td>
                     })
-                  }
-                  
+                  }                 
                   </tr>
                 )
               }) }    
