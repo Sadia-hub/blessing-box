@@ -1,4 +1,4 @@
-import { Form, Input, Button, Checkbox,InputNumber,TextArea,Select, Typography,Divider } from 'antd';
+import { Form, Input, Button, Checkbox,InputNumber, Modal, Typography,Divider, Alert } from 'antd';
 import style from '../../../../styles/RegisterNgo.module.css';
 import { CustomButton } from '../buttons/buttons';
 import { useRouter } from 'next/router';
@@ -10,19 +10,20 @@ import AuthorizationDoc from './AuthorizationDoc';
 import Declaration from './Declaration';
 import Dropdown from './Dropdown';
 
-const RegisterNGO = ({ handleRegister}) => {
+const RegisterNGO = () => {
   const [service, setService] = useState('');
   const [serviceArea, setServicearea] = useState([]);
-  const [serviceAreas, setServiceareas] = useState('');
+  const [founderEmail, setfounderEmail] = useState('');
   const[ngoEmail, setNgoemail] =useState('');
   const[ngoName, setNgoname] =useState('');
   const[year, setYear] =useState(''); 
   const[contact, setContact] =useState('');
   const[f_contact, setFcontact] =useState('');
-  const[f_email, setFemail] =useState('');
   const[f_cnic, setFcnic] =useState('');
   const[f_name, setFname] =useState('');
   const[address, setAddress] =useState('');
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const state = useSelector((state)=> state.userReducer);
 
@@ -40,7 +41,21 @@ const RegisterNGO = ({ handleRegister}) => {
     serviceArea: serviceArea,
     certificate:'Microsoft',
     userId: `${state.id}`,
+    userEmail: founderEmail
   }
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+ 
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
   //console.log(localStorage.getItem(state.id));
     async function postNgo()  {
       try{
@@ -52,17 +67,21 @@ const RegisterNGO = ({ handleRegister}) => {
         },
         body:JSON.stringify(submission),
       }).then(res=> res.json()).then((data)=> { 
+        showModal(); 
         console.log("data is posted")
         });
+        
       }
       catch(err){
         console.log(err);
       }
+   
     }
  
 
   const onFinish = (values) => {
-    console.log('Success:', values);
+   
+    console.log('Success: is', values);
   };
 
   const onChange = (e) => {
@@ -83,7 +102,7 @@ const RegisterNGO = ({ handleRegister}) => {
   }
 
   const handleFounderemail = (e) =>{
-    setFemail(e.target.value)  
+    setfounderEmail(e.target.value)  
   }
   
   var data = ' ';
@@ -187,6 +206,11 @@ const RegisterNGO = ({ handleRegister}) => {
       </Form.Item>
     </Form>
 
+// Modal
+<Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} >
+        <p>Thank you For Registering NGO at Blessing Box. Our Admin will check your request and we will let you know the result after 2-3 working days </p>
+       
+      </Modal>
     </>);
 };
 export default RegisterNGO;

@@ -44,9 +44,6 @@ const customHeader = () => {
 
   const router = useRouter()
 
-  
- 
-
   const changeBack = () => {
     return <div className={styles.navBack}>
     </div>

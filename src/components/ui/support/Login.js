@@ -5,13 +5,12 @@ import { useRouter } from 'next/router';
 import { Form, Input } from 'antd';
 import { Typography } from 'antd';
 import styles from '../../../../styles/login.module.css';
+import { CustomButton } from '../buttons/buttons';
 
 //redux
 import { useSelector, useDispatch } from 'react-redux';
-import { isLogin, IS_LOGOUT, setUserInfo } from '../../../redux/user/Action';
+import { isLogin,  setUserInfo } from '../../../redux/user/Action';
 
-
-import { CustomButton } from '../buttons/buttons';
 import apiCall from './apiCall';
 
 
@@ -34,14 +33,14 @@ const Login =() =>{
             //set token into local storage
             localStorage.setItem("token", res.token);
 
-            //dispatch state whether user is loggeg in or not
+            //dispatch state whether user is logged in or not
             dispatch(isLogin());
 
             //store user details into redux
             dispatch(setUserInfo(res.user));
 
             //if user type equals admin then admin page should b displayed else homepage
-            res.user.type=='admin'? router.push('/superadmin') :router.push('/') 
+            {res.user.type=='admin'? router.push('/superadmin') :router.push('/')}
 
           }
           else{    
@@ -52,14 +51,13 @@ const Login =() =>{
           .catch((err)=>{
             console.log(err.message)
           })
-        
-    
       };
 
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
-
+    
+    
     return(
     <div className={styles.mainDiv}>
     <Row className={styles.form}>
@@ -106,7 +104,7 @@ const Login =() =>{
       <CustomButton htmlType="submit" label="Sign in" className={styles.regButton} type="primary" disabled={false} shape=''></CustomButton>     
       </Form.Item>
       <span >
-      {valid==false? <p className={styles.center}>This user is not registered</p>: ''}
+      {valid==false ? <p className={styles.center}>This user is not registered</p>: ''}
       </span>
        </Form>
         </Col>

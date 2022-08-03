@@ -1,13 +1,18 @@
 import style from '../../../styles/Footer.module.css';
 import { Anchor, Row, Col, Typography, Modal } from 'antd';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router'
+import { useSelector } from 'react-redux';
 import { CustomButton } from '../ui/buttons/buttons';
+
+import apiCall from '../ui/support/apiCall';
 
 export function Description() {
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [userHasNgo, setUserHasNgo ] =useState(false);
     const router = useRouter()
 
+    const userState = useSelector((state)=> state.loginReducer);
     const showModal = () => {
         setIsModalVisible(true);
     };
@@ -29,7 +34,19 @@ export function Description() {
     const { Link } = Anchor;
     const { Title } = Typography;
 
-
+    const user = useSelector((state)=> state.userReducer)
+    useEffect(()=> {
+      async function checkUserHasNgo(){
+        apiCall(`ngos/${user.id}`,null, "GET", null, null)
+        .then((res)=>{
+          setUserHasNgo(res)
+        })
+        .catch((err)=>{
+          console.log(err.message)
+        })
+      } 
+      checkUserHasNgo();
+    },[])
 
     return (<>
         <div className={style.headingaddress}>
@@ -46,7 +63,7 @@ export function Description() {
                         <Row>
                             <Col span={21}>
                                 <CustomButton label="Donate❤" className={style.donatebtn} onClick={showModal} type="danger" disabled={false} shape="round" />{' '}
-                                <CustomButton label="Add NGO" className={style.footerButton} onClick={handleNgo} type={false} disabled={false} shape="round" />
+                                {userHasNgo ==true && userState==true? '': <CustomButton label="Add NGO" className={style.footerButton}  onClick={handleNgo} disabled={false} shape="round" />}
                             </Col>
                         </Row>
                     </a>

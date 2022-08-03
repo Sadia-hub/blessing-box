@@ -1,15 +1,14 @@
 import {Col,Row,Typography} from 'antd';
 const { Title} = Typography;
 import CustomCard from './CustomCard';
-import { useRouter } from 'next/router'
-import Color from '../../../../styles/colors';
+import { useRouter } from 'next/router';
 const Categories = (xs=12, sm=11, md=8, lg=5, title="Choose, where you want to donate") =>{
 
     const router = useRouter();
 
-    return <>
-            <Row justify='center' >
-                 <Title style={{color:"#EB2188"}}>{title}</Title>
+    return <div >
+            <Row justify='center' id="donate" >
+                 <Title style={{color:"#EB2188", marginTop:"60px"}}>{title}</Title>
             </Row>
             
             <Row justify="center">
@@ -73,6 +72,6 @@ const Categories = (xs=12, sm=11, md=8, lg=5, title="Choose, where you want to d
 
                 </Col>
             </Row>
-    </>
+    </div>
 }
 export default Categories;

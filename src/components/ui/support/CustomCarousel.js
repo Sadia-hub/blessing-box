@@ -5,6 +5,7 @@ import { CustomButton } from '../buttons/buttons';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router'
 import { Row, Col } from 'antd';
+import {Button} from 'antd'; 
 import { useSelector, useDispatch } from 'react-redux';
 import { setNGOInfo } from '../../../redux/ngo/Action';
 import apiCall from './apiCall';
@@ -12,6 +13,7 @@ import { Typography } from 'antd';
 
 const CustomCarousel = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [userHasNgo, setUserHasNgo ] =useState(false);
   const dispatch = useDispatch();
   const router = useRouter()
   
@@ -47,10 +49,25 @@ const CustomCarousel = () => {
     getDetails();
   },[])
 
+  const user = useSelector((state)=> state.userReducer)
+  useEffect(()=> {
+    async function checkUserHasNgo(){
+      apiCall(`ngos/${user.id}`,null, "GET", null, null)
+      .then((res)=>{
+        setUserHasNgo(res)
+      })
+      .catch((err)=>{
+        console.log(err.message)
+      })
+    } 
+    checkUserHasNgo();
+  },[])
 
-const data = useSelector((state)=> state.detailsReducer);
 
-   const { Title } = Typography;
+
+console.log("user is",userHasNgo)
+const userState = useSelector((state)=> state.loginReducer);
+const { Title } = Typography;
   return (
     <>
       <div >
@@ -73,8 +90,9 @@ const data = useSelector((state)=> state.detailsReducer);
                 </Row>
 
                 <Row justify="center">
-                  <CustomButton label="Donate❤" className={styles.btn} onClick={showModal} type="submit" disabled={false} />
-                  <CustomButton label="Add NGO" className={styles.btn2} onClick={handleNgo} disabled={false} />
+                <Button className={styles.btn}><a href="#donate">Donate❤</a></Button>
+                  {/* <CustomButton label="Donate❤" className={styles.btn} onClick={showModal} type="submit" disabled={false} /> */}
+           {userHasNgo ==true && userState==true? '': <CustomButton label="Add NGO" className={styles.btn2} onClick={handleNgo} disabled={false} />}
                 </Row>
               </Col>
 
@@ -106,9 +124,9 @@ const data = useSelector((state)=> state.detailsReducer);
                 </Row>
 
                 <Row justify="center">
-
-                  <CustomButton label="Donate❤" className={styles.btn} onClick={showModal} type="submit" disabled={false} />
-                  <CustomButton label="Add NGO" className={styles.btn2} onClick={handleNgo} disabled={false} />
+                <Button className={styles.btn}><a href="#donate">Donate❤</a></Button>
+                  {/* <CustomButton label="Donate❤" className={styles.btn} onClick={showModal} type="submit" disabled={false} /> */}
+                  {userHasNgo ==true && userState==true? '': <CustomButton label="Add NGO" className={styles.btn2} onClick={handleNgo} disabled={false} />}
                 </Row>
               </Col>
 
@@ -142,9 +160,9 @@ const data = useSelector((state)=> state.detailsReducer);
                 </Row>
 
                 <Row justify="center">
-
-                  <CustomButton label="Donate❤" className={styles.btn} onClick={showModal} type="submit" disabled={false} />
-                  <CustomButton label="Add NGO" className={styles.btn2} onClick={handleNgo} disabled={false} />
+                <Button className={styles.btn}><a href="#donate">Donate❤</a></Button>
+                  {/* <CustomButton label="Donate❤" className={styles.btn} onClick={showModal} type="submit" disabled={false} /> */}
+                  {userHasNgo ==true && userState==true? '': <CustomButton label="Add NGO" className={styles.btn2} onClick={handleNgo} disabled={false} />}
                 </Row>
               </Col>
 
@@ -178,9 +196,9 @@ const data = useSelector((state)=> state.detailsReducer);
                 </Row>
 
                 <Row justify="center">
-
-                  <CustomButton label="Donate❤" className={styles.btn} onClick={showModal} type="submit" disabled={false} />
-                  <CustomButton label="Add NGO" className={styles.btn2} onClick={handleNgo} disabled={false} />
+                <Button className={styles.btn}><a href="#donate">Donate❤</a></Button>
+                  {/* <CustomButton label="Donate❤" className={styles.btn} onClick={showModal} type="submit" disabled={false} /> */}
+                  {userHasNgo ==true&& userState==true? '': <CustomButton label="Add NGO" className={styles.btn2} onClick={handleNgo} disabled={false} />}
                 </Row>
               </Col>
 
