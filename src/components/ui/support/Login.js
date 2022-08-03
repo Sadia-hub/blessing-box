@@ -33,16 +33,17 @@ const Login =() =>{
       
 
       // useEffect(()=> {
-      //   const Login = async() =>{
-      //      apiCall('user',JSON.stringify(submission), "POST", null, null)
-      //      .then(res=> res.json()).then((data)=> { 
-      //       setVerify(data)
-      //       setEmail(data.user.email)
-      //     })
-      //      .catch((err)=>{
-      //        console.log(err.message)
-      //      })
-      //    } 
+        // const Login = async() =>{
+        //    apiCall('user',JSON.stringify(submission), "POST", null, null)
+        //    .then((data)=> { 
+        //     setuserData(()=>data)
+        //     console.log("submission is"+submission)
+        //     setEmail(data.user.email)
+        //   })
+        //    .catch((err)=>{
+        //      console.log(err.message)
+        //    })
+        //  } 
       //  Login()
       //  },[])
       
@@ -68,7 +69,7 @@ const Login =() =>{
     getLogin();
   })
 
-  //console.log("type of user is"+userinfo.type)
+  //console.log("type of user is"+userData.type)
     
     function handleChangeUser(event) {
       const value = event.target.value;
@@ -81,12 +82,13 @@ const Login =() =>{
     }
 
     const verifyUser =() =>{
+    
       let breakCondition = false;
-        if(user==email){
+        if(user==email){ 
           localStorage.setItem("token", userData.token);
           dispatch(isLogin());
           dispatch(setUserInfo(userData.user));
-         {user=='admin@gmail.com'? router.push('/superadmin') :router.push('/')}
+         {userData.user.type=='admin'? router.push('/superadmin') :router.push('/')}
           setValid(true);
           breakCondition =true; 
         }
@@ -95,7 +97,8 @@ const Login =() =>{
           setValid(false);
         } 
     }
-    console.log(valid);
+    // console.log(valid);
+   
     return(
     <div className={styles.mainDiv}>
     <Row className={styles.form}>
@@ -113,7 +116,7 @@ const Login =() =>{
         <Title className={styles.heading}>Log In</Title>
        
        
-        <Form name="basic"
+      <Form name="basic"
       labelCol={{ span: 6 }}
       wrapperCol={{ span: 16 }}
       initialValues={{ remember: true }}
