@@ -29,6 +29,7 @@ const Login =() =>{
           apiCall('user',JSON.stringify(values), "POST", null, null)
           .then((res)=> { 
 
+          console.log(res)
           if(res.user.email==values.email){
 
             //set token into local storage
@@ -39,9 +40,19 @@ const Login =() =>{
 
             //store user details into redux
             dispatch(setUserInfo(res.user));
-
+            const {user} = res;
             //if user type equals admin then admin page should b displayed else homepage
-            res.user.type=='admin'? router.push('/superadmin') :router.push('/') 
+           
+            if(user.type=='admin')
+            {
+              router.push('/superadmin') 
+            }
+            else if(user.type=='Ngo'){
+              router.push(`/categories/education/1`) 
+            }
+            else{
+              router.push('/')
+            }
 
           }
           else{    

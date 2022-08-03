@@ -5,20 +5,20 @@ import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useRouter } from 'next/router'
-const NgoSidebar = () =>{
+const NgoSidebar = ({ngo, image}) =>{
 
     const { Title } = Typography;
-    const [founderEmail, setFounderEmail] = useState("sadiashah059@gmail.com");
-    const router = useRouter()
-    const { category, id } = router.query
-    const myState = useSelector((state)=> state.detailsReducer);
-    const ngos = myState[category].filter((ngo)=>ngo.ngo.id==id)
+    // const [founderEmail, setFounderEmail] = useState("sadiashah059@gmail.com");
+    // const router = useRouter()
+    // const { category, id } = router.query
+    // const myState = useSelector((state)=> state.detailsReducer);
+    // const ngos = myState[category].filter((ngo)=>ngo.ngo.id==id)
     return<>
         <div>
                         <Row justify='center'>
 
                             <div style={{borderRadius:"360px", overflow:"hidden"}}>
-                                <Image src={ngos[0].image} height={150} width={150} layout="intrinsic"/>
+                                <Image src={ngo.image} height={150} width={150} layout="intrinsic"/>
                             </div>
                             
                         </Row>
@@ -34,7 +34,7 @@ const NgoSidebar = () =>{
                             <Row align='middle' justify='center' className={styles.barItems}>
 
                                 <Col span={10}><BookOutlined/>Founded</Col>
-                                <Col span={14}> {ngos[0].ngo.year} </Col>
+                                <Col span={14}> {ngo.year} </Col>
 
                             </Row>
                             
@@ -44,7 +44,7 @@ const NgoSidebar = () =>{
                                 <Col span={10}><BookOutlined/>Service Areas</Col>
                                 <Col span={14}>
                                     
-                                    {ngos[0].ngo.serviceArea}
+                                    {ngo.serviceArea}
                                 </Col>
                                 
                                 
@@ -53,19 +53,19 @@ const NgoSidebar = () =>{
                             <Row align='middle' justify='center' className={styles.barItems}>
 
                                 <Col span={10}><BookOutlined/>Email</Col>
-                                <Col span={14}> {ngos[0].ngo.ngoEmail} </Col>
+                                <Col span={14}> {ngo.ngoEmail} </Col>
 
                             </Row>
                             <Row align='middle' justify='center' className={styles.barItems}>
 
                                 <Col span={10}><BookOutlined/>Contact</Col>
-                                <Col span={14}> {ngos[0].ngo.contact} </Col>
+                                <Col span={14}> {ngo.contact} </Col>
 
                             </Row>
                             <Row justify='center' className={styles.barItems}>
 
                                 <Col span={10}><BookOutlined/>Main Branch</Col>
-                                <Col span={14}> {ngos[0].ngo.address} </Col>
+                                <Col span={14}> {ngo.address} </Col>
 
                             </Row>
                             
@@ -79,21 +79,21 @@ const NgoSidebar = () =>{
                             <Row justify='center' className={styles.barItems}>
 
                                 <Col span={10}><BookOutlined/>Founder</Col>
-                                <Col span={14}> {ngos[0].ngo.founderName} </Col>
+                                <Col span={14}> {ngo.founderName} </Col>
 
                             </Row>
 
                             <Row justify='center' className={styles.barItems}>
 
                                 <Col span={10}><BookOutlined/>Contact</Col>
-                                <Col span={14}> {ngos[0].ngo.founderContact} </Col>
+                                <Col span={14}> {ngo.founderContact} </Col>
 
                             </Row>
 
                             <Row justify='center' className={styles.barItems}>
 
                                 <Col span={10}><BookOutlined/>Email</Col>
-                                <Col span={14}> {ngos[0].ngo.userEmail}  </Col>
+                                <Col span={14}> {ngo.founderEmail}  </Col>
 
                             </Row>
 
