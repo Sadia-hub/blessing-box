@@ -6,6 +6,7 @@ import ProjectCard from './ProjectCard';
 import NgoSidebar from './NgoSidebar';
 import LeftMenu from '../../layouts/NgosNavbar';
 import { useRouter } from 'next/router'
+import TextEditor from './TextEditor';
 
 import { useEffect, useState } from 'react';
 
@@ -20,11 +21,16 @@ const NgoDetails = ({ editable }) => {
     const [ngoDetails, setNgoDetails] = useState({});
     const [projects, setProjects] = useState([]);
 
+    const [about, setAbout] = useState({});
+    const [service, setService] = useState({})
+    const [project, setProject] = useState({})
+
     const ngoDetailInfo = {
         about_us:"Discuss in atmost 10 lines about your NGO. What you do and how you do it",
         services:"Mention what services you have been providing ",
         projects:"Descirbe what kind of projects you need donation for"
     }
+
 
     useEffect(()=>{
        
@@ -51,12 +57,10 @@ const NgoDetails = ({ editable }) => {
         })
         .catch((err)=>{
             console.log(err.message)
-        })
-
-
-          
+        })       
     },[id]);
-    // sajna portion
+
+    
     function handleClick(e) {
         e.preventDefault();
         router.push('/ngosform');
@@ -65,6 +69,7 @@ const NgoDetails = ({ editable }) => {
     return <CustomLayout>
         
         <div className={styles.container}>
+        
             <Row align="middle" justify='center'>
                 <Title className={styles.title} ellipsis> { ngo.name} </Title>
             </Row>
@@ -77,49 +82,27 @@ const NgoDetails = ({ editable }) => {
                 </Col>
                 <Col lg={{ span: 18 }} md={{ span: 18 }} sm={{ span: 24 }} justify="center">
 
+                
+
                     <Row justify='center' id="about">
 
                         <Title level={3} >About Us</Title>
-                        <Divider />
-                        
-                        <Paragraph
-                            editable={{                        
-                            autoSize: {
-                                maxRows: 10,
-                                minRows: 3,
-                            },
-                            }}
-                        >                            
-                            {ngoDetails.about_us}{ngoDetails.about_us}{ngoDetails.about_us}{ngoDetails.about_us}
-                        </Paragraph>
-                  
+                        <TextEditor data={about} setData={setAbout}/>
+                                      
                     </Row>
 
                     <Row justify='center' id="services">
 
-                        <Title  level={3}>Our Services</Title>
-                        <Divider />
+                        <Title  level={3}>Our Services</Title>                       
+                        <TextEditor data={service} setData={setService}/>
 
-                        <Paragraph 
-                         editable={{                        
-                            autoSize: {
-                                maxRows: 10,
-                                minRows: 3,
-                            },
-                            }}
-                        >
-                        {ngoDetails.services}  
-                        
-                        </Paragraph>
                     </Row>
 
                     <Row justify='center' id="projects" style={{ margin: "5px" }}>
-                        <Title level={3}>Projects</Title>
-                        <Divider />
-                        
-                        <Paragraph editable={editable}>
-                        {ngoDetails.projects}   
-                        </Paragraph>
+
+                        <Title level={3}>Projects</Title>                     
+                        <TextEditor data={project} setData={setProject}/>
+
                     </Row>
 
                     
