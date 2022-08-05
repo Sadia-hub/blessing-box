@@ -18,6 +18,7 @@ const NgoDetails = ({ editable }) => {
 
     const [ngo, setNgo] = useState({});
     const [ngoDetails, setNgoDetails] = useState({});
+    const [projects, setProjects] = useState([]);
 
     const ngoDetailInfo = {
         about_us:"Discuss in atmost 10 lines about your NGO. What you do and how you do it",
@@ -35,7 +36,11 @@ const NgoDetails = ({ editable }) => {
                 setNgo(()=>res.ngo)
                 if(res.ngoDetail){
                     console.log("yes")
+                    console.log(res.ngo.name)
                     setNgoDetails(()=>res.ngoDetail)
+                }
+                if(res.projects){
+                    setProjects(()=>res.projects);
                 }
                 else{
                     setNgoDetails(()=>ngoDetailInfo)
@@ -61,7 +66,7 @@ const NgoDetails = ({ editable }) => {
         
         <div className={styles.container}>
             <Row align="middle" justify='center'>
-                <Title className={styles.title} editable={editable} ellipsis>{ ngo.name} </Title>
+                <Title className={styles.title} ellipsis> { ngo.name} </Title>
             </Row>
             <Row justify='center'>
                 <LeftMenu />
@@ -71,41 +76,74 @@ const NgoDetails = ({ editable }) => {
                     <NgoSidebar ngo={ngo}/>
                 </Col>
                 <Col lg={{ span: 18 }} md={{ span: 18 }} sm={{ span: 24 }} justify="center">
-                    <Row justify='center' id="about">
-                        <Title level={3} >About Us</Title>
-                        <br/>
-                        <br/>
-                        
 
-                        <Paragraph editable={editable}>
-                            
-                            {ngoDetails.about_us}
-                           
+                    <Row justify='center' id="about">
+
+                        <Title level={3} >About Us</Title>
+                        <Divider />
+                        
+                        <Paragraph
+                            editable={{                        
+                            autoSize: {
+                                maxRows: 10,
+                                minRows: 3,
+                            },
+                            }}
+                        >                            
+                            {ngoDetails.about_us}{ngoDetails.about_us}{ngoDetails.about_us}{ngoDetails.about_us}
                         </Paragraph>
+                  
                     </Row>
+
                     <Row justify='center' id="services">
+
                         <Title  level={3}>Our Services</Title>
-                        <Paragraph editable={editable}>
+                        <Divider />
+
+                        <Paragraph 
+                         editable={{                        
+                            autoSize: {
+                                maxRows: 10,
+                                minRows: 3,
+                            },
+                            }}
+                        >
                         {ngoDetails.services}  
                         
                         </Paragraph>
                     </Row>
+
                     <Row justify='center' id="projects" style={{ margin: "5px" }}>
                         <Title level={3}>Projects</Title>
-                        <Paragraph >
+                        <Divider />
+                        
+                        <Paragraph editable={editable}>
                         {ngoDetails.projects}   
                         </Paragraph>
                     </Row>
 
-                    {/* add by sanjna */}
-                    {
-                        <Button type="primary" onClick={handleClick}>Add project</Button>
-                    //  editable?<Button type="primary" onClick={handleClick}>Add project</Button>:null  
-                    }
                     
+                    {
+                        
+                      editable?<Button type="primary" onClick={handleClick}>Add project</Button>:null  
+                    }
+                    {
+                        editable?<Button type="primary" onClick={handleClick}>Add Account</Button>:null  
+                    }
 
                     <Row justify="center">
-                        <ProjectCard />
+                        {
+                            projects.map((project)=>{
+                                return <Col>
+                                    <ProjectCard
+                                        title={project.title}
+                                        traget={project.target}
+                                        pic={project.pic}
+                                        desc={project.description}
+                                    />
+                                </Col>
+                            })
+                        }
                     </Row>
 
                 </Col>

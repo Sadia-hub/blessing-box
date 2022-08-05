@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useRouter } from 'next/router'
+import ImageUpload from './ImageUpload';
 const NgoSidebar = ({ngo, image}) =>{
 
     const { Title } = Typography;
@@ -15,11 +16,12 @@ const NgoSidebar = ({ngo, image}) =>{
     // const ngos = myState[category].filter((ngo)=>ngo.ngo.id==id)
     return<>
         <div>
+                        <ImageUpload />
                         <Row justify='center'>
 
-                            <div style={{borderRadius:"360px", overflow:"hidden"}}>
+                            {/* <div style={{borderRadius:"360px", overflow:"hidden"}}>
                                 <Image src={ngo.image} height={150} width={150} layout="intrinsic"/>
-                            </div>
+                            </div> */}
                             
                         </Row>
 
