@@ -41,6 +41,7 @@ const CustomCarousel = () => {
       apiCall('ngodetails',null, "GET", null, null)
       .then((res)=>{
         dispatch(setNGOInfo(res))
+
       })
       .catch((err)=>{
         console.log(err.message)
@@ -48,7 +49,9 @@ const CustomCarousel = () => {
     } 
     getDetails();
   },[])
-
+  
+  const pendingNgo = useSelector((state)=> state.pendingNgosReducer);
+  console.log("pending ngos are",pendingNgo);
   const user = useSelector((state)=> state.userReducer)
   useEffect(()=> {
     async function checkUserHasNgo(){

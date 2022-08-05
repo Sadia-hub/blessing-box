@@ -19,7 +19,8 @@ const NgoDetails = ({ editable }) => {
         e.preventDefault();
         router.push('/ngosform');
     }
-
+    const state = useSelector((state)=> state.userReducer);
+    console.log("state is",state)
     return <CustomLayout>
         
         <div className={styles.container}>
@@ -60,7 +61,7 @@ const NgoDetails = ({ editable }) => {
 
                     {/* add by sanjna */}
                     {
-                        <Button type="primary" onClick={handleClick}>Add project</Button>
+                   editable ==true ? <Button type="primary" onClick={handleClick}>Add project</Button>: '' 
                     //  editable?<Button type="primary" onClick={handleClick}>Add project</Button>:null  
                     }
                     

@@ -6,7 +6,7 @@ const Id = () =>{
     const state = useSelector((state)=> state.userReducer);
     console.log(state.type)
     return<>
-        {state.type=="Ngo"?<NgoDetails  editable={true}/>:<NgoDetails  editable={false}/>} 
+        {state.type=="ngo"?<NgoDetails  editable={true}/>:<NgoDetails  editable={false}/>} 
     </>
 }
 export default Id;

@@ -6,6 +6,7 @@ import { Form, Input } from 'antd';
 import { Typography } from 'antd';
 import styles from '../../../../styles/login.module.css';
 import { CustomButton } from '../buttons/buttons';
+import { getPendingNgo } from '../../../redux/ngo/Action'; 
 
 //redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -14,10 +15,22 @@ import { isLogin,  setUserInfo } from '../../../redux/user/Action';
 import apiCall from './apiCall';
 
 
-
 const Login =() =>{
     const dispatch = useDispatch();
     const router = useRouter();
+
+//store pending ngos in redux
+useEffect(()=>{
+  apiCall('pendingngos',null, "GET", null, null)
+        .then((res)=>{
+          console.log(res)
+        dispatch(getPendingNgo(res))
+        })
+        .catch((err)=>{
+          console.log(err.message)
+        })
+},)
+
 
   //if set to false will display errors 
    const[valid,setValid]=useState(true);
@@ -27,7 +40,7 @@ const Login =() =>{
     const onFinish = (values) => {  
           apiCall('user',JSON.stringify(values), "POST", null, null)
           .then((res)=> { 
-
+          console.log("res is ",res.user.type)
           if(res.user.email==values.email){
 
             //set token into local storage
@@ -44,7 +57,6 @@ const Login =() =>{
 
           }
           else{    
-
             setValid(false);
           } 
          })
@@ -56,8 +68,9 @@ const Login =() =>{
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
-    
-    
+    // const userState = useSelector((state)=> state.pendingNgosReducer);
+    // console.log("pending ngos are",userState[0])
+  //  console.log("valid is", valid)
     return(
     <div className={styles.mainDiv}>
     <Row className={styles.form}>

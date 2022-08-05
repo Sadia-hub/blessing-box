@@ -139,7 +139,11 @@ rules={[{ required: true, message: 'Please Enter Contact Number!' }]}
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
   <CustomButton label={  "Back" } className={style.nextButton} type="primary" onClick={()=>{router.push('/superadmin')}} disabled={false} shape="round"></CustomButton>
       </Form.Item>
+      
     </Form>
+    <div  style={{marginTop:60}}>
+    <hr/>
+    </div>
 
     </>);
 };

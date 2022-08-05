@@ -22,7 +22,8 @@ const RegisterNGO = () => {
   const[f_cnic, setFcnic] =useState('');
   const[f_name, setFname] =useState('');
   const[address, setAddress] =useState('');
-
+  const [imageUrl, setImageUrl] = useState();
+  const[loading, setLoading] =useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const state = useSelector((state)=> state.userReducer);
@@ -39,7 +40,7 @@ const RegisterNGO = () => {
     founderContact: f_contact,
     serviceType: service,
     serviceArea: serviceArea,
-    certificate:'Microsoft',
+    certificate:imageUrl,
     userId: `${state.id}`,
     userEmail: founderEmail
   }
@@ -49,13 +50,12 @@ const RegisterNGO = () => {
   };
 
   const handleOk = () => {
+    router.push('/');
     setIsModalVisible(false);
   };
 
  
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
+  
   //console.log(localStorage.getItem(state.id));
     async function postNgo()  {
       try{
@@ -79,8 +79,28 @@ const RegisterNGO = () => {
     }
  
 
+    
+    //image upload to cloudnary
+    const uploadImage =async(e) =>{
+      const files = e.target.files;
+      const formData = new FormData();
+      formData.append('file', files[0]);
+      formData.append('upload_preset', 'my-uploads');
+      setLoading(true);
+      const res = await fetch('https://api.cloudinary.com/v1_1/dw6wpt5sc/image/upload', {
+        method: 'POST',
+        body: formData
+      })
+  
+      const file = await res.json();
+      setImageUrl(file.secure_url);
+      setLoading(false);
+     
+    }
+     
+
+
   const onFinish = (values) => {
-   
     console.log('Success: is', values);
   };
 
@@ -135,7 +155,7 @@ const RegisterNGO = () => {
       className={style.form}
     >
         <Title level={2} className={style.heading}>NGO Registration</Title>
-    <Divider>NGO INFORMATION</Divider>
+        <Divider>NGO INFORMATION</Divider>
       {/* Enter NGO name */}
       <Form.Item
         label="Enter NGO Name"
@@ -199,7 +219,7 @@ const RegisterNGO = () => {
       </Form.Item>
       
 <FounderInfo onChangeCnic= {handleCnic } onChangeName={handleFoundername} onChangeEmail = {handleFounderemail} onChangeContact = {handleFoundercontact}/>
-<AuthorizationDoc/>
+<AuthorizationDoc uploadImage = {uploadImage}/>
 <Declaration/>
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
   <CustomButton label={  "Register" } className={style.nextButton} type="primary" onClick={postNgo} disabled={false} shape="round"></CustomButton>
@@ -207,7 +227,7 @@ const RegisterNGO = () => {
     </Form>
 
 // Modal
-<Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} >
+        <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} >
         <p>Thank you For Registering NGO at Blessing Box. Our Admin will check your request and we will let you know the result after 2-3 working days </p>
        
       </Modal>

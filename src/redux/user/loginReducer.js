@@ -1,4 +1,4 @@
-//import { IS_LOGIN, IS_LOGOUT } from "./types";
+
 export const initialState = false;
 
 const loginReducer = (state=initialState, action) => {

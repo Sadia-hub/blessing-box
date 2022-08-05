@@ -2,6 +2,7 @@ import { Form, Input, Button, Checkbox } from 'antd';
 import { Typography } from 'antd';
 import styles from '../../../../styles/Contact.module.css';
 import { CustomButton } from '../buttons/buttons';
+import { useSelector } from 'react-redux';
 const ContactUS = () => {
 
   const { Title } = Typography;  
@@ -12,6 +13,8 @@ const ContactUS = () => {
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
+
+  
 
   return (
       <>
