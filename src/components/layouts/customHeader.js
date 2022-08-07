@@ -4,11 +4,10 @@ import React, { useState, useEffect } from 'react';
 import 'antd/dist/antd.css';
 import Link from "next/link";
 import { useRouter } from 'next/router'
-import { CustomButton } from '../ui/buttons/buttons';
-import { Avatar, Image } from 'antd';
-import { Menu, Dropdown, message } from 'antd';
-//import { isLogin, isLogout } from '../../actions';
-//import { isLogout } from '../../../redux/user/Action';
+
+import { Avatar } from 'antd';
+import { Menu, Dropdown } from 'antd';
+
 import { isLogout } from '../../redux/user/Action';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -18,7 +17,6 @@ const customHeader = () => {
   
   const [active, setActive] = useState(false);
   const showMenu = () => { setActive(!active); }
-  const [click, setClick] = useState(false);
   const dispatch = useDispatch();
   const state = useSelector((state)=> state.userReducer);
   const userType = state.type;
@@ -59,7 +57,7 @@ const customHeader = () => {
     console.log("clicked");
     if(key==2){
 
-     {userType=="Donor"? router.push('/registerdonor') : router.push('/ngo-registration')}
+     router.push('/profile')
      
     }
     if(key==3){

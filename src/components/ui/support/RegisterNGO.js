@@ -226,7 +226,7 @@ const RegisterNGO = () => {
       </Form.Item>
     </Form>
 
-// Modal
+
         <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} >
         <p>Thank you For Registering NGO at Blessing Box. Our Admin will check your request and we will let you know the result after 2-3 working days </p>
        

@@ -68,9 +68,7 @@ useEffect(()=>{
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
-    // const userState = useSelector((state)=> state.pendingNgosReducer);
-    // console.log("pending ngos are",userState[0])
-  //  console.log("valid is", valid)
+   
     return(
     <div className={styles.mainDiv}>
     <Row className={styles.form}>

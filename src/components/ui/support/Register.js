@@ -1,53 +1,70 @@
-import { Row, Col } from 'antd';
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input, Modal} from 'antd';
 import styles from '../../../../styles/Register.module.css';
 import { CustomButton } from '../buttons/buttons';
 import { Typography } from 'antd';
-import { Card } from 'antd';
+import apiCall from './apiCall';
+import { useRouter } from 'next/router';
+import React, {   useState } from 'react';
+//redux
 import { useSelector } from 'react-redux';
 
+const Register = () => {  
 
-import React, {  createContext, useContext, useState } from 'react';
-
-const Register = ({label="Register"}) => {  
-  var namee, emailvalue; 
   const islogin = useSelector((state)=> state.loginReducer);
   console.log("In register "+islogin);
-  const[fine, setFine] = useState(false);
-  const[emailverify, setEmailverify] = useState(true);
+  const[message, setMessage] = useState('');
+  const[email, setEmail] = useState(true);
+  const[name, setName] =useState('');
+  const[address, setAddress] =useState('');
+  const[password, setPassword] =useState('');
+  const[contact, setContact] =useState('');
+  const[designation, setDesignation] =useState('');
+  const[type, setType] =useState('');
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const submission ={
+    email: email,
+    password: password,
+    contact: contact,
+    designation: designation,
+    type: type,
+    address:address,
+    name: name
+  }
+
+  const router = useRouter();
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    router.push('/');
+    setIsModalVisible(false);
+  };
+
     const { Title } = Typography;  
 
-    const onFinish = (values) => {
-        console.log('Success:', values);
-        setFine(true); 
-      };
-      const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
-        setFine(false);
-       
-      };
-
-      const onSubmission  = () => {
-        console.log(fine);
-      }
-    const onHandleEmail = (e) => {
-      emailvalue = e.target.value;
+    const signup = () =>{
+      apiCall('users',JSON.stringify(submission), "POST", null, null)
+      .then((res)=> { 
+      setMessage(res.msg)
+      {res.msg?showModal(): ''} 
+      })  
     }
-      const onHandleChange = (e) => {  
-        namee = e.target.value;
-        console.log(namee);
-     
-      }
+   
+      const onFinishFailed = (errorInfo) => {
+        console.log('Failed:', errorInfo); 
+      };
+   
     return (
-        <>
-         <div className={styles.mainContainer}>  
-      
+    <>
+    <div className={styles.mainContainer}>    
     <Form
       name="basic"
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 16 }}
       initialValues={{ remember: true }}
-      onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete="off"
       style={{marginTop: '10px'}}
@@ -62,7 +79,7 @@ const Register = ({label="Register"}) => {
         wrapperCol={{ span: 12 }}
 
       >
-        <Input className={styles.inputField} />
+        <Input onChange={(e)=>setName(e.target.value)} className={styles.inputField} />
       </Form.Item>
       <Form.Item
         label="Email"
@@ -70,7 +87,7 @@ const Register = ({label="Register"}) => {
         rules={[{ required: true, type:'email', message: 'Please input your Email!' }]}
         wrapperCol={{ span: 12 }}
       >
-        <Input />
+        <Input onChange={(e)=>setEmail(e.target.value)} />
       </Form.Item>
 
       <Form.Item
@@ -79,7 +96,7 @@ const Register = ({label="Register"}) => {
         rules={[{ required: true, message: 'Please input your password!' }]}
         wrapperCol={{ span: 12 }}
       >
-        <Input.Password className={styles.inputField}/>
+        <Input.Password onChange={(e)=>setPassword(e.target.value)} className={styles.inputField}/>
       </Form.Item>
 
       <Form.Item
@@ -88,7 +105,7 @@ const Register = ({label="Register"}) => {
         rules={[{ required: true, message: 'Please input your Contact!' }]}
         wrapperCol={{ span: 12 }}
       >
-        <Input className={styles.inputField}/>
+        <Input onChange={(e)=>setContact(e.target.value)} className={styles.inputField}/>
       </Form.Item>
 
       <Form.Item
@@ -97,7 +114,7 @@ const Register = ({label="Register"}) => {
         rules={[{ required: true, message: 'Please input your Designation!' }]}
         wrapperCol={{ span: 12 }}
       >
-        <Input className={styles.inputField}/>
+        <Input onChange={(e)=>setDesignation(e.target.value)} className={styles.inputField}/>
       </Form.Item>
 
       <Form.Item
@@ -106,14 +123,28 @@ const Register = ({label="Register"}) => {
         rules={[{ required: true, message: 'Please input your Address!' }]}
         wrapperCol={{ span: 12 }}
       >
-        <Input className={styles.inputField}/>
+        <Input onChange={(e)=>setAddress(e.target.value)} className={styles.inputField}/>
+      </Form.Item>
+
+      <Form.Item
+        label="Type"
+        // name="Type"
+        rules={[{ required: true, message: 'Please input your Address!' }]}
+        wrapperCol={{ span: 12 }}
+      >
+        <Input onChange={(e)=>setType(e.target.value)} className={styles.inputField}/>
       </Form.Item>
 
       <Form.Item wrapperCol={{ span: 12 }}>
-      <CustomButton htmlType="submit" label={ islogin==true? "Edit" : "Register" }className={styles.regButton} type="primary" onClick={onSubmission} disabled={false} shape='round'></CustomButton>     
+      <CustomButton htmlType="submit" label={"Register" }className={styles.regButton} type="primary" onClick={signup} disabled={false} shape='round'></CustomButton>     
       </Form.Item>
     </Form>
-        </div>
+    </div>
+
+        <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} >
+        <p>{message} </p>
+       
+      </Modal>
         </>
     );
 }
