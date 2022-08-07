@@ -44,7 +44,7 @@ useEffect(()=>{
           if(res.user.email==values.email){
 
             //set token into local storage
-            localStorage.setItem("token", res.token);
+            localStorage.setItem(res.user.id, res.token);
 
             //dispatch state whether user is logged in or not
             dispatch(isLogin());

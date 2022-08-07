@@ -1,6 +1,6 @@
 import style from '../../../../styles/table.module.css';
 import { useTable, usePagination } from 'react-table';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import apiCall from './apiCall';
 import { useRouter } from 'next/router';
 import { CustomButton } from '../buttons/buttons';
@@ -10,11 +10,18 @@ import { getPendingNgo } from '../../../redux/ngo/Action';
 const BasicTable = () => {
  const router = useRouter();
  const dispatch = useDispatch();
+
+ const userInfo = useSelector((state)=>state.userReducer)
+ const[token, setToken] = useState('');
+ //strore token
+ useEffect(()=>{
+  setToken(localStorage.getItem(userInfo.id))
+ },[])
  const Columns = [
         {
           Header: 'NGO Id',
           accessor: 'id'
-          },
+        },
           
           {
               Header: 'NGO Name',
@@ -52,7 +59,7 @@ const GetPendingNgos = () => {
 }
 
 
-    const token = localStorage.getItem("token")
+    // const token = localStorage.getItem("token")
  
       const approveNgo = ( id, status) => {
         apiCall(`ngo/${id}/status/${status}`,null, "GET", null, token)
@@ -69,7 +76,7 @@ const GetPendingNgos = () => {
       const pendingNgo = useSelector((state)=> state.pendingNgosReducer);
       
     
-       console.log("pendingNgo is",pendingNgo)
+      //  console.log("pendingNgo is",pendingNgo)
       var details =pendingNgo.map((ngo)=>{
         return {
           id: ngo.id,
