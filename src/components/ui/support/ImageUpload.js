@@ -7,7 +7,7 @@ import { EditOutlined, PlusOutlined  } from '@ant-design/icons';
 
 //import "./styles.css";
 
-function ImageUpload() {
+function ImageUpload({logo, setLogo}) {
   const [images, setImages] = useState([]);
   const maxNumber = 69;
 
@@ -15,6 +15,8 @@ function ImageUpload() {
     // data for submit
     console.log(imageList, addUpdateIndex);
     setImages(imageList);
+    setLogo(()=>imageList[0].data_url);
+    // console.log(imageList[0].data_url)
   };
 
   return (
@@ -30,33 +32,22 @@ function ImageUpload() {
         {({
           imageList,
           onImageUpload,
-          onImageRemoveAll,
           onImageUpdate,
-          onImageRemove,
           isDragging,
           dragProps
         }) => (
           // write your building UI
           <div>
 
-
-            <Row justify='center'>
-              <PlusOutlined 
-              style={isDragging ? { color: "red" , fontSize:40} : {fontSize:40}}
-               {...dragProps}
-              onClick={onImageUpload}
-              /> Add Logo
-            </Row>
-
             &nbsp;
            
 
-            {imageList ? imageList.map((image, index) => (
-              <div key={index}>
+            {logo? (
+              <div>
                 <Row justify='center'>
                     <div style={{borderRadius:"360px", overflow:"hidden"}}>
                             <Image 
-                            src={ image.data_url }
+                            src={ logo }
                             height={150} width={150} layout="intrinsic"/>
                     </div>
                 </Row>
@@ -66,11 +57,11 @@ function ImageUpload() {
                 <Row justify="end">
                   <EditOutlined 
                   style={{fontSize:30}}
-                  onClick={() => onImageUpdate(index)}/>
+                  onClick={() => onImageUpdate(0)}/>
                 </Row>  
                 </div>
               </div>
-            )) : <Row justify='center'>
+            ) : <Row justify='center'>
             <PlusOutlined 
             style={isDragging ? { color: "red" , fontSize:40} : {fontSize:40}}
              {...dragProps}

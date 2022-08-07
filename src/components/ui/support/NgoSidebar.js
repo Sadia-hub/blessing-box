@@ -6,24 +6,20 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useRouter } from 'next/router'
 import ImageUpload from './ImageUpload';
-const NgoSidebar = ({ngo, image}) =>{
+const NgoSidebar = ({ngo, logo, setLogo}) =>{
 
     const { Title } = Typography;
-    // const [founderEmail, setFounderEmail] = useState("sadiashah059@gmail.com");
-    // const router = useRouter()
-    // const { category, id } = router.query
-    // const myState = useSelector((state)=> state.detailsReducer);
-    // const ngos = myState[category].filter((ngo)=>ngo.ngo.id==id)
+ 
     return<>
         <div>
-                        <ImageUpload />
-                        <Row justify='center'>
+                        <ImageUpload logo={logo} setLogo={setLogo}/>
+                        {/* <Row justify='center'>
 
-                            {/* <div style={{borderRadius:"360px", overflow:"hidden"}}>
+                             <div style={{borderRadius:"360px", overflow:"hidden"}}>
                                 <Image src={ngo.image} height={150} width={150} layout="intrinsic"/>
-                            </div> */}
+                            </div> 
                             
-                        </Row>
+                        </Row> */}
 
                         {/* ///NGO basic knowledge */}
                         <div className={styles.ngo}>
