@@ -25,10 +25,10 @@ function NGOsForm() {
 
     const props = {
         beforeUpload: file => {
-          if (file.type !== 'image/png') {
-            message.error(`${file.name} is not a png file`);
+          if (file.type !== 'image/jpg') {
+            message.error(`${file.name} is not a jpg file`);
           }
-          return file.type === 'image/png' ? true : Upload.LIST_IGNORE;
+          return file.type === 'image/jpg' ? true : Upload.LIST_IGNORE;
         },
         onChange: info => {
           console.log(info.fileList);
@@ -111,7 +111,7 @@ function NGOsForm() {
                     </Form.Item>
 
                  <Form.Item label="Picture" name="pic"
-                 rules={[{ required: true, message: 'Please Enter .png Image!!' }]}>
+                 rules={[{ required: true, message: 'Please Enter jpg Image!!' }]}>
                     <Upload {...props}>
                         <Button icon={<UploadOutlined />}>Upload</Button>
                     </Upload>
@@ -126,6 +126,7 @@ function NGOsForm() {
                 >
                     <CustomButton label="Add Project" type={false} className={styles.ngosBtn} onClick={handleClick} disabled={false} shape="round" htmlType="submit" />{' '}
                     <CustomButton label="Preview" type={false} className={styles.ngosBtn} onClick={handlePreview} disabled={false} shape="round" htmlType="submit" />
+                
                 </Form.Item>
             </Col>
         </Row>
