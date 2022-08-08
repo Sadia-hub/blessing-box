@@ -29,9 +29,14 @@
     width: 60%; 
     margin-bottom: 20px !important;
 }
-
-.regButton{
-   
+/* .icon{
+    justify-content: left;
+} */
+.text{
+  color: red;
+  margin-left: 20px;  
+}
+.regButton{ 
     background: radial-gradient(at center center, rgba(42, 5, 143, 0.8) 0%, rgba(42, 5, 143, 0.8) 100%),  url("/bg.jpg")!important;
     border-color: radial-gradient(at center center, rgba(42, 5, 143, 0.8) 0%, rgba(42, 5, 143, 0.8) 100%),  url("/bg.jpg");
     color:white;

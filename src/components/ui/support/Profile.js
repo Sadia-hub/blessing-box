@@ -16,7 +16,7 @@ const Profile = () => {
   const[enable, setEnable] = useState(false);
   const[name, setName] =useState('');
   const[address, setAddress] =useState('');
-  const[password, setPassword] =useState('');
+  const[newpassword, setNewPassword] =useState('');
   const[oldPassword, setOldPassword] =useState('');
   const[contact, setContact] =useState('');
   const[email, setEmail] =useState('');
@@ -37,12 +37,12 @@ const Profile = () => {
  },[])
   
  
-  const submission ={
-  password: oldPassword
+  const body ={
+  password: [oldPassword, newpassword ]
  }
-
+ 
+ 
  const data ={
-  password: password,
   email:email,
   name:name,
   contact:contact,
@@ -51,7 +51,7 @@ const Profile = () => {
  }
 
      function UpdatePassword(){
-      apiCall(`changepassword/${userDetail.id}`, JSON.stringify(submission), "POST", null, null)
+      apiCall(`changepassword/${userDetail.id}`, JSON.stringify(body), "POST", null, null)
       .then((res)=>{
         console.log("Response is",res)
          setResponse(res)
@@ -106,7 +106,7 @@ const Profile = () => {
       style={{marginTop: '10px'}}
       className = {styles.form}
     >
-      <Title level = {2} className={styles.heading}>Profile   <EditOutlined onClick={()=>setEnable(true)}/> </Title>
+      <Title level = {2} className={styles.heading}>Profile  <span style={{marginLeft:655}}> <EditOutlined  onClick={()=>setEnable(true)}/></span> </Title>
         
       <Form.Item
         label="Name"   
@@ -148,20 +148,20 @@ const Profile = () => {
       </Form.Item>
 
       <Form.Item wrapperCol={{ span: 12 }}>  
-   
-    {enable==true?  <CustomButton htmlType="submit" label={"Change Password" }className={styles.regButton} type="primary" onClick={showModal} disabled={false} shape='round'></CustomButton> : ''}  
+      {enable==true? <CustomButton htmlType="submit" label={"Update" }className={styles.regButton} type="primary" onClick={showConfrimModal}  disabled={false} shape='round'></CustomButton> : '' }  
+  
     <br />
     <br /> 
-    {enable==true? <CustomButton htmlType="submit" label={"Update" }className={styles.regButton} type="primary" onClick={showConfrimModal}  disabled={false} shape='round'></CustomButton> : '' }  
-    
+  
+    {enable==true?  <CustomButton htmlType="submit" label={"Change Password" }className={styles.regButton} type="primary" onClick={showModal} disabled={false} shape='round'></CustomButton> : ''}  
      
       </Form.Item>
     </Form>
     </div>
 
-        <Modal title="Update Password" visible={isModalVisible} footer={[
-          <CustomButton htmlType="submit" label="Return" className={styles.okButton} type="primary" onClick={handleReturn}  disabled={false} shape='round'></CustomButton>  , 
-          <CustomButton htmlType="submit" label="Submit" className={styles.okButton} type="primary" onClick={UpdatePassword}  disabled={false} shape='round'></CustomButton>   
+        <Modal title="Update Password" visible={isModalVisible} onCancel={handleReturn} footer={[
+          <CustomButton htmlType="submit" label="cancel" className={styles.okButton} type="primary" onClick={handleReturn}  disabled={false} shape='round'></CustomButton>  , 
+          <CustomButton htmlType="submit" label="Update Password" className={styles.okButton} type="primary" onClick={UpdatePassword}  disabled={false} shape='round'></CustomButton>   
           
        ]} >
         <Form.Item
@@ -175,14 +175,14 @@ const Profile = () => {
         label="New Password"   
         rules={[{ required: true,  message: 'Please input your username!' }]}
       >
-        <Input onChange={(e)=>setPassword(e.target.value)}/>
+        <Input onChange={(e)=>setNewPassword(e.target.value)}/>
       </Form.Item>
 
-      <p>{response}</p>
+      <p className={styles.text}>{response}</p>
      
       </Modal>
 
-      <Modal title="Update Settings" visible={isConfrimModal} footer={[
+      <Modal title="Update Settings" visible={isConfrimModal} onCancel={handleNo} footer={[
           <CustomButton htmlType="submit" label="Yes" className={styles.okButton} type="primary" onClick={UpdateDetails}  disabled={false} shape='round'></CustomButton>  , 
           <CustomButton htmlType="submit" label="No" className={styles.okButton} type="primary" onClick={handleNo}  disabled={false} shape='round'></CustomButton>   
           

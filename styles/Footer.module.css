@@ -21,10 +21,24 @@
     color:rgba(235,33,136,1);
 }
 .footerButton{
-    background-color:rgba(235,33,136,1) !important;
+    /* background-color:rgba(235,33,136,1) !important;
     border-color: rgba(235,33,136,1) !important;
     font-weight: bold;
     color: white;
+    font-weight: bold;
+    width: 150px;
+    height: 40px; */
+    width: 150px !important;
+        height: 40px;
+        font-size: 18px;
+        font-weight: bold;
+       
+        border-radius: 30px;
+        width: 180px;
+        z-index: 1;
+        background-color:rgba(235,33,136,1) !important;
+        border-color: rgba(235,33,136,1) !important;
+        color: white;
 }
 .footerButton:hover{
     background-color: rgb(233, 40, 140) !important;
@@ -37,11 +51,18 @@
     color:white;
 }
 .donatebtn{
-    background-color:#028A0F !important;
-    border-color: #028A0F !important;
+    justify-content: center;
+        
     font-weight: bold;
-    color: white;
-    text-transform: uppercase;
+     border-radius: 30px;
+     width: 150px;
+     margin-top: 5px;
+     height: 40px;
+     z-index: 1;
+     background-color:#028A0F !important;
+     border-color: #028A0F !important;
+     color: white;
+     text-transform: uppercase;
 }
 
 .donatebtn:hover{

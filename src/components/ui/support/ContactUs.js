@@ -1,4 +1,4 @@
-import { Form, Input, Button, Checkbox } from 'antd';
+import { Form, Input } from 'antd';
 import { Typography } from 'antd';
 import styles from '../../../../styles/Contact.module.css';
 import { CustomButton } from '../buttons/buttons';
@@ -15,7 +15,7 @@ const ContactUS = () => {
   };
 
   
-
+  const { TextArea } = Input;
   return (
       <>
     <Title id="contact" className={styles.heading}>We would love to hear from you</Title>
@@ -32,14 +32,6 @@ const ContactUS = () => {
       autoComplete="off"
       className={styles.container}
     >
-      <Form.Item
-        label="Username"
-        name="username"
-        rules={[{ required: true, message: 'Please input your username!' }]}
-        wrapperCol={{ span: 10}}
-      >
-        <Input />
-      </Form.Item>
 
       <Form.Item
         label="Email"
@@ -56,7 +48,7 @@ const ContactUS = () => {
         rules={[{ required: true, message: 'Message is required!' }]}
         wrapperCol={{ span: 10 }}
       >
-        <Input className={styles.inputField} />
+       <TextArea rows={6} />
         </Form.Item>
 
       <Form.Item wrapperCol={{ span: 12 }}>

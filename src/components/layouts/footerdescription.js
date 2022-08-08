@@ -1,5 +1,5 @@
 import style from '../../../styles/Footer.module.css';
-import { Anchor, Row, Col, Typography, Modal } from 'antd';
+import { Anchor, Row, Col, Typography, Modal, Button } from 'antd';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux';
@@ -8,28 +8,18 @@ import { CustomButton } from '../ui/buttons/buttons';
 import apiCall from '../ui/support/apiCall';
 
 export function Description() {
-    const [isModalVisible, setIsModalVisible] = useState(false);
+    
     const [userHasNgo, setUserHasNgo ] =useState(false);
     const router = useRouter()
 
     const userState = useSelector((state)=> state.loginReducer);
-    const showModal = () => {
-        setIsModalVisible(true);
-    };
-
-    const handleDonar = (e) => {
-        e.preventDefault()
-        router.push('/registerdonor');
-        setIsModalVisible(false);
-    }
+   
     const handleNgo = (e) => {
         e.preventDefault()
         router.push('/ngo-registration');
         setIsModalVisible(false);
     }
-    const handleCancel = () => {
-        setIsModalVisible(false);
-    }
+    
 
     const { Link } = Anchor;
     const { Title } = Typography;
@@ -62,7 +52,7 @@ export function Description() {
 
                         <Row>
                             <Col span={21}>
-                                <CustomButton label="Donate❤" className={style.donatebtn} onClick={showModal} type="danger" disabled={false} shape="round" />{' '}
+                            <Button className={style.donatebtn}><a href="#donate">Donate❤</a></Button> {' '}
                                 {userHasNgo ==true && userState==true? '': <CustomButton label="Add NGO" className={style.footerButton}  onClick={handleNgo} disabled={false} shape="round" />}
                             </Col>
                         </Row>
@@ -71,14 +61,6 @@ export function Description() {
             </Anchor>
         </div>
 
-        <Modal title="Registration" visible={isModalVisible} onCancel={handleCancel}
-            footer={[
-                <CustomButton label="Donar" className={style.footerButton} onClick={handleDonar} type="danger" disabled={false} shape="round" />,
-               <CustomButton label="NGO" className={style.footerButton} onClick={handleNgo} type="danger" disabled={false} shape="round" />,
-                <CustomButton label="Close" className={style.cancelBtn} onClick={handleCancel} type={false} disabled={false} shape="round" />
-            ]}
-        >
-            <p>Registeration as Donor or NGO?</p>
-        </Modal>
+       
     </>)
 }

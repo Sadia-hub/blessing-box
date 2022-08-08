@@ -19,7 +19,6 @@ const Register = () => {
   const[password, setPassword] =useState('');
   const[contact, setContact] =useState('');
   const[designation, setDesignation] =useState('');
-  const[type, setType] =useState('');
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const submission ={
@@ -27,7 +26,7 @@ const Register = () => {
     password: password,
     contact: contact,
     designation: designation,
-    type: type,
+    type: 'donor',
     address:address,
     name: name
   }
@@ -126,14 +125,6 @@ const Register = () => {
         <Input onChange={(e)=>setAddress(e.target.value)} className={styles.inputField}/>
       </Form.Item>
 
-      <Form.Item
-        label="Type"
-        // name="Type"
-        rules={[{ required: true, message: 'Please input your Address!' }]}
-        wrapperCol={{ span: 12 }}
-      >
-        <Input onChange={(e)=>setType(e.target.value)} className={styles.inputField}/>
-      </Form.Item>
 
       <Form.Item wrapperCol={{ span: 12 }}>
       <CustomButton htmlType="submit" label={"Register" }className={styles.regButton} type="primary" onClick={signup} disabled={false} shape='round'></CustomButton>     
