@@ -1,5 +1,5 @@
 import style from '../../../styles/Footer.module.css';
-import { Anchor, Row, Col, Typography, Modal, Button } from 'antd';
+import { Anchor, Row, Col, Typography, Button } from 'antd';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux';
