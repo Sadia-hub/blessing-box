@@ -25,7 +25,13 @@ const NgoDetails = ({ editable }) => {
     const [about, setAbout] = useState("");
     const [service, setService] = useState("")
     const [project, setProject] = useState("")
+
+    //sets data of image using react image uploading package
     const [logo, setLogo] = useState("");
+    
+
+    //stores cloudinary image url
+    const [imageUrl, setImageUrl] = useState("");
 
     const [defaultAbout, setDefaultAbout] = useState({});
     const ngoDetailInfo = {
@@ -35,8 +41,11 @@ const NgoDetails = ({ editable }) => {
     }
 
 
+
     useEffect(()=>{
        
+       
+
         apiCall(`ngo/${id}`,null, "GET", null, null)
         .then((res)=>{
            console.log(res)
@@ -46,13 +55,14 @@ const NgoDetails = ({ editable }) => {
 
                 setNgo(()=>res.ngo)
 
-                if(ngo.ngoDetail){
+                if(res.ngoDetail){
 
-                    const {about_us, services, image, projects} = ngoDetail;
+                    const {about_us, services, image, projects} = res.ngoDetail;
                     setAbout(()=>about_us)
                     setService(()=>services)
                     setProject(()=>projects)
-                    setLogo(()=>image)
+                    console.log("image", image)
+                    setImageUrl(()=>image)
 
 
 
@@ -81,23 +91,27 @@ const NgoDetails = ({ editable }) => {
         router.push('/ngosform');
     }
 
-    const uploadNgoDetails = () =>{
+    const uploadNgoDetails = async() =>{
+       
+        const formData = new FormData();
+        formData.append('file', logo.file);
+        formData.append('upload_preset', 'my-uploads');
+       
+        const res = await fetch('https://api.cloudinary.com/v1_1/blessing-box/image/upload', {
+          method: 'POST',
+          body: formData
+        })
+    
+        const file = await res.json();
+        console.log(file)
 
         const body = {
             about_us:about,
             services:service,
-            image:"abc.com", 
+            image:file.secure_url, 
             projects:project,
             ngoId:id
         }
-
-        // const body = {
-        //     about_us:'<p>Hello</p>',
-        //     services:'<p>Hello</p>',
-        //     image:"abc.com", 
-        //     projects:'<p>Hello</p>',
-        //     ngoId:id
-        // }
 
         console.log(JSON.stringify(body))
 
@@ -129,7 +143,7 @@ const NgoDetails = ({ editable }) => {
             <Row justify="center" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} className={styles.container}>
 
                 <Col lg={{ span: 6 }} md={{ span: 6 }} sm={{ span: 24 }} className={styles.sideBar} justify="center">
-                    <NgoSidebar ngo={ngo} logo={logo} setLogo={setLogo}/>
+                    <NgoSidebar ngo={ngo} logo={logo} setLogo={setLogo} imageUrl={imageUrl}/>
                 </Col>
 
 

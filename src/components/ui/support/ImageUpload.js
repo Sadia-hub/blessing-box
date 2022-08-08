@@ -7,16 +7,19 @@ import { EditOutlined, PlusOutlined  } from '@ant-design/icons';
 
 //import "./styles.css";
 
-function ImageUpload({logo, setLogo}) {
+function ImageUpload({logo, setLogo, imageUrl}) {
   const [images, setImages] = useState([]);
   const maxNumber = 69;
+
+  console.log(imageUrl)
 
   const onChange = (imageList, addUpdateIndex) => {
     // data for submit
     console.log(imageList, addUpdateIndex);
     setImages(imageList);
-    setLogo(()=>imageList[0].data_url);
-    // console.log(imageList[0].data_url)
+    setLogo(()=>imageList[0]);
+
+     console.log(imageList[0])
   };
 
   return (
@@ -42,12 +45,12 @@ function ImageUpload({logo, setLogo}) {
             &nbsp;
            
 
-            {logo? (
+            {imageUrl? (
               <div>
                 <Row justify='center'>
                     <div style={{borderRadius:"360px", overflow:"hidden"}}>
                             <Image 
-                            src={ logo }
+                            src={ imageUrl ? imageUrl : logo.data_url  }
                             height={150} width={150} layout="intrinsic"/>
                     </div>
                 </Row>

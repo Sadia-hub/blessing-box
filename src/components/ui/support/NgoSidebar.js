@@ -6,13 +6,13 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useRouter } from 'next/router'
 import ImageUpload from './ImageUpload';
-const NgoSidebar = ({ngo, logo, setLogo}) =>{
+const NgoSidebar = ({ngo, logo, setLogo, imageUrl}) =>{
 
     const { Title } = Typography;
  
     return<>
         <div>
-                        <ImageUpload logo={logo} setLogo={setLogo}/>
+                        <ImageUpload logo={logo} setLogo={setLogo} imageUrl={imageUrl}/>
                         {/* <Row justify='center'>
 
                              <div style={{borderRadius:"360px", overflow:"hidden"}}>

@@ -91,17 +91,12 @@ function TextEditor({data, setData, defaultContent=""})  {
       };
 
 
-    const onEditorStateChange = (editorState) =>{    
+    const onEditorStateChange = (editorState) =>{  
+        
         setEditorState(()=>editorState)
-
         var rawJson = convertToRaw(editorState.getCurrentContent());  
-        // console.log("rawjson", rawJson)    
-        // setData(()=>Object.assign({}, rawJson))
         setData(()=>draftToHtml(rawJson))
 
-        // console.log("obj1",  draftToHtml(rawJson))
-           
-        //     console.log(editorState1)
     }
 
       return (
