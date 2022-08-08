@@ -13,10 +13,10 @@ import { useEffect, useState } from 'react';
 
 import apiCall from './apiCall';
 
-const NgoDetails = ({ editable }) => {
+const NgoDetails = ({  id }) => {
     const { Title, Paragraph } = Typography;
     const router = useRouter()
-    const { id } = router.query
+    
 
     const [ngo, setNgo] = useState({});
     const [ngoDetails, setNgoDetails] = useState({});
@@ -93,50 +93,52 @@ const NgoDetails = ({ editable }) => {
 
     const uploadNgoDetails = async() =>{
        
+        //1. upload image on cloudinary
+        
         const formData = new FormData();
         formData.append('file', logo.file);
         formData.append('upload_preset', 'my-uploads');
        
-        const res = await fetch('https://api.cloudinary.com/v1_1/blessing-box/image/upload', {
-          method: 'POST',
-          body: formData
-        })
-    
-        const file = await res.json();
-        console.log(file)
+        try{
+            const res = await fetch('https://api.cloudinary.com/v1_1/blessing-box/image/upload', {
+                method: 'POST',
+                body: formData
+              })
+          
+              //this file object contains the url of the image posted on cloudinary
+              const file = await res.json();
+              
+      
+     //2. Upload NGO details 
+              const body = {
+                  about_us:about,
+                  services:service,
+                  image:file.secure_url, 
+                  projects:project,
+                  ngoId:id
+              }
 
-        const body = {
-            about_us:about,
-            services:service,
-            image:file.secure_url, 
-            projects:project,
-            ngoId:id
+            apiCall(`ngodetails`,JSON.stringify(body), "POST", null, null)
+            .then((res)=>{
+                
+                    alert("Details uploaded")             
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
         }
+        catch(err){
+            alert("Something went wrong!")
+        }
+       
 
-        console.log(JSON.stringify(body))
-
-        apiCall(`ngodetails`,JSON.stringify(body), "POST", null, null)
-        .then((res)=>{
-            if(res.status==200)
-            {
-                alert("Details uploaded")
-            }
-        })
-        .catch((err)=>{
-            console.log(err)
-        })
     }
 
-    return <CustomLayout>
-        
+    return (
         <div className={styles.container}>
         
-            <Row align="middle" justify="start">
+            <Row align="middle" justify="center">
                 <Title className={styles.title} ellipsis> { ngo.name} </Title>
-            </Row>
-
-            <Row justify='center'>
-                <LeftMenu />
             </Row>
 
 
@@ -171,39 +173,22 @@ const NgoDetails = ({ editable }) => {
                         <TextEditor data={project} setData={setProject}/>
 
                     </Row>
-
-                    
-                    {
-                        
-                      editable?<Button type="primary" onClick={handleClick}>Add project</Button>:null  
-                    }
-                    {
-                        editable?<Button type="primary" onClick={handleClick}>Add Account</Button>:null  
-                    }
-                    {
-                        editable?<Button type="primary" onClick={uploadNgoDetails}>Upload</Button>:null  
-                    }
-                    <Row justify="center">
-                        {
-                            projects.map((project)=>{
-                                return <Col>
-                                    <ProjectCard
-                                        title={project.title}
-                                        traget={project.target}
-                                        pic={project.pic}
-                                        desc={project.description}
-                                    />
-                                </Col>
-                            })
-                        }
-                    </Row>
+  
+                      <Button type="primary" onClick={handleClick}>Add project</Button>
+                      <Button type="primary" onClick={handleClick}>Add Account</Button>
+                      <Button type="primary" onClick={uploadNgoDetails}>Upload</Button>
+                   
+                   
 
                 </Col>
 
             </Row>
 
         </div>
-    </CustomLayout>
+    )
+        
+        
+    
 }
 
 export default NgoDetails;

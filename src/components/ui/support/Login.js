@@ -48,7 +48,7 @@ const Login =() =>{
               router.push('/superadmin') 
             }
             else if(user.type=='Ngo'){
-              router.push(`/categories/education/1`) 
+              router.push(`/admin/1`) 
             }
             else{
               router.push('/')

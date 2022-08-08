@@ -24,8 +24,7 @@ function ImageUpload({logo, setLogo, imageUrl}) {
 
   return (
     <div className="App">
-      <ImageUploading
-        
+      <ImageUploading     
         value={images}
         onChange={onChange}
         maxNumber={maxNumber}
@@ -42,8 +41,7 @@ function ImageUpload({logo, setLogo, imageUrl}) {
           // write your building UI
           <div>
 
-            &nbsp;
-           
+            &nbsp;         
 
             {imageUrl? (
               <div>
