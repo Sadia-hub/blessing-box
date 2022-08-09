@@ -2,7 +2,6 @@ import { Form, Input, Modal} from 'antd';
 import { useTable, usePagination } from 'react-table';
 import { useEffect, useMemo, useState } from 'react';
 import apiCall from './apiCall';
-import { useRouter } from 'next/router';
 import { CustomButton } from '../buttons/buttons';
 import { useSelector, useDispatch } from 'react-redux';
 import {setContactInfo } from '../../../redux/contact/Action';

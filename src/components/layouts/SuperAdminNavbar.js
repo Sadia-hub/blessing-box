@@ -11,10 +11,9 @@ import { Menu, Dropdown } from 'antd';
 import { isLogout } from '../../redux/user/Action';
 import { useSelector, useDispatch } from 'react-redux';
 
-const customHeader = () => {
+const SuperAdminNavbar = () => {
   const myState = useSelector((state)=> state.loginReducer);
-  
-  
+   
   const [active, setActive] = useState(false);
   const showMenu = () => { setActive(!active); }
   const dispatch = useDispatch();
@@ -41,23 +40,12 @@ const customHeader = () => {
 
   const router = useRouter()
 
-  const changeBack = () => {
-    return <div className={styles.navBack}>
-    </div>
-  }
-
-  const onClick = ({ key }) => {
-    
-    console.log("clicked");
-  };
 
   const onItemClick = ({ key }) => {
     // message.info(`Click on item ${key}`);
     console.log("clicked");
     if(key==2){
-
-     router.push('/profile')
-     
+     router.push('/profile') 
     }
     if(key==3){
       router.push('/login');
@@ -74,13 +62,6 @@ const customHeader = () => {
      router.push('/registerdonor')
    } 
 
-  const menu = (
-    <Menu onClick={onClick}>
-      <Menu.Item key="1"><Link href="/categories/education"> Education </Link></Menu.Item>
-      <Menu.Item key="2"><Link href="/categories/food">Food</Link></Menu.Item>
-      <Menu.Item key="3"><Link href="/categories/orphange">Orphanages</Link></Menu.Item>
-    </Menu>
-  );
 
   const signIn = (
     <Menu onClick={onItemClick}>
@@ -123,22 +104,7 @@ const customHeader = () => {
     </> 
       )
     }
-else {
-  return (
-  <>
-    <li >
-    <Link href='/registerdonor'>
-      <a>Signup</a>
-    </Link>
-  </li>
-  <li>
-    <Link href='/login'>
-      <a>Login</a>
-    </Link>
-  </li>
-  </>
-  )
-}
+
   }
 
   return (
@@ -154,37 +120,23 @@ else {
           </div>
           <div className={styles.logo}>
 
-            <Link href='/'>
+            <Link href=''>
               <a>Blessing Box</a>
             </Link>
           </div>
+
           <li className={styles.side} >
-            <Link href='/'>
-              <a >Home</a>
+            <Link href='/superadmin'>
+              <a >NGO's Requests</a>
             </Link>
           </li>
 
-          <li className="" >
-            <Link href='/about'>
-              <a >About US</a>
+          <li className='' >
+            <Link href='/queries'>
+              <a >User's Queries</a>
             </Link>
           </li>
 
-          <li>
-            <Dropdown overlay={menu}>
-              <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                NGO Categories
-              </a>
-            </Dropdown>
-
-
-  </li>
- 
-  <li>
-    <Link href='/contactpage'>
-      <a>Contact</a>
-    </Link>
-  </li>
   <RenderMenu />
   </ul>
   </nav>
@@ -196,4 +148,4 @@ else {
     );
 }
 
-export default customHeader;
+export default SuperAdminNavbar;

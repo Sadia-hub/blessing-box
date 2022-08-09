@@ -1,9 +1,9 @@
-import SuperAdmin from '../src/components/ui/support/SuperAdmin';
-import { Layout, Menu } from 'antd';
+import { Layout } from 'antd';
 const {  Content} = Layout;
+import QueriesTable from '../src/components/ui/support/QueriesTable';
 import CustomFooter from '../src/components/layouts/footer';
 import SuperAdminNavbar from '../src/components/layouts/superAdminNavbar'; 
-const superadmin = () =>{
+const queries = () =>{
     return ( 
         <Layout className="layout">
             
@@ -11,7 +11,7 @@ const superadmin = () =>{
 
             <Content>
 
-                <div className="site-layout-content"><SuperAdmin /></div>
+                <div className="site-layout-content"><QueriesTable /></div>
             </Content>
 
             <CustomFooter/>
@@ -21,4 +21,4 @@ const superadmin = () =>{
     );
 }
 
-export default superadmin;
+export default queries;

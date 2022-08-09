@@ -4,11 +4,12 @@ const {  Content} = Layout;
 import CustomHeader from './customHeader';
 import CustomFooter from './footer';
 
+
 const CustomLayout = ({children}) =>{
     
     return <Layout className="layout">
             
-            <CustomHeader />
+     <CustomHeader /> 
 
             <Content>
 
