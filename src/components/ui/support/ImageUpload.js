@@ -7,19 +7,25 @@ import { EditOutlined, PlusOutlined  } from '@ant-design/icons';
 
 //import "./styles.css";
 
-function ImageUpload({logo, setLogo, imageUrl}) {
+function ImageUpload({
+  title="Add Logo",
+  data, setData, 
+  imageUrl="", 
+  style={borderRadius:"360px", overflow:"hidden"}}) {
+
   const [images, setImages] = useState([]);
   const maxNumber = 69;
+  const [data_url, setData_url] = useState("")
 
   console.log(imageUrl)
 
   const onChange = (imageList, addUpdateIndex) => {
     // data for submit
     console.log(imageList, addUpdateIndex);
-    setImages(imageList);
-    setLogo(()=>imageList[0]);
-
-     console.log(imageList[0])
+   // setImages(imageList);
+    setData(()=>imageList[0]);
+    setData_url(()=>imageList[0].data_url);
+     console.log("imageList",imageList[0])
   };
 
   return (
@@ -31,8 +37,7 @@ function ImageUpload({logo, setLogo, imageUrl}) {
         dataURLKey="data_url"
         acceptType={["jpg"]}
       >
-        {({
-          imageList,
+        {({        
           onImageUpload,
           onImageUpdate,
           isDragging,
@@ -43,32 +48,37 @@ function ImageUpload({logo, setLogo, imageUrl}) {
 
             &nbsp;         
 
-            {imageUrl? (
+            {data_url || imageUrl? (
               <div>
                 <Row justify='center'>
-                    <div style={{borderRadius:"360px", overflow:"hidden"}}>
+                    <div style={style}>
                             <Image 
-                            src={ imageUrl ? imageUrl : logo.data_url  }
+                            src={ data.data_url  }
                             height={150} width={150} layout="intrinsic"/>
                     </div>
                 </Row>
                 <div className="image-item__btn-wrapper">
                   
-                  {/* <FontAwesomeIcon icon="fa-solid fa-pen" /> */}
+                
                 <Row justify="end">
                   <EditOutlined 
                   style={{fontSize:30}}
                   onClick={() => onImageUpdate(0)}/>
-                </Row>  
+                </Row> 
+                {/* <PlusOutlined 
+                style={isDragging ? { color: "red" , fontSize:40} : {fontSize:40}}
+                {...dragProps}
+                onClick={onChange}
+                /> {title}  */}
                 </div>
               </div>
             ) : <Row justify='center'>
-            <PlusOutlined 
-            style={isDragging ? { color: "red" , fontSize:40} : {fontSize:40}}
-             {...dragProps}
-            onClick={onImageUpload}
-            /> Add Logo
-          </Row>}
+                    <PlusOutlined 
+                    style={isDragging ? { color: "red" , fontSize:40} : {fontSize:40}}
+                    {...dragProps}
+                    onClick={onImageUpload}
+                    /> {title}
+                </Row>}
           </div>
         )}
       </ImageUploading>

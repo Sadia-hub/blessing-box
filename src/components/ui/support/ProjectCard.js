@@ -8,8 +8,8 @@ import styles from '../../../../styles/ProjectCard.module.css';
 const ProjectCard=({
 // cardData,
 status="active",
-percent=90,
-title="SIBA Pink Ribon",
+percent=0,
+title="Project Title",
 pic="/education.svg",
 desc="",
 targetAmount="9000"
@@ -59,7 +59,7 @@ targetAmount="9000"
              return(<> */}
         <div className={styles.main} onClick={showModal}>
         
-        <Image src={pic} height={150} width={260} alt="project image"/>
+        <Image src={pic} height={180} width={260} alt="project image"/>
 
         <Row justify='center' align='middle' >
             <Title level={5} style={{color:"rgba(235,33,136,1)"}}>{title}</Title>
