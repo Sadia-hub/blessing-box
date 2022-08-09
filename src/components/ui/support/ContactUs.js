@@ -1,8 +1,12 @@
 import { Form, Input } from 'antd';
 import { Typography } from 'antd';
+import { useState } from 'react';
+import {Modal} from 'antd';
 import styles from '../../../../styles/Contact.module.css';
 import { CustomButton } from '../buttons/buttons';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import apiCall from './apiCall';
+
 const ContactUS = () => {
 
   const { Title } = Typography;  
@@ -14,8 +18,30 @@ const ContactUS = () => {
     console.log('Failed:', errorInfo);
   };
 
-  
+  const[email, setEmail] =useState('');
+  const[message, setMessage] =useState('');
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const[reply, setReply] =useState('');
+  const dispatch = useDispatch();
+
   const { TextArea } = Input;
+
+  const body ={
+    email: email,
+    message: message
+  }
+  
+ 
+    const PostQuery = () => {
+      apiCall('contact', JSON.stringify(body), "POST", null, null)
+            .then((res)=>{
+              console.log("res of contact is",res)
+            })
+            .catch((err)=>{
+              console.log(err.message)
+            })
+    }
+  
   return (
       <>
     <Title id="contact" className={styles.heading}>We would love to hear from you</Title>
@@ -39,7 +65,7 @@ const ContactUS = () => {
         rules={[{ required: true, message: 'Please input your email!', type: 'email' }]}
         wrapperCol={{ span: 10 }}
       >
-        <Input />
+        <Input onChange={(e)=>setEmail(e.target.value)}/>
       </Form.Item>
 
       <Form.Item 
@@ -48,15 +74,32 @@ const ContactUS = () => {
         rules={[{ required: true, message: 'Message is required!' }]}
         wrapperCol={{ span: 10 }}
       >
-       <TextArea rows={6} />
+       <TextArea rows={6} onChange={(e)=>setMessage(e.target.value)}/>
         </Form.Item>
 
       <Form.Item wrapperCol={{ span: 12 }}>
-      <CustomButton label="Submit" className={styles.regbutton} type="primary" onClick={false} disabled={false} shape=''></CustomButton>
+      <CustomButton label="Submit" className={styles.regbutton} type="primary" onClick={PostQuery} disabled={false} shape=''></CustomButton>
        
       
       </Form.Item>
     </Form>
+
+    {/* <Modal title="Update Password" visible={isModalVisible} onCancel={handleReturn} footer={[
+          <CustomButton htmlType="submit" label="cancel" className={styles.okButton} type="primary" onClick={handleReturn}  disabled={false} shape='round'></CustomButton>  , 
+          <CustomButton htmlType="submit" label="Update Password" className={styles.okButton} type="primary" onClick={UpdatePassword}  disabled={false} shape='round'></CustomButton>   
+          
+       ]} >
+        <Form.Item
+        label="Reply"
+        rules={[{ required: true,  message: 'Please input your username!' }]}
+        >
+        <Input onChange={(e)=>setReply(e.target.value)} />
+      </Form.Item>
+
+
+      <p className={styles.text}>{response}</p>
+     
+      </Modal> */}
     </>
   );
 };

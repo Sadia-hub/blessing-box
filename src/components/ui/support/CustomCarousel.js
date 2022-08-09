@@ -50,9 +50,13 @@ const CustomCarousel = () => {
     getDetails();
   },[])
   
+  const contactInfo = useSelector((state)=>state.contactReducer)
+   console.log(contactInfo)
+
   const pendingNgo = useSelector((state)=> state.pendingNgosReducer);
-  console.log("pending ngos are",pendingNgo);
+  // console.log("pending ngos are",pendingNgo);
   const user = useSelector((state)=> state.userReducer)
+  console.log("users is",user);
   useEffect(()=> {
     async function checkUserHasNgo(){
       apiCall(`ngos/${user.id}`,null, "GET", null, null)
@@ -67,8 +71,7 @@ const CustomCarousel = () => {
   },[])
 
 
-
-console.log("user is",userHasNgo)
+//console.log("user is",userHasNgo)
 const userState = useSelector((state)=> state.loginReducer);
 const { Title } = Typography;
   return (

@@ -11,6 +11,7 @@ import { getPendingNgo } from '../../../redux/ngo/Action';
 //redux
 import { useSelector, useDispatch } from 'react-redux';
 import { isLogin,  setUserInfo } from '../../../redux/user/Action';
+import {setContactInfo } from '../../../redux/contact/Action';
 
 import apiCall from './apiCall';
 
@@ -29,8 +30,21 @@ useEffect(()=>{
         .catch((err)=>{
           console.log(err.message)
         })
-},)
+},[])
 
+useEffect(()=>{
+  const GetQueries = () => {
+    apiCall('contact',null, "GET", null, null)
+          .then((res)=>{
+            console.log("res of contact is",res)
+            dispatch(setContactInfo(res))
+          })
+          .catch((err)=>{
+            console.log(err.message)
+          })
+  }
+  GetQueries()
+ },[])
 
   //if set to false will display errors 
    const[valid,setValid]=useState(true);
@@ -44,7 +58,7 @@ useEffect(()=>{
           if(res.user.email==values.email){
 
             //set token into local storage
-            localStorage.setItem(res.user.id, res.token);
+            localStorage.setItem("token", res.token);
 
             //dispatch state whether user is logged in or not
             dispatch(isLogin());

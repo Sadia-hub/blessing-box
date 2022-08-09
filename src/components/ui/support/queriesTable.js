@@ -1,20 +1,26 @@
+import { Form, Input, Modal} from 'antd';
 import { useTable, usePagination } from 'react-table';
 import { useEffect, useMemo, useState } from 'react';
 import apiCall from './apiCall';
 import { useRouter } from 'next/router';
 import { CustomButton } from '../buttons/buttons';
 import { useSelector, useDispatch } from 'react-redux';
-
-const queriesTable = () => {
-    const router = useRouter();
+import {setContactInfo } from '../../../redux/contact/Action';
+import style from '../../../../styles/queriestable.module.css';
+const QueriesTable = () => {
+    
     const dispatch = useDispatch();
-   
-    const userInfo = useSelector((state)=>state.userReducer)
+    const { TextArea } = Input;
     const[token, setToken] = useState('');
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const[reply, setReply] =useState('');
+    const[email, setEmail] =useState('');
+    const[id, setId] =useState('');
+    
     //strore token
-    useEffect(()=>{
-     setToken(localStorage.getItem(userInfo.id))
-    },[])
+    // useEffect(()=>{
+    //  setToken(localStorage.getItem(userInfo.id))
+    // },[])
 
     const Columns = [  
              {
@@ -32,33 +38,68 @@ const queriesTable = () => {
             },    
            
        ];
+
+       const showModal = () => {
+        setIsModalVisible(true);
+      };
+    
+      const handleReturn = () => {
+        setIsModalVisible(false);
+      };
+
+      const GetQueries = () => {
+        apiCall('contact',null, "GET", null, null)
+              .then((res)=>{
+                console.log("res of contact is",res)
+                dispatch(setContactInfo(res))
+              })
+              .catch((err)=>{
+                console.log(err.message)
+              })
+      }
+     
+      const GetDetails =(id) =>{
+        apiCall(`contact/${id}`, null, "GET", null, null)
+        .then((res)=>{
+          console.log("res of getDetails is",res)
+          setEmail(res[0].email)
+          setId(res[0].id)
+        })
+        .catch((err)=>{
+          console.log(err.message)
+        })
+        showModal();
+      }
+
+const body={
+  id: id,
+  email: email,
+  reply: reply
+}
+const PostReply = () => {
+  apiCall('sendreply', JSON.stringify(body), "POST", null, null)
+        .then((res)=>{
+          console.log("res of contact is",res)
+          GetQueries()
+        })
+        .catch((err)=>{
+          console.log(err.message)
+        })
+
+}
+
+   const contactInfo = useSelector((state)=>state.contactReducer)
    
-//    const GetPendingNgos = () => {
-//      apiCall('pendingngos',null, "GET", null, null)
-//            .then((res)=>{
-//              console.log("res in pending ngos",res)
-//           dispatch(getPendingNgo(res))
-//            })
-//            .catch((err)=>{
-//              console.log(err.message)
-//            })
-//    }
-         
-       
-         //  console.log("pendingNgo is",pendingNgo)
-         var details =pendingNgo.map((ngo)=>{
+        var details = contactInfo.map((user)=>{ 
            return {
-             email: ngo.name,
-             message:'hello, how to donate',
-             button: <CustomButton label="Reply" className={style.disApprove} onClick={()=>approveNgo( ngo.id, 0)} disabled={false} shape='round'/>,      
-            
+             email: user.email,
+             message:user.message,
+             button: <CustomButton label="Reply" className={style.reply} onClick={()=>{GetDetails(user.id)}} disabled={false} shape='round'/>,            
            }
-         }) 
-   
-         console.log("details are",details)
-         
+         })   
+
            const columns = useMemo(()=> Columns, [])
-           const data = useMemo(()=> details, [pendingNgo])
+           const data = useMemo(()=> details, [contactInfo])
    
        const tableInstance = useTable({
            columns,
@@ -67,7 +108,7 @@ const queriesTable = () => {
          const {getTableProps, getTableBodyProps, headerGroups, nextPage, previousPage, canNextPage, 
            pageOptions,
            state,
-           canpreviousPage, prepareRow, page } = tableInstance;
+           canPreviousPage, prepareRow, page } = tableInstance;
            const {pageIndex } = state;
          return (
            <>
@@ -108,10 +149,25 @@ const queriesTable = () => {
                    {pageIndex +1} of {pageOptions.length}
                  </strong>{' '}
                </span>
-             <CustomButton label="Previous" className='' onClick={()=> previousPage()} disabled={!canNextPage} />   
-             <CustomButton label="next" className='' onClick={()=> nextPage()} disabled={!canpreviousPage} />   
+             <CustomButton label="Previous" className='' onClick={()=> {previousPage()}} disabled={!canPreviousPage} />   
+             <CustomButton label="next" className='' onClick={()=> nextPage()} disabled={!canNextPage} />   
+             {/* canpreviousPage */}
              </div>
+
+          <Modal title="Send Reply" visible={isModalVisible} onCancel={handleReturn} footer={[
+          <CustomButton htmlType="submit" label="cancel" className={style.modalBtn} type="primary" onClick={handleReturn}  disabled={false} shape='round'></CustomButton>  , 
+          <CustomButton htmlType="submit" label="Send" className={style.modalBtn} type="primary" onClick={PostReply}  disabled={false} shape='round'></CustomButton>   
+          
+       ]} >
+        <Form.Item
+        label="Reply"
+        rules={[{ required: true,  message: 'Please input your username!' }]}
+        >
+        <TextArea rows={4} onChange={(e)=>setReply(e.target.value)} />
+      </Form.Item>
+     
+      </Modal>
              </>
          )
    }
-   export default queriesTable;
+   export default QueriesTable;

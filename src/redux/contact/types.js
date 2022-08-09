@@ -1,0 +1,1 @@
+export const SET_CONTACT_INFO="SET_CONTACT_INFO";
