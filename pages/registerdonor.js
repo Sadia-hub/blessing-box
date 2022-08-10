@@ -1,9 +1,9 @@
 
-import Register from '../src/components/ui/support/Register';
+import SignUp from '../src/components/ui/support/SignUp';
 import CustomLayout from '../src/components/layouts/customLayout';
 const RegisterDonor = () =>{
     return ( <CustomLayout>
-    <Register/>
+    <SignUp/>
     </CustomLayout>
     );
 }

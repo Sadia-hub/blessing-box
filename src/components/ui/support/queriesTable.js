@@ -79,12 +79,14 @@ const PostReply = () => {
   apiCall('sendreply', JSON.stringify(body), "POST", null, null)
         .then((res)=>{
           console.log("res of contact is",res)
+          setIsModalVisible(false)
+          // {()=>setReply('')}
           GetQueries()
         })
         .catch((err)=>{
           console.log(err.message)
         })
-
+      
 }
 
    const contactInfo = useSelector((state)=>state.contactReducer)

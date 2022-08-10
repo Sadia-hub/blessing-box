@@ -6,6 +6,7 @@ function FounderInfo({onChangeCnic, onChangeName, onChangeContact, onChangeEmail
         <Divider>FOUNDER INFORMATION</Divider>
 
         <Form.Item
+        validateTrigger="onBlur"
         label="Enter Name"
         name="founderName"
         rules={[{ required: true, message: 'Please Enter Your Name!' }]}
@@ -14,6 +15,7 @@ function FounderInfo({onChangeCnic, onChangeName, onChangeContact, onChangeEmail
       </Form.Item>
 
       <Form.Item
+        validateTrigger="onBlur"
         label="Enter CNIC"
         name="founderCnic"
         rules={[{ required: true, message: 'Please Enter Your CNIC!' }]}
@@ -22,6 +24,7 @@ function FounderInfo({onChangeCnic, onChangeName, onChangeContact, onChangeEmail
       </Form.Item>
 
       <Form.Item
+        validateTrigger="onBlur"
         label="Enter Contact Number"
         name="founderContact"
         rules={[{ required: true, message: 'Please Enter Contact Number!' }]}
@@ -30,9 +33,10 @@ function FounderInfo({onChangeCnic, onChangeName, onChangeContact, onChangeEmail
       </Form.Item>
 
       <Form.Item
+        validateTrigger="onBlur"
         label="Enter Email"
         name="founderEmail"
-        rules={[{ required: true, type:'email', message: 'Please Enter NGO email' }]}
+        rules={[{ required: true, type:'email', message: 'Please Enter Your email' }]}
       >
         <Input onChange={onChangeEmail}/>
       </Form.Item>

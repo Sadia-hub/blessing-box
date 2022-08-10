@@ -37,6 +37,11 @@ text-align: center;
     color: white;
 }
 
+.okButton{
+    background: radial-gradient(at center center, rgba(42, 5, 143, 0.8) 0%, rgba(42, 5, 143, 0.8) 100%),  url("/bg.jpg")!important;
+    border-color: radial-gradient(at center center, rgba(42, 5, 143, 0.8) 0%, rgba(42, 5, 143, 0.8) 100%),  url("/bg.jpg");
+}
+
 @media screen and (max-width: 575px) {
     .regbutton{
         margin-Left: 36%;

@@ -19,12 +19,15 @@ import apiCall from './apiCall';
 const Login =() =>{
     const dispatch = useDispatch();
     const router = useRouter();
-
+    const[email, setEmail] =useState();
+    const[useremail, setUserEmail] =useState('');
+    const[password, setPassword] =useState();
+    const[data, setData] =useState();
 //store pending ngos in redux
 useEffect(()=>{
   apiCall('pendingngos',null, "GET", null, null)
         .then((res)=>{
-          console.log(res)
+          console.log(res.status)
         dispatch(getPendingNgo(res))
         })
         .catch((err)=>{
@@ -46,43 +49,55 @@ useEffect(()=>{
   GetQueries()
  },[])
 
-  //if set to false will display errors 
-   const[valid,setValid]=useState(true);
+
+ 
   
     const { Title } = Typography;
     
-    const onFinish = (values) => {  
-          apiCall('user',JSON.stringify(values), "POST", null, null)
-          .then((res)=> { 
-          console.log("res is ",res.user.type)
-          if(res.user.email==values.email){
-
-            //set token into local storage
-            localStorage.setItem("token", res.token);
-
-            //dispatch state whether user is logged in or not
-            dispatch(isLogin());
-
-            //store user details into redux
-            dispatch(setUserInfo(res.user));
-
-            //if user type equals admin then admin page should b displayed else homepage
-            {res.user.type=='admin'? router.push('/superadmin') :router.push('/')}
-
-          }
-          else{    
-            setValid(false);
-          } 
-         })
-          .catch((err)=>{
-            console.log(err.message)
-          })
-      };
+    
 
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
     };
    
+
+    //verify user
+    
+    const body={
+      email: email,
+      password: password
+    }
+    const verifyUser =() =>{ 
+      apiCall('user',JSON.stringify(body), "POST", null, null)
+          .then((res)=> { 
+          console.log("res is ",res)
+          setData(res) 
+          if(res.user.email==email){
+            
+            localStorage.setItem("token", res.token);
+            
+          //dispatch state whether user is logged in or not
+          dispatch(isLogin());
+    
+          //store user details into redux
+          dispatch(setUserInfo(res.user));
+    
+          //if user type equals admin then admin page should b displayed else homepage
+          {res.user.type=='admin'? router.push('/superadmin') :router.push('/')}
+          
+          }
+         })
+          .catch((err)=>{
+            console.log(err.message)
+          })
+    
+
+    }
+    
+    const onFinish = (values) => {  
+      console.log('Success:', values);
+      verifyUser()
+      };
     return(
     <div className={styles.mainDiv}>
     <Row className={styles.form}>
@@ -110,26 +125,28 @@ useEffect(()=>{
       >
         
       <Form.Item
+       validateTrigger="onBlur"
         label="Email"
         name="email"
-        rules={[{ required: true,  message: 'Please input your username!' }]}
+        rules={[{ required: true,  message: 'Please write your email!', type:'email' }]}
       >
-        <Input />
+        <Input  onChange={(e)=>setEmail(e.target.value)}/>
       </Form.Item>
 
       <Form.Item
+       validateTrigger="onBlur"
         label="Password"
         name="password"
         rules={[{ required: true, message: 'Please input your password!' }]}
       >
-        <Input.Password />
+        <Input.Password  onChange={(e)=>setPassword(e.target.value)}/>
       </Form.Item>
 
       <Form.Item >
-      <CustomButton htmlType="submit" label="Sign in" className={styles.regButton} type="primary" disabled={false} shape=''></CustomButton>     
+      <CustomButton htmlType="submit" label="Sign in" className={styles.regButton} type="primary"  disabled={false} shape=''></CustomButton>     
       </Form.Item>
       <span >
-      {valid==false ? <p className={styles.center}>This user is not registered</p>: ''}
+      {data=='This email is not registered' || data=='Either Username or password is wrong' ? <p className={styles.center}>Either Username or Password is Wrong</p>: ''}
       </span>
        </Form>
         </Col>

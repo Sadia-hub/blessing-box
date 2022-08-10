@@ -1,5 +1,5 @@
 import { Form, Input, Modal} from 'antd';
-import styles from '../../../../styles/Register.module.css';
+import styles from '../../../../styles/SignUp.module.css';
 import { CustomButton } from '../buttons/buttons';
 import { Typography } from 'antd';
 import apiCall from './apiCall';
@@ -8,17 +8,17 @@ import React, {   useState } from 'react';
 //redux
 import { useSelector } from 'react-redux';
 
-const Register = () => {  
+const SignUp = () => {  
 
   const islogin = useSelector((state)=> state.loginReducer);
   console.log("In register "+islogin);
-  const[message, setMessage] = useState('');
+ 
   const[email, setEmail] = useState(true);
-  const[name, setName] =useState('');
-  const[address, setAddress] =useState('');
-  const[password, setPassword] =useState('');
-  const[contact, setContact] =useState('');
-  const[designation, setDesignation] =useState('');
+  const[name, setName] =useState();
+  const[address, setAddress] =useState();
+  const[password, setPassword] =useState();
+  const[contact, setContact] =useState();
+  const[designation, setDesignation] =useState();
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const submission ={
@@ -37,6 +37,9 @@ const Register = () => {
     setIsModalVisible(true);
   };
 
+  const handleCancel =() =>{
+    setIsModalVisible(false);
+  }
   const handleOk = () => {
     router.push('/');
     setIsModalVisible(false);
@@ -44,14 +47,20 @@ const Register = () => {
 
     const { Title } = Typography;  
 
-    const signup = () =>{
+    const signUp = () =>{
       apiCall('users',JSON.stringify(submission), "POST", null, null)
       .then((res)=> { 
-      setMessage(res.msg)
-      {res.msg?showModal(): ''} 
-      })  
+      console.log(res)     
+      }) 
     }
    
+    const onFinish = (values) => {  
+      values.type='donor'
+      console.log('Success:', values);
+      signUp();
+      showModal() 
+        
+      };
       const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo); 
       };
@@ -64,6 +73,7 @@ const Register = () => {
       labelCol={{ span: 8 }}
       wrapperCol={{ span: 16 }}
       initialValues={{ remember: true }}
+      onFinish={onFinish}
       onFinishFailed={onFinishFailed}
       autoComplete="off"
       style={{marginTop: '10px'}}
@@ -72,6 +82,7 @@ const Register = () => {
       <Title level = {2} className={styles.heading}>Sign up as Donor</Title>
         
       <Form.Item
+        validateTrigger="onBlur"
         label="Name"
         name="Name"
         rules={[{ required: true, message: 'Please input your Name!' }]}
@@ -81,6 +92,7 @@ const Register = () => {
         <Input onChange={(e)=>setName(e.target.value)} className={styles.inputField} />
       </Form.Item>
       <Form.Item
+        validateTrigger="onBlur"
         label="Email"
         name="Email"
         rules={[{ required: true, type:'email', message: 'Please input your Email!' }]}
@@ -90,6 +102,7 @@ const Register = () => {
       </Form.Item>
 
       <Form.Item
+        validateTrigger="onBlur"
         label="Password"
         name="password"
         rules={[{ required: true, message: 'Please input your password!' }]}
@@ -99,6 +112,7 @@ const Register = () => {
       </Form.Item>
 
       <Form.Item
+        validateTrigger="onBlur"
         label="Contact"
         name="Contact"
         rules={[{ required: true, message: 'Please input your Contact!' }]}
@@ -108,6 +122,7 @@ const Register = () => {
       </Form.Item>
 
       <Form.Item
+        validateTrigger="onBlur"
         label="Designation"
         name="Designation"
         rules={[{ required: true, message: 'Please input your Designation!' }]}
@@ -117,6 +132,7 @@ const Register = () => {
       </Form.Item>
 
       <Form.Item
+        validateTrigger="onBlur"
         label="Address"
         name="Address"
         rules={[{ required: true, message: 'Please input your Address!' }]}
@@ -127,16 +143,20 @@ const Register = () => {
 
 
       <Form.Item wrapperCol={{ span: 12 }}>
-      <CustomButton htmlType="submit" label={"Register" }className={styles.regButton} type="primary" onClick={signup} disabled={false} shape='round'></CustomButton>     
+      <CustomButton htmlType="submit" label={"Register" }className={styles.regButton}  type="primary" disabled={false} shape='round'></CustomButton>     
       </Form.Item>
     </Form>
     </div>
 
-        <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk} >
-        <p>{message} </p>
+        <Modal title="Basic Modal" visible={isModalVisible} onCancel={handleCancel} onOk={handleOk}  footer={[
+          <CustomButton htmlType="submit" label="ok" className={styles.okButton} type="primary" onClick={handleOk}  disabled={false} shape='round'></CustomButton>  , 
+        
+          
+       ]}>
+        <p>Thank you for registration! Kindly check your email for confirmation of your account </p>
        
       </Modal>
         </>
     );
 }
-export default Register;
+export default SignUp;

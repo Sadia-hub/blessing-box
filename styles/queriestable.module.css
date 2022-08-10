@@ -38,42 +38,9 @@
   .text_center{
     text-align: center;
   }
-/* 
-  .disApprove{
-    background-color:rgba(235,33,136,1) !important;
-    border-color: rgba(235,33,136,1) !important;
-    font-weight: bold;
-    color: white !important;
-}
-.disApprove:hover{
-    background-color: rgb(233, 40, 140) !important;
-    border-color: rgb(233, 40, 140) !important;  
-    color:white !important;
-} 
-.disApprove:focus{
-    background-color: rgb(212, 55, 136) !important;
-    border-color: rgb(212, 55, 136) !important;  
-    color:white !important;
-} */
-/* 
-.approve{
-  background-color:#028A0F !important;
-  border-color: #028A0F !important;
-  font-weight: bold;
-  color: white !important;
-  text-transform: uppercase;
-}
 
-.approve:hover{
-  background-color: #0c7c17 !important;
-  border-color: #0c7c17 !important;  
-  color:white !important;
-} 
-.approve:focus{
-  background-color: #227c2b !important;
-  border-color: #227c2b !important;  
-  color:white !important;
-}  */
+
+
 
 .modalBtn{
   background: radial-gradient(at center center, rgba(42, 5, 143, 0.8) 0%, rgba(42, 5, 143, 0.8) 100%),  url("/bg.jpg")!important;

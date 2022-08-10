@@ -39,6 +39,11 @@
     border-color: rgba(60, 35, 131, 0.8) !important;
     color: white;
 }
+
+.okButton {
+    background-color:rgba(42, 5, 143, 0.8) !important;
+  border-color: rgba(42, 5, 143, 0.8) !important;
+}
 @media screen and (max-width: 672px)and (min-width: 576px) {
 .regButton{
     width: 50%;  

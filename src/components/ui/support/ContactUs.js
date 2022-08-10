@@ -4,25 +4,15 @@ import { useState } from 'react';
 import {Modal} from 'antd';
 import styles from '../../../../styles/Contact.module.css';
 import { CustomButton } from '../buttons/buttons';
-import { useSelector, useDispatch } from 'react-redux';
 import apiCall from './apiCall';
 
 const ContactUS = () => {
 
   const { Title } = Typography;  
-  const onFinish = (values) => {
-    console.log('Success:', values);
-  };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
-
-  const[email, setEmail] =useState('');
-  const[message, setMessage] =useState('');
+  const[email, setEmail] =useState();
+  const[message, setMessage] =useState();
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const[reply, setReply] =useState('');
-  const dispatch = useDispatch();
 
   const { TextArea } = Input;
 
@@ -31,7 +21,19 @@ const ContactUS = () => {
     message: message
   }
   
- 
+  //handle Return
+  const handleReturn = () => {
+    setIsModalVisible(false);
+  };
+ //show Modal
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.log('Failed:', errorInfo);
+  };
+
     const PostQuery = () => {
       apiCall('contact', JSON.stringify(body), "POST", null, null)
             .then((res)=>{
@@ -41,6 +43,13 @@ const ContactUS = () => {
               console.log(err.message)
             })
     }
+
+    const onFinish = (values) => {
+      console.log('Success:', values);
+      PostQuery();
+      showModal();
+
+    };
   
   return (
       <>
@@ -60,15 +69,17 @@ const ContactUS = () => {
     >
 
       <Form.Item
+      validateTrigger="onBlur"
         label="Email"
-        name="Email"
-        rules={[{ required: true, message: 'Please input your email!', type: 'email' }]}
+       name="Email"
+        rules={[{ required: true, message: 'Please input your email!', type:'email' }]}
         wrapperCol={{ span: 10 }}
       >
         <Input onChange={(e)=>setEmail(e.target.value)}/>
       </Form.Item>
 
       <Form.Item 
+        validateTrigger="onBlur"
         label="Message"
         name="Message"
         rules={[{ required: true, message: 'Message is required!' }]}
@@ -78,28 +89,19 @@ const ContactUS = () => {
         </Form.Item>
 
       <Form.Item wrapperCol={{ span: 12 }}>
-      <CustomButton label="Submit" className={styles.regbutton} type="primary" onClick={PostQuery} disabled={false} shape=''></CustomButton>
-       
-      
+      <CustomButton label="Submit" className={styles.regbutton} htmlType="submit"  disabled={false} shape=''></CustomButton> 
       </Form.Item>
+
     </Form>
 
-    {/* <Modal title="Update Password" visible={isModalVisible} onCancel={handleReturn} footer={[
-          <CustomButton htmlType="submit" label="cancel" className={styles.okButton} type="primary" onClick={handleReturn}  disabled={false} shape='round'></CustomButton>  , 
-          <CustomButton htmlType="submit" label="Update Password" className={styles.okButton} type="primary" onClick={UpdatePassword}  disabled={false} shape='round'></CustomButton>   
-          
+    <Modal title="" visible={isModalVisible} onCancel={handleReturn} footer={[
+          <CustomButton htmlType="submit" label="Ok" className={styles.okButton} type="primary" onClick={handleReturn}  disabled={false} shape='round'></CustomButton>  ,        
        ]} >
-        <Form.Item
-        label="Reply"
-        rules={[{ required: true,  message: 'Please input your username!' }]}
-        >
-        <Input onChange={(e)=>setReply(e.target.value)} />
-      </Form.Item>
+       
 
-
-      <p className={styles.text}>{response}</p>
+      <p className={''}>Thank you For contacting Blessing box. Very soon our Admin will response to your query</p>
      
-      </Modal> */}
+      </Modal>
     </>
   );
 };

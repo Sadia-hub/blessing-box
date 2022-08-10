@@ -55,10 +55,12 @@ const Profile = () => {
       .then((res)=>{
         console.log("Response is",res)
          setResponse(res)
+        //  setIsModalVisible(false);
       })
       .catch((err)=>{
         console.log(err.message)
       })
+      
     } 
 
     //updateDetails

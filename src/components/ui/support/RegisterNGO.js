@@ -98,10 +98,9 @@ const RegisterNGO = () => {
      
     }
      
-
-
   const onFinish = (values) => {
     console.log('Success: is', values);
+    postNgo();
   };
 
   const onChange = (e) => {
@@ -158,6 +157,7 @@ const RegisterNGO = () => {
         <Divider>NGO INFORMATION</Divider>
       {/* Enter NGO name */}
       <Form.Item
+        validateTrigger="onBlur"
         label="Enter NGO Name"
         name="ngoName"
         rules={[{ required: true, message: 'Please enter your NGO name!' }]}
@@ -188,6 +188,7 @@ const RegisterNGO = () => {
       
       {/* NGO Email */}
       <Form.Item
+      validateTrigger="onBlur"
         label="Enter NGO Email"
         name="ngoEmail"
         rules={[{ required: true, type:'email', message: 'Please Enter NGO email' }]}
@@ -197,6 +198,7 @@ const RegisterNGO = () => {
 
        {/* Phone Number */}
        <Form.Item
+       validateTrigger="onBlur"
         label="Enter Contact Number"
         name="ngoContact"
         rules={[{ required: true, message: 'Please Enter Contact Number!' }]}
@@ -206,6 +208,7 @@ const RegisterNGO = () => {
 
        {/* Address of Main Branch */}
       <Form.Item
+        validateTrigger="onBlur"
         label="Enter Adress Of Main Branch"
         name="address"
         rules={[{ required: true, message: 'Please Enter Address!' }]}
@@ -222,7 +225,7 @@ const RegisterNGO = () => {
 <AuthorizationDoc uploadImage = {uploadImage}/>
 <Declaration/>
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-  <CustomButton label={  "Register" } className={style.nextButton} type="primary" onClick={postNgo} disabled={false} shape="round"></CustomButton>
+  <CustomButton htmlType="submit" label={  "Register" } className={style.nextButton} type="primary"  disabled={false} shape="round"></CustomButton>
       </Form.Item>
     </Form>
 
