@@ -77,6 +77,30 @@ const NgoDetails = ({  id }) => {
             })       
         },[id]);
 
+        const addProjectDetails = () =>{
+            fetch("http://localhost:8080/create-checkout-session/multiple", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                id:1
+              }),
+            })
+              .then(res => {
+                if (res.ok) return res.json()
+                return res.json().then(json => Promise.reject(json))
+              })
+              .then(({ url }) => {
+                window.location = url
+              })
+              .catch(e => {
+                console.error(e.error)
+              })
+
+        }
+
+    
     const uploadNgoDetails = async() =>{
 
         try{
@@ -153,6 +177,7 @@ const NgoDetails = ({  id }) => {
                       {/* <Button type="primary" onClick={handleClick}>Add project</Button>
                       <Button type="primary" onClick={handleClick}>Add Account</Button> */}
                       <Button type="primary" onClick={uploadNgoDetails}>Upload</Button>
+                      <Button type="primary" onClick={addProjectDetails}>Add Account Details</Button>
                    
                    
 

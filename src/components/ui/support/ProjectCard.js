@@ -12,6 +12,8 @@ percent=0,
 title="Project Title",
 pic="/education.svg",
 desc="",
+projectId=1,
+
 targetAmount="9000"
 })=>{
     useEffect(()=>{
@@ -53,6 +55,31 @@ targetAmount="9000"
     setVisible(false);
   };
 
+  const handleDonate = (projectId) =>{
+    fetch("http://localhost:8080/create-checkout-session", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          items: [
+            { id: 1, quantity: 3 },
+            { id: 2, quantity: 1 },
+          ],
+        }),
+      })
+        .then(res => {
+          if (res.ok) return res.json()
+          return res.json().then(json => Promise.reject(json))
+        })
+        .then(({ url }) => {
+          window.location = url
+        })
+        .catch(e => {
+          console.error(e.error)
+        })
+  }
+
     return<div>
 
          {/* {cardData.map((data)=>{
@@ -82,7 +109,7 @@ targetAmount="9000"
        </Row>   
        
        <Row justify="end" >
-                <h4 className={styles.text}>Details</h4>
+                <button onClick={()=>handleDonate(1)}>Donate</button>
        </Row>
      
     </div>      

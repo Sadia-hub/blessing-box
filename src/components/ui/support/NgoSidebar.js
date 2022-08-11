@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useRouter } from 'next/router'
 import ImageUpload from './ImageUpload';
-const NgoSidebar = ({ngo, logo, setLogo, imageUrl}) =>{
+const NgoSidebar = ({ngo, logo=null, setLogo=null, imageUrl=null}) =>{
 
     const { Title } = Typography;
  
