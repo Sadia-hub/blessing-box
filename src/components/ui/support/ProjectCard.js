@@ -30,6 +30,31 @@ targetAmount="9000"
     const [modalText, setModalText] = useState();
     const[close,setClose]=useState(false);
     
+    const handleDonate = () =>{
+        fetch("http://localhost:8080/create-checkout-session", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            account_id:"acct_1LVLhPPXvSCYWO2g", 
+            donation:500, 
+            projectId:1
+          }),
+        })
+          .then(res => {
+            if (res.ok) return res.json()
+            return res.json().then(json => Promise.reject(json))
+          })
+          .then(({ url }) => {
+            console.log(url)
+            window.open(url)
+          })
+          .catch(e => {
+            console.error(e.error)
+          })
+      }
+
     const handleClose=()=>{
        setClose(true);
        setVisible(false);
@@ -57,7 +82,7 @@ targetAmount="9000"
 
          {/* {cardData.map((data)=>{
              return(<> */}
-        <div className={styles.main} onClick={showModal}>
+        <div className={styles.main} >
         
         <Image src={pic} height={150} width={260} alt="project image"/>
 
@@ -82,7 +107,8 @@ targetAmount="9000"
        </Row>   
        
        <Row justify="end" >
-                <h4 className={styles.text}>Details</h4>
+
+                <button onClick={()=>handleDonate()}>Donate</button>
        </Row>
      
     </div>      

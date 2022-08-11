@@ -3,7 +3,7 @@ import CustomLayout from '../../layouts/customLayout';
 import { useSelector } from 'react-redux';
 import styles from '../../../../styles/NgoDetails.module.css';
 import ProjectCard from './ProjectCard';
-import NgoSidebar from './NgoSidebar';
+import NgoSidebarUser from './NgoSidebarUser';
 import LeftMenu from '../../layouts/NgosNavbar';
 import { useRouter } from 'next/router'
 
@@ -32,7 +32,7 @@ const NgoDetails = ({ editable }) => {
             </Row>
             <Row justify="center" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} className={styles.container}>
                 <Col lg={{ span: 6 }} md={{ span: 6 }} sm={{ span: 24 }} className={styles.sideBar} justify="center">
-                    <NgoSidebar />
+                    <NgoSidebarUser />
                 </Col>
                 <Col lg={{ span: 18 }} md={{ span: 18 }} sm={{ span: 24 }} justify="center">
                     <Row justify='center' id="about">

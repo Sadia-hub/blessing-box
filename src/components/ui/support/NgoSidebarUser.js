@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useRouter } from 'next/router'
-const NgoSidebar = () =>{
+const NgoSidebarUser = () =>{
 
     const { Title } = Typography;
     const [founderEmail, setFounderEmail] = useState("sadiashah059@gmail.com");
@@ -110,4 +110,4 @@ const NgoSidebar = () =>{
     </>
 }
 
-export default NgoSidebar;
+export default NgoSidebarUser;
