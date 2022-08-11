@@ -6,12 +6,13 @@ import { useSelector } from "react-redux";
 import { useRouter } from 'next/router'
 
 const Categories = (xs=22, sm=11, md=8, lg=5) =>{
+    
     const router = useRouter()
     const { category } = router.query
     const details = useSelector((state)=> state.detailsReducer);
     console.log("In details ", details);
     const ngos = details[category]
-    console.log("food is",ngos);
+    console.log(""+category,ngos);
     const [pageNo, setPageNo] = useState(0);
     const [pageSize,setPageSize] = useState(10);
   
