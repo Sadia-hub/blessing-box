@@ -8,10 +8,12 @@ import styles from '../../../../styles/ProjectCard.module.css';
 const ProjectCard=({
 // cardData,
 status="active",
-percent=90,
-title="SIBA Pink Ribon",
+percent=0,
+title="Project Title",
 pic="/education.svg",
 desc="",
+projectId=1,
+
 targetAmount="9000"
 })=>{
     useEffect(()=>{
@@ -78,13 +80,38 @@ targetAmount="9000"
     setVisible(false);
   };
 
+  const handleDonate = (projectId) =>{
+    fetch("http://localhost:8080/create-checkout-session", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          items: [
+            { id: 1, quantity: 3 },
+            { id: 2, quantity: 1 },
+          ],
+        }),
+      })
+        .then(res => {
+          if (res.ok) return res.json()
+          return res.json().then(json => Promise.reject(json))
+        })
+        .then(({ url }) => {
+          window.location = url
+        })
+        .catch(e => {
+          console.error(e.error)
+        })
+  }
+
     return<div>
 
          {/* {cardData.map((data)=>{
              return(<> */}
         <div className={styles.main} >
         
-        <Image src={pic} height={150} width={260} alt="project image"/>
+        <Image src={pic} height={180} width={260} alt="project image"/>
 
         <Row justify='center' align='middle' >
             <Title level={5} style={{color:"rgba(235,33,136,1)"}}>{title}</Title>
@@ -108,7 +135,9 @@ targetAmount="9000"
        
        <Row justify="end" >
 
+
                 <button onClick={()=>handleDonate()}>Donate</button>
+
        </Row>
      
     </div>      

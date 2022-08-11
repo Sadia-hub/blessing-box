@@ -40,6 +40,7 @@ const CustomCarousel = () => {
     async function getDetails(){
       apiCall('ngodetails',null, "GET", null, null)
       .then((res)=>{
+        console.log(res)
         dispatch(setNGOInfo(res))
 
       })

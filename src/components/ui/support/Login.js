@@ -50,8 +50,6 @@ useEffect(()=>{
  },[])
 
 
- 
-  
     const { Title } = Typography;
     
     
