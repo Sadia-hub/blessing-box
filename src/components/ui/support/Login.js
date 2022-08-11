@@ -81,7 +81,17 @@ useEffect(()=>{
           dispatch(setUserInfo(res.user));
     
           //if user type equals admin then admin page should b displayed else homepage
-          {res.user.type=='admin'? router.push('/superadmin') :router.push('/')}
+          // {res.user.type=='admin'? router.push('/superadmin') :router.push('/')}
+          if(res.user.type=='admin')
+          {
+            router.push('/superadmin') 
+          }
+          else if(res.user.type=='Ngo'){
+            router.push(`/admin/1`) 
+          }
+          else{
+            router.push('/')
+          }
           
           }
          })
