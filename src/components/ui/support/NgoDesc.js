@@ -42,6 +42,8 @@ const NgoDesc = () => {
         })       
     },[id]);
 
+    const myState = useSelector((state)=> state.detailsReducer);
+    const ngos = myState[category].filter((ngo)=>ngo.ngo.id==id)
 
     function handleClick(e) {
         e.preventDefault();
@@ -72,21 +74,21 @@ const NgoDesc = () => {
                     <Row justify='center' id="about" >
 
                         <Title level={3} >About Us</Title>
-                        <div style={{width:"95%"}}> <DisplayEditorContent value={ngoDetail.about_us}/></div>
+                        <div style={{width:"95%"}}> <DisplayEditorContent value={ngos[0].about_us}/></div>
                        
 
                     </Row>
                     <Row justify='center' id="services">
 
                         <Title level={3}>Our Services</Title>
-                        <div style={{width:"95%"}}> <DisplayEditorContent value={ngoDetail.services}/></div>
+                        <div style={{width:"95%"}}> <DisplayEditorContent value={ngos[0].services}/></div>
 
                     </Row>
 
                     <Row justify='center' id="projects" style={{ margin: "5px" }}>
 
                         <Title level={3}>Projects</Title>
-                        <div style={{width:"95%"}}> <DisplayEditorContent value={ngoDetail.projects}/></div>
+                        <div style={{width:"95%"}}> <DisplayEditorContent value={ngos[0].projects}/></div>
                     </Row>
 
                     
