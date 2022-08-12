@@ -97,7 +97,14 @@ const NgoDesc = () => {
                     <Row justify="center">
                         {
                             projects.map((project)=>{
-                                return <ProjectCard />
+                                return <ProjectCard 
+                                title={project.title}
+                                pic={project.imageurl}
+                                targetAmount={project.target}
+                                desc={project.description}
+                                projectId={project.id}
+                                account_id={ngos[0].account_id}
+                                />
                             })
                         }
                         
