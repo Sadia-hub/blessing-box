@@ -20,7 +20,7 @@ function FounderInfo({onChangeCnic, onChangeName, onChangeContact, onChangeEmail
         name="founderCnic"
         rules={[{ required: true, message: 'Please Enter Your CNIC!' }]}
       >
-        <Input onChange={onChangeCnic}/>
+        <Input onChange={onChangeCnic} />
       </Form.Item>
 
       <Form.Item

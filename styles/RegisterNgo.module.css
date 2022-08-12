@@ -27,3 +27,10 @@
     border-color: rgba(60, 35, 131, 0.8) !important;
 }
 
+
+.nextButton:focus{
+    background-color:rgba(60, 35, 131, 0.8) !important;
+    border-color: rgba(60, 35, 131, 0.8) !important;
+    color: white;
+  } 
+  

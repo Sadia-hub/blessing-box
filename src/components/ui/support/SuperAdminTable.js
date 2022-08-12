@@ -15,7 +15,7 @@ const BasicTable = () => {
  const[token, setToken] = useState('');
  //strore token
  useEffect(()=>{
-  setToken(localStorage.getItem(userInfo.id))
+  setToken(localStorage.getItem("token"))
  },[])
  const Columns = [
         {

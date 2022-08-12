@@ -9,26 +9,28 @@ import { Radio } from 'antd';
 import AuthorizationDoc from './AuthorizationDoc';
 import Declaration from './Declaration';
 import Dropdown from './Dropdown';
+import apiCall from './apiCall';
 
 const RegisterNGO = () => {
   const [service, setService] = useState('');
   const [serviceArea, setServicearea] = useState([]);
-  const [founderEmail, setfounderEmail] = useState('');
-  const[ngoEmail, setNgoemail] =useState('');
-  const[ngoName, setNgoname] =useState('');
-  const[year, setYear] =useState(''); 
-  const[contact, setContact] =useState('');
-  const[f_contact, setFcontact] =useState('');
-  const[f_cnic, setFcnic] =useState('');
-  const[f_name, setFname] =useState('');
-  const[address, setAddress] =useState('');
+  const [founderEmail, setfounderEmail] = useState();
+  const[ngoEmail, setNgoemail] =useState();
+  const[ngoName, setNgoname] =useState();
+  const[year, setYear] =useState(); 
+  const[contact, setContact] =useState();
+  const[f_contact, setFcontact] =useState();
+  const[f_cnic, setFcnic] =useState();
+  const[f_name, setFname] =useState();
+  const[address, setAddress] =useState();
   const [imageUrl, setImageUrl] = useState();
   const[loading, setLoading] =useState(false);
+  const[token, setToken] =useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const state = useSelector((state)=> state.userReducer);
 
-  const submission ={  
+  const body ={  
     ngoEmail: ngoEmail,
     name: ngoName,
     logo: 'logo',
@@ -54,22 +56,18 @@ const RegisterNGO = () => {
     setIsModalVisible(false);
   };
 
- 
-  
+ //store token
+  useEffect(()=>{
+    setToken(localStorage.getItem("token"))
+   },[])
   //console.log(localStorage.getItem(state.id));
     async function postNgo()  {
       try{
-      await fetch('http://localhost:8080/ngo', {
-      method: "POST",  
-      headers: {
-          'Content-Type': 'application/json',
-          //'Authorization': `Bearer ${token}`,
-        },
-        body:JSON.stringify(submission),
-      }).then(res=> res.json()).then((data)=> { 
-        showModal(); 
-        console.log("data is posted")
-        });
+
+        apiCall('ngo',JSON.stringify(body), "POST", null, token)
+          .then((res)=> { 
+          console.log("res is ",res)
+          })
         
       }
       catch(err){
@@ -101,6 +99,7 @@ const RegisterNGO = () => {
   const onFinish = (values) => {
     console.log('Success: is', values);
     postNgo();
+    showModal();
   };
 
   const onChange = (e) => {
@@ -167,8 +166,11 @@ const RegisterNGO = () => {
       </Form.Item>
 
        {/* Enter Service type */}
-      <Form.Item name="service" valuePropName="checked" wrapperCol={{ offset: 2, span: 16 }}
+      <Form.Item 
+     
+      valuePropName="checked" wrapperCol={{ offset: 2, span: 16 }}
          label="Service Type"
+         name="service type"
          rules={[{ required: true, message: 'Please select service!' }]}
       >
         <Radio.Group onChange={onChange} value={service}>
@@ -180,7 +182,10 @@ const RegisterNGO = () => {
      
 
         {/* Year of existance */}
-      <Form.Item label="Enter Year Of Existance"
+      <Form.Item 
+       validateTrigger="onBlur"
+      label="Enter Year Of Existance"
+      name="year"
         rules={[{ required: true, message: 'Please Enter Year of Existance!' }]}
       >
         <InputNumber onChange={handleYear}/>
@@ -191,7 +196,7 @@ const RegisterNGO = () => {
       validateTrigger="onBlur"
         label="Enter NGO Email"
         name="ngoEmail"
-        rules={[{ required: true, type:'email', message: 'Please Enter NGO email' }]}
+        rules={[{ required: true, type:'email', message: 'Please Enter NGO email', type: 'email' }]}
       >
         <Input onChange={(e)=>setNgoemail(e.target.value)}/>
       </Form.Item>
@@ -217,15 +222,19 @@ const RegisterNGO = () => {
       </Form.Item>
      
          {/* Service Areas */}
-         <Form.Item label="Service Areas">
+         <Form.Item validateTrigger="onBlur"
+          label="Service Areas"
+          
+          >
         <Dropdown onChange={handleServiceareas} />
       </Form.Item>
       
 <FounderInfo onChangeCnic= {handleCnic } onChangeName={handleFoundername} onChangeEmail = {handleFounderemail} onChangeContact = {handleFoundercontact}/>
 <AuthorizationDoc uploadImage = {uploadImage}/>
 <Declaration/>
+
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-  <CustomButton htmlType="submit" label={  "Register" } className={style.nextButton} type="primary"  disabled={false} shape="round"></CustomButton>
+  <CustomButton   label={  "Register" } className={style.nextButton} type="primary"  disabled={false} htmlType="submit" shape="round"></CustomButton>
       </Form.Item>
     </Form>
 

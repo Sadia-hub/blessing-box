@@ -1,11 +1,20 @@
-import { Divider } from 'antd';
+import { Divider, Input, Form } from 'antd';
+
 function AuthorizationDoc({uploadImage}){
   
     
     return(<>
 
          <Divider>Authorization Document</Divider>  
-          <input type="file" name="file"  onChange={uploadImage} style={{marginLeft: 30}}/>   
+         <Form.Item
+            validateTrigger="onBlur"
+            name="Doc"
+            // style={{textAlign: 'center'}}
+            rules={[{ required: true, message: 'Please select a file!' }]}
+        >
+          <Input type="file" name="file"   onChange={uploadImage} /> 
+        
+        </Form.Item>  
     </>)
 }
 export default AuthorizationDoc;
