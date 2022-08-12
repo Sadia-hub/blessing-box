@@ -16,8 +16,8 @@ const NgoDetails = () => {
   async function NgoDetails(){
     apiCall(`ngo/${id}`,null, "GET", null, null)
     .then((res)=>{
-      console.log("In NGO Details"+res.name)
-      setNgoDetails(res)
+      console.log("In NGO Details"+res.ngo)
+      setNgoDetails(res.ngo)
     })
     .catch((err)=>{
       console.log(err.message)
@@ -133,7 +133,7 @@ rules={[{ required: true, message: 'Please Enter Contact Number!' }]}
   label="Enter Email"
   rules={[{ required: true, type:'email', message: 'Please Enter NGO email' }]}
   >
-  <Input value={ngoDetails.userEmail}  />
+  <Input value={ngoDetails.founderEmail}  />
   </Form.Item>
    
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>

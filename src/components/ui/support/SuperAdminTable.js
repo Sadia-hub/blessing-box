@@ -76,7 +76,7 @@ const GetPendingNgos = () => {
       const pendingNgo = useSelector((state)=> state.pendingNgosReducer);
       
     
-      //  console.log("pendingNgo is",pendingNgo)
+      console.log("pendingNgo is",pendingNgo)
       var details =pendingNgo.map((ngo)=>{
         return {
           id: ngo.id,

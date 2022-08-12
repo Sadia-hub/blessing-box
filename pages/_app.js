@@ -5,13 +5,13 @@ import { PersistGate } from 'redux-persist/integration/react';
 import {Provider} from "react-redux";
 function MyApp({ Component, pageProps }) {
 
-  let persistor = persistStore(store);
+ // let persistor = persistStore(store);
   return ( 
   <div>
    <Provider store={store}>
-   <PersistGate persistor={persistor}>
+   {/* <PersistGate persistor={persistor}> */}
    <Component {...pageProps} />
-   </PersistGate>
+   {/* </PersistGate> */}
    </Provider> 
   </div>
 
