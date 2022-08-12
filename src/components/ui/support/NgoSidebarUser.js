@@ -6,21 +6,21 @@ import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useRouter } from 'next/router'
 
-const NgoSidebarUser = () =>{
+const NgoSidebarUser = ({ngo, image}) =>{
 
 
     const { Title } = Typography;
  
     return<>
         <div>
-                        <ImageUpload logo={logo} setLogo={setLogo} imageUrl={imageUrl}/>
-                        {/* <Row justify='center'>
+                        {/* <ImageUpload logo={logo} setLogo={setLogo} imageUrl={imageUrl}/> */}
+                        <Row justify='center'>
 
                              <div style={{borderRadius:"360px", overflow:"hidden"}}>
-                                <Image src={ngo.image} height={150} width={150} layout="intrinsic"/>
+                                <Image src={image} height={150} width={150} layout="intrinsic"/>
                             </div> 
                             
-                        </Row> */}
+                        </Row>
 
                         {/* ///NGO basic knowledge */}
                         <div className={styles.ngo}>

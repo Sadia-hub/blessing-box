@@ -44,7 +44,7 @@ const RegisterNGO = () => {
     serviceArea: serviceArea,
     certificate:imageUrl,
     userId: `${state.id}`,
-    userEmail: founderEmail
+    founderEmail: founderEmail
   }
 
   const showModal = () => {
