@@ -12,7 +12,7 @@ function AuthorizationDoc({uploadImage}){
             // style={{textAlign: 'center'}}
             rules={[{ required: true, message: 'Please select a file!' }]}
         >
-          <Input type="file" name="file"   onChange={uploadImage} /> 
+          <input type="file" name="file"   onChange={uploadImage} /> 
         
         </Form.Item>  
     </>)

@@ -32,31 +32,6 @@ targetAmount="9000"
     const [modalText, setModalText] = useState();
     const[close,setClose]=useState(false);
     
-    const handleDonate = () =>{
-        fetch("http://localhost:8080/create-checkout-session", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            account_id:"acct_1LVLhPPXvSCYWO2g", 
-            donation:500, 
-            projectId:1
-          }),
-        })
-          .then(res => {
-            if (res.ok) return res.json()
-            return res.json().then(json => Promise.reject(json))
-          })
-          .then(({ url }) => {
-            console.log(url)
-            window.open(url)
-          })
-          .catch(e => {
-            console.error(e.error)
-          })
-      }
-
     const handleClose=()=>{
        setClose(true);
        setVisible(false);
@@ -80,13 +55,33 @@ targetAmount="9000"
     setVisible(false);
   };
 
-  
+  const handleDonate = (projectId) =>{
+    fetch("http://localhost:8080/create-checkout-session", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // sadia code
+        }),
+      })
+        .then(res => {
+          if (res.ok) return res.json()
+          return res.json().then(json => Promise.reject(json))
+        })
+        .then(({ url }) => {
+           window.location = url
+        })
+        .catch(e => {
+          console.error(e.error)
+        })
+  }
 
     return<div>
 
          {/* {cardData.map((data)=>{
              return(<> */}
-        <div className={styles.main} >
+        <div className={styles.main} onClick={showModal}>
         
         <Image src={pic} height={180} width={260} alt="project image"/>
 
@@ -111,10 +106,7 @@ targetAmount="9000"
        </Row>   
        
        <Row justify="end" >
-
-
-                <button onClick={()=>handleDonate()}>Donate</button>
-
+                <button onClick={()=>handleDonate(1)}>Donate</button>
        </Row>
      
     </div>      

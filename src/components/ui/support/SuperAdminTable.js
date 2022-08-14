@@ -17,6 +17,7 @@ const BasicTable = () => {
  useEffect(()=>{
   setToken(localStorage.getItem("token"))
  },[])
+ console.log(token)
  const Columns = [
         {
           Header: 'NGO Id',
@@ -51,7 +52,7 @@ const GetPendingNgos = () => {
   apiCall('pendingngos',null, "GET", null, null)
         .then((res)=>{
           console.log("res in pending ngos",res)
-       dispatch(getPendingNgo(res))
+          dispatch(getPendingNgo(res))
         })
         .catch((err)=>{
           console.log(err.message)
@@ -62,7 +63,7 @@ const GetPendingNgos = () => {
     // const token = localStorage.getItem("token")
  
       const approveNgo = ( id, status) => {
-        apiCall(`ngo/${id}/status/${status}`,null, "GET", null, token)
+        apiCall(`ngo/${id}/status/${status}`,null, "GET", null, null)
         .then((res)=>{
           console.log(res)
           GetPendingNgos();
@@ -70,7 +71,7 @@ const GetPendingNgos = () => {
         .catch((err)=>{
           console.log(err.message)
         })   
-    
+       
       }
 
       const pendingNgo = useSelector((state)=> state.pendingNgosReducer);
@@ -81,7 +82,7 @@ const GetPendingNgos = () => {
         return {
           id: ngo.id,
           ngoName: ngo.name,
-          approve:    <CustomButton label="Approve" className={style.approve} onClick={()=>approveNgo(ngo.id, 1)} disabled={false} shape='round'/>,    
+          approve:    <CustomButton  label="Approve" className={style.approve} onClick={()=>approveNgo(ngo.id, 1)} disabled={false} shape='round'/>,    
           disapprove: <CustomButton label="Disapprove" className={style.disApprove} onClick={()=>approveNgo( ngo.id, 0)} disabled={false} shape='round'/>,      
           view:      <CustomButton label="View NGO" className={style.view} onClick={()=>router.push(`viewngo/${ngo.id}`) } disabled={false} shape='round'/>,
           certificate: <CustomButton label="View Certificate" className={style.view} onClick={()=>window.open(ngo.certificate) } disabled={false} shape='round'/>

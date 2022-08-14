@@ -44,7 +44,7 @@ const RegisterNGO = () => {
     serviceArea: serviceArea,
     certificate:imageUrl,
     userId: `${state.id}`,
-    userEmail: founderEmail
+    founderEmail: founderEmail
   }
 
   const showModal = () => {
@@ -95,6 +95,7 @@ const RegisterNGO = () => {
       setLoading(false);
      
     }
+    
      
   const onFinish = (values) => {
     console.log('Success: is', values);

@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import styles from '../../../../styles/NgoDetails.module.css';
 import ProjectCard from './ProjectCard';
 import NgoSidebarUser from './NgoSidebarUser';
+import NgoSidebar from './NgoSidebar';
 import LeftMenu from '../../layouts/NgosNavbar';
 import { useRouter } from 'next/router'
 import TextEditor from './TextEditor';

@@ -48,6 +48,7 @@ function AddProject() {
     const uploadProject = () =>{
 
         const imageurl = uploadOnCloudinary(image.file);
+        console.log(imageurl)
         const body = {
             title,
             imageurl,
@@ -61,7 +62,7 @@ function AddProject() {
         console.log(token)
         apiCall(`ngo/addproject`,JSON.stringify(body), "POST", null, token)
         .then((res)=>{
-
+            console.log("res is", res)
             setVisible(false)
             if(res.id){
                 
@@ -75,9 +76,7 @@ function AddProject() {
                     content: 'Something went wrong, check all data is provided as asked',
                 });
             }
-            
-
-            
+               
             
         })
         .catch((err)=>{

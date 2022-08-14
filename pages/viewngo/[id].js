@@ -6,18 +6,18 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
 
-
 const NgoDetails = () => {
     const router=useRouter();
     const id = router.query.id;
+    console.log("id is",id)
   const [ngoDetails, setNgoDetails] = useState({});
   
   useEffect(()=> {
   async function NgoDetails(){
-    apiCall(`ngo/${id}`,null, "GET", null, null)
+    apiCall(`ngodetails/${id}`,null, "GET", null, null)
     .then((res)=>{
-      console.log("In NGO Details"+res.ngo)
-      setNgoDetails(res.ngo)
+      console.log("In NGO Details"+res[0].name)
+      setNgoDetails(res[0])
     })
     .catch((err)=>{
       console.log(err.message)
