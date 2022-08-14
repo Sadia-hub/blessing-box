@@ -70,31 +70,6 @@ targetAmount="9000"
           })
       }
 
-    const handleClose=()=>{
-       setClose(true);
-       setVisible(false);
-    }
-
-    const showModal = () => {
-        setVisible(true);
-    };
-
-    const handleOk = () => {
-        setModalText(desc);
-        setConfirmLoading(true);
-        setTimeout(() => {
-        setVisible(false);
-        setConfirmLoading(false);
-        }, 2000);
-    };
-
-  const handleCancel = () => {
-    console.log('Clicked cancel button');
-    setVisible(false);
-  };
-
-  
-
     return<div className={styles.main}>
        
 
@@ -153,56 +128,7 @@ targetAmount="9000"
             
           </Col>
         </Row>
-         {/* {cardData.map((data)=>{
-             return(<> */}
-        {/* <div  >
-        <Row justify='center' align='middle' >
-            <Title level={5} style={{color:"rgba(235,33,136,1)"}}>{title}</Title>
-        </Row>
-
-       
-
         
-
-        <Row justify='center' align='middle' gutter={10}>
-           <Col span={8} >
-           <Image src={pic} height={180} width={260} alt="project image"/>
-               <div className={styles.amount}>
-
-                    Target:<br/>{targetAmount} Rs
-                    <Progress 
-                strokeColor="rgba(41,4,142,1)"
-                percent={100} 
-                status={status}/>
-               </div>
-               
-                
-                
-           </Col>
-           <Col span={16} >
-                
-           </Col>
-       </Row>   
-       
-       <Row justify="end" >
-
-
-                <button onClick={()=>handleDonate()}>Donate</button>
-
-       </Row>
-     
-    </div>      
-    <Modal
-        title={title}
-        visible={visible}
-        onOk={handleOk}
-        confirmLoading={confirmLoading}
-        onCancel={handleCancel}
-      >
-        <p>{modalText}</p>
-      </Modal>
-      </>)
-})} */}
     </div>
 }
 

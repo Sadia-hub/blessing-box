@@ -35,7 +35,7 @@ function ImageUpload({
         onChange={onChange}
         maxNumber={maxNumber}
         dataURLKey="data_url"
-        acceptType={["jpg"]}
+        acceptType={["jpg", "pdf"]}
       >
         {({        
           onImageUpload,

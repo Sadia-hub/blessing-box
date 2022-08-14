@@ -1,7 +1,8 @@
- import { SET_USER_INFO, SET_NGO_BY_USER_ID } from "./types"
+ import { SET_USER_INFO, SET_NGO_BY_USER_ID , SET_PROOFS} from "./types"
 
 const initialState = {
-    ngo:{}
+    ngo:{},
+    proofs:[]
 }
 //...state
 
@@ -18,6 +19,8 @@ const detailsReducer = (state=initialState, action) =>{
             return updatedState;
         case SET_NGO_BY_USER_ID:
             return {...state, ngo:action.payload}
+        case SET_PROOFS:
+            return {...state, proofs:action.payload}
 
         
         default:

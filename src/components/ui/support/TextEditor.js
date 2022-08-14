@@ -95,7 +95,7 @@ const content= EditorState.createWithContent(sampleEditorContent)
       
         setEditorState(()=>editorState2)
         var rawJson = convertToRaw(editorState.getCurrentContent());  
-        setData(()=>draftToHtml(rawJson))
+       // setData(()=>draftToHtml(rawJson))
         console.log(draftToHtml(rawJson))
 
     }
