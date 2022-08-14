@@ -155,5 +155,4 @@ function TextEditor({data, setData, defaultContent=""})  {
     
   }
 
-  export default TextEditor
-  
+  export default TextEditor;

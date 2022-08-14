@@ -12,7 +12,7 @@ const Categories = (xs=22, sm=11, md=8, lg=5) =>{
     const details = useSelector((state)=> state.detailsReducer);
     console.log("In details ", details);
     const ngos = details[category]
-    console.log(""+category,ngos);
+    console.log("ngos are "+category,ngos);
     const [pageNo, setPageNo] = useState(0);
     const [pageSize,setPageSize] = useState(10);
   

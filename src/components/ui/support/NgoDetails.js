@@ -12,6 +12,7 @@ import uploadOnCloudinary from './uploadOnCloudinary';
 import { EditorState, convertToRaw, ContentState} from 'draft-js';
 
 import { useEffect, useState } from 'react';
+
 import apiCall from './apiCall';
 
 const NgoDetails = ({  id }) => {
@@ -61,7 +62,6 @@ const NgoDetails = ({  id }) => {
 
 
 
-                        
                     }
                     if(res.projects){
                         setProjects(()=>res.projects);
@@ -133,6 +133,8 @@ const NgoDetails = ({  id }) => {
         catch(err){
             alert("Something went wrong!")
         }
+       
+
     }
 
     return (
@@ -187,7 +189,9 @@ const NgoDetails = ({  id }) => {
             </Row>
 
         </div>
-    )      
+    )
+        
+        
     
 }
 

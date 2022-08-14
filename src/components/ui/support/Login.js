@@ -24,6 +24,11 @@ const Login =() =>{
     const[password, setPassword] =useState();
     const[data, setData] =useState();
 //store pending ngos in redux
+// const details = useSelector((state)=> state.detailsReducer);
+// console.log("In details ", details.education);
+// const ngos = details['education']
+// console.log("ngos are",ngos);
+
 useEffect(()=>{
   apiCall('pendingngos',null, "GET", null, null)
         .then((res)=>{

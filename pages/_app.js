@@ -9,9 +9,9 @@ function MyApp({ Component, pageProps }) {
   return ( 
   <div>
    <Provider store={store}>
-   {/* <PersistGate loading={null} persistor={persistor}> */}
+   <PersistGate loading={null} persistor={persistor}>
    <Component {...pageProps} />
-   {/* </PersistGate> */}
+   </PersistGate>
    </Provider> 
   </div>
 

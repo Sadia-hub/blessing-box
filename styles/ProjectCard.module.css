@@ -1,6 +1,6 @@
 .main{
 
-    width: 260px;
+    width: 95%;
     height:300px;   
     padding:10px;
     margin:5px;
@@ -34,4 +34,3 @@
     justify-content: center;
     color: white;
 }
-

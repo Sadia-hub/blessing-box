@@ -41,4 +41,3 @@ const ProjectDescModal = () => {
 };
 
 export default ProjectDescModal;
-

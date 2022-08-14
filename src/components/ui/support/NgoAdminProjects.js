@@ -60,4 +60,4 @@ function NgoAdminProjects() {
   )
 }
 
-export default NgoAdminProjects
+export default NgoAdminProjects;
