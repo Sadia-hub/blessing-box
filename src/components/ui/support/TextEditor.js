@@ -8,7 +8,7 @@ import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 
 import {Card } from 'antd'
-
+import { useSelector } from 'react-redux';
 import DisplayEditorContent from './DisplayEDitorContent';
 
 const toolbar = {
@@ -42,7 +42,40 @@ const toolbar = {
 
 
 
-const contentBlocks = convertFromHTML('<h1>Hello World</h1><p>Lorem ipsum ' +
+
+
+
+function TextEditor()  {
+
+  // const myState = useSelector((state)=> state.detailsReducer);
+  // const ngos = myState.ngo.ngoDetail["services"]
+ 
+  //const [content, setContent] = useState()
+  
+
+  // useEffect(()=>{
+  //   const ngos = myState.ngo.ngoDetail[key]
+  //   console.log("ngoData", ngos)
+  // },[key])
+
+  
+//   useEffect(()=>{
+
+//     console.log(key)
+//     if(key){
+//       const blocksFromHTML = convertFromHTML(key);
+//     const state = ContentState.createFromBlockArray(
+//       blocksFromHTML.contentBlocks,
+//       blocksFromHTML.entityMap,
+//     );
+
+//   setContent(()=>EditorState.createWithContent(state))
+//     }
+    
+
+// },[key]);
+
+  const contentBlocks = convertFromHTML('<h1>Hello World</h1><p>Lorem ipsum ' +
   'dolor sit amet, consectetur adipiscing elit. Mauris tortor felis, volutpat sit amet ' +
   'maximus nec, tempus auctor diam. Nunc odio elit,  ' +
   'commodo quis dolor in, sagittis scelerisque nibh. ' +
@@ -56,8 +89,6 @@ const contentBlocks = convertFromHTML('<h1>Hello World</h1><p>Lorem ipsum ' +
 const sampleEditorContent = ContentState.createFromBlockArray(contentBlocks);
 const content= EditorState.createWithContent(sampleEditorContent)
 
-
-function TextEditor({data, setData, defaultContent=""})  {
 
      const[ editorState, setEditorState] = useState(EditorState.createEmpty())
     const onEditorStateChange = (editorState2) =>{  

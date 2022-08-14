@@ -1,6 +1,8 @@
-// import { SET_USER_INFO } from "./types"
+ import { SET_USER_INFO, SET_NGO_BY_USER_ID } from "./types"
 
-const initialState = {}
+const initialState = {
+    ngo:{}
+}
 //...state
 
 const detailsReducer = (state=initialState, action) =>{
@@ -14,6 +16,9 @@ const detailsReducer = (state=initialState, action) =>{
             };
             console.log("In redux state is ",updatedState)
             return updatedState;
+        case SET_NGO_BY_USER_ID:
+            return {...state, ngo:action.payload}
+
         
         default:
             return state;

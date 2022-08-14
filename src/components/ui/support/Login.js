@@ -12,6 +12,7 @@ import { getPendingNgo } from '../../../redux/ngo/Action';
 import { useSelector, useDispatch } from 'react-redux';
 import { isLogin,  setUserInfo } from '../../../redux/user/Action';
 import {setContactInfo } from '../../../redux/contact/Action';
+import { setNgoByUserId } from '../../../redux/ngo/Action';
 
 import apiCall from './apiCall';
 
@@ -86,8 +87,25 @@ useEffect(()=>{
           {
             router.push('/superadmin') 
           }
+
           else if(res.user.type=='Ngo'){
-            router.push(`/admin/1`) 
+          /**
+           * If user is of type ngo then:
+           *  store ngo Information based on his/her Id into redux
+           *  route to the page for admin
+           */
+
+              apiCall(`ngo/user/${res.user.id}`,null, "GET", null, null)
+              .then((res)=>{
+                console.log("ngo by user id",res)
+                dispatch(setNgoByUserId(res))
+                router.push(`/admin/${res.ngo.id}`) 
+              })
+              .catch((err)=>{
+                console.log(err.message)
+              })
+              
+                
           }
           else{
             router.push('/')
