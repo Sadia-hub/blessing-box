@@ -39,11 +39,9 @@ const NgoDetails = ({  id }) => {
 
         useEffect(()=>{
         
-        
-
             apiCall(`ngo/${id}`,null, "GET", null, null)
             .then((res)=>{
-            console.log(res)
+            console.log("res",res)
             if(res.success){
 
                     // const {ngo, ngoDetail} = ngo;
@@ -147,13 +145,11 @@ const NgoDetails = ({  id }) => {
             <Row justify="center" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} className={styles.container}>
 
                 <Col lg={{ span: 6 }} md={{ span: 6 }} sm={{ span: 24 }} className={styles.sideBar} justify="center">
-                    <NgoSidebar ngo={ngo} logo={logo} setLogo={setLogo} imageUrl={imageUrl}/>
+                        <NgoSidebarUser ngo={ngo} image={imageUrl}/>
                 </Col>
 
 
                 <Col lg={{ span: 18 }} md={{ span: 18 }} sm={{ span: 24 }} justify="center">
-
-                
 
                     <Row justify="start" id="about">
 

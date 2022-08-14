@@ -86,7 +86,7 @@ useEffect(()=>{
           {
             router.push('/superadmin') 
           }
-          else if(res.user.type=='n go'){
+          else if(res.user.type=='Ngo'){
             router.push(`/admin/1`) 
           }
           else{
