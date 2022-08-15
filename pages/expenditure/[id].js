@@ -1,5 +1,11 @@
-import React from 'react'
+import React,{useMemo, useState} from 'react'
 import CustomLayout from '../../src/components/layouts/customLayout';
+import { useSelector } from 'react-redux';
+import LeftMenu from '../../src/components/layouts/NgosNavbar';
+import style from '../../styles/queriestable.module.css';
+import { useTable, usePagination } from 'react-table';
+import { Button, Row, Typography } from 'antd';
+import { useRouter } from 'next/router'
 const Columns = [  
     {
         Header: 'Project Id',
@@ -15,19 +21,28 @@ const Columns = [
    },   
    {
      Header: 'View Report',
-     accessor: 'anchor' 
+     accessor: 'document' 
    } 
   
 ];
-const projects = useSelector((state)=>state.detailsReducer.ngo.projects)
-   
-        var details = projects.map(({id, title, target})=>{ 
-           return {
+
+function Id() {
+
+    const router = useRouter()
+
+    
+    const projects = useSelector((state)=>state.detailsReducer.proofs.projects)
+  
+        var details = projects.map(({id,ngoId, title, target, proof})=>{ 
+          if(ngoId==router.query.id){
+            return {
               id,
               title,
               target,
-             input:  <div><input type="file" name="file" onChange={uploadFile} style={{marginLeft: 30}}/><Button onClick={()=>showConfirm(id)}>Upload</Button></div>,            
+              document:  <Button onClick={()=>{window.open(proof.document,'_blank')}}>View</Button>           
            }
+          }
+           
          })   
 
            const columns = useMemo(()=> Columns, [])
@@ -41,10 +56,17 @@ const projects = useSelector((state)=>state.detailsReducer.ngo.projects)
           state, prepareRow, page } = tableInstance;
           
 
-function Expenditure() {
   return (
     <CustomLayout>
-    <div>Expenditure</div>
+    <div style={{paddingTop:"80px"}}>
+    
+    <LeftMenu />
+    </div>
+
+    <Row align="middle" justify="center">
+                <Typography.Title ellipsis> Expenditure Reports </Typography.Title>
+    </Row>
+
     <table className={style.table} {...getTableProps()}>
              <thead className={style.table_heading}>
                {
@@ -79,4 +101,4 @@ function Expenditure() {
   )
 }
 
-export default Expenditure
+export default Id
