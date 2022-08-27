@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 import styles from '../../../../styles/ProjectCard.module.css';
-
+import apiCall from './apiCall';
 // const cardData={title:'',url:'',desc:'',status:"active",percent:90,targetAmount:''}
 const ProjectCard=({
 // cardData,
@@ -32,12 +32,57 @@ targetAmount="9000"
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [modalText, setModalText] = useState();
     const[close,setClose]=useState(false);
+    const[data, setData] = useState(0);
     const [inputValue, setInputValue] = useState(300);
 
     const onChange = (newValue) => {
       setInputValue(newValue);
     };
     
+
+  //Server Sent Events
+    //useEffect(() => {
+      const handleServerSentEvents = () => { 
+      const fetchData = new EventSource(`http://localhost:8080/sse`) 
+        fetchData.addEventListener('open', () => {
+          console.log("Connection made ");
+        });
+  
+        fetchData.addEventListener('message', (e) => {
+          console.log(e.data);
+          const data = JSON.parse(e.data);
+          setData(data);
+           
+        });
+  
+        fetchData.addEventListener('error', (e) => {
+          console.error('Error: ',  e);
+        });
+        return () => {
+          fetchData.close();
+        };
+         
+    }  
+    
+    //[]);
+
+// const body ={
+//   donation: inputValue,
+//   date  : '03-5-2022  ',
+//   projectId: 1,
+//   userId:1
+
+// }   
+//     const postDonation = () => {
+//       apiCall('adddonation', JSON.stringify(body), "POST", null, null)
+//       .then((res)=>{
+//         console.log("res of contact is",res)
+//       })
+//       .catch((err)=>{
+//         console.log(err.message)
+//       })
+//     }
+
     const handleDonate = () =>{
         fetch("http://localhost:8080/create-checkout-session", {
           method: "POST",
@@ -51,50 +96,30 @@ targetAmount="9000"
           }),
         })
           .then(res => {
-            if (res.ok) return res.json()
+            if (res.ok) {  
+              
+              return res.json() }
             return res.json().then(json => Promise.reject(json))
           })
           .then(({ url }) => {
-            console.log(account_id)
+            console.log(account_id )
             const ody=JSON.stringify({
               account_id, 
               donation:inputValue, 
               projectId
             }
-            )
-            console.log("ody", ody)
+            ) 
+               console.log("ody", ody)
             window.open(url)
+            // handleServerSentEvents ();
           })
           .catch(e => {
             console.error(e.error)
           })
+
       }
 
-    const handleClose=()=>{
-       setClose(true);
-       setVisible(false);
-    }
-
-    const showModal = () => {
-        setVisible(true);
-    };
-
-    const handleOk = () => {
-        setModalText(desc);
-        setConfirmLoading(true);
-        setTimeout(() => {
-        setVisible(false);
-        setConfirmLoading(false);
-        }, 2000);
-    };
-
-  const handleCancel = () => {
-    console.log('Clicked cancel button');
-    setVisible(false);
-  };
-
-  
-
+      console.log(data)
     return<div className={styles.main}>
        
 
@@ -105,7 +130,7 @@ targetAmount="9000"
               <Row justify='center'> Target: {targetAmount} Rs</Row>
               <Progress 
                 strokeColor="rgba(41,4,142,1)"
-                percent={100} 
+                percent={data} 
                 status={status}/>
                
           </Col>
@@ -153,49 +178,7 @@ targetAmount="9000"
             
           </Col>
         </Row>
-         {/* {cardData.map((data)=>{
-             return(<> */}
-        {/* <div  >
-        <Row justify='center' align='middle' >
-            <Title level={5} style={{color:"rgba(235,33,136,1)"}}>{title}</Title>
-        </Row>
-       
         
-        <Row justify='center' align='middle' gutter={10}>
-           <Col span={8} >
-           <Image src={pic} height={180} width={260} alt="project image"/>
-               <div className={styles.amount}>
-                    Target:<br/>{targetAmount} Rs
-                    <Progress 
-                strokeColor="rgba(41,4,142,1)"
-                percent={100} 
-                status={status}/>
-               </div>
-               
-                
-                
-           </Col>
-           <Col span={16} >
-                
-           </Col>
-       </Row>   
-       
-       <Row justify="end" >
-                <button onClick={()=>handleDonate()}>Donate</button>
-       </Row>
-     
-    </div>      
-    <Modal
-        title={title}
-        visible={visible}
-        onOk={handleOk}
-        confirmLoading={confirmLoading}
-        onCancel={handleCancel}
-      >
-        <p>{modalText}</p>
-      </Modal>
-      </>)
-})} */}
     </div>
 }
 

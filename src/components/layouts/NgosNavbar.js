@@ -1,8 +1,9 @@
 import 'antd/dist/antd.css';
 import styles from '../../../styles/NgosNavbar.module.css';
 import Link from "next/link";
+import {Button} from 'antd'
 
-function LeftMenu(){
+function LeftMenu({ngoId=1}){
     return(<>
   
     <nav className={styles.navbar}>
@@ -32,8 +33,11 @@ function LeftMenu(){
         </li>
 
         <li>
-        <Link href="">
-          <a>Impact</a>
+
+          
+        <Link href={`/expenditure/${ngoId}`}>
+
+          <a>Expenditure Report</a>
         </Link>
         </li>
       </ul>

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useRouter } from 'next/router'
+import ImageUpload from './ImageUpload'
 
 const NgoSidebarUser = ({ngo, image}) =>{
 

@@ -6,7 +6,7 @@ import { Form, Input } from 'antd';
 import { Typography } from 'antd';
 import styles from '../../../../styles/login.module.css';
 import { CustomButton } from '../buttons/buttons';
-import { getPendingNgo } from '../../../redux/ngo/Action'; 
+import { getPendingNgo, setNgoByUserId } from '../../../redux/ngo/Action'; 
 
 //redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -92,7 +92,17 @@ useEffect(()=>{
               router.push('/superadmin') 
             }
             else if(res.user.type=='ngo'){
-              router.push(`/admin/1`) 
+             
+              apiCall(`ngo/user/${res.user.id}`,null, "GET", null, null)
+              .then((res)=>{
+                console.log("ngo by user id",res)
+                dispatch(setNgoByUserId(res))
+                router.push(`/admin/${res.ngo.id}`) 
+              })
+              .catch((err)=>{
+                console.log(err.message)
+              })
+              // router.push(`/admin/1`) 
             }
             else{
               router.push('/')

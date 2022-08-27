@@ -8,7 +8,7 @@ import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
 
 import {Card } from 'antd'
-
+import { useSelector } from 'react-redux';
 import DisplayEditorContent from './DisplayEDitorContent';
 
 const toolbar = {
@@ -41,71 +41,68 @@ const toolbar = {
 }
 
 
-function TextEditor({data, setData, defaultContent=""})  {
 
-  const [content, setContent] = useState();
-  useEffect(()=>{
 
-    if(data){
-      const blocksFromHtml = convertFromHTML('<p>hello world </p>');
-      const { contentBlocks, entityMap } = blocksFromHtml;
-      const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
 
-     // console.log(contentState)
-      // const editorState= EditorState.createWithContent(contentState);
+
+function TextEditor()  {
+
+  // const myState = useSelector((state)=> state.detailsReducer);
+  // const ngos = myState.ngo.ngoDetail["services"]
+ 
+  //const [content, setContent] = useState()
   
-      // var rawJson = convertToRaw(editorState.getCurrentContent()); 
-      // var data =  Object.assign({}, rawJson);
-      // var content = convertFromRaw(data);
-      //setContent(()=>EditorState.createWithContent(content));
 
-      setContent(()=>contentState)
-    }
-   
+  // useEffect(()=>{
+  //   const ngos = myState.ngo.ngoDetail[key]
+  //   console.log("ngoData", ngos)
+  // },[key])
 
-  },[data]);
+  
+//   useEffect(()=>{
+
+//     console.log(key)
+//     if(key){
+//       const blocksFromHTML = convertFromHTML(key);
+//     const state = ContentState.createFromBlockArray(
+//       blocksFromHTML.contentBlocks,
+//       blocksFromHTML.entityMap,
+//     );
+
+//   setContent(()=>EditorState.createWithContent(state))
+//     }
+    
+
+// },[key]);
+
+  const contentBlocks = convertFromHTML('<h1>Hello World</h1><p>Lorem ipsum ' +
+  'dolor sit amet, consectetur adipiscing elit. Mauris tortor felis, volutpat sit amet ' +
+  'maximus nec, tempus auctor diam. Nunc odio elit,  ' +
+  'commodo quis dolor in, sagittis scelerisque nibh. ' +
+  'Suspendisse consequat, sapien sit amet pulvinar  ' +
+  'tristique, augue ante dapibus nulla, eget gravida ' +
+  'turpis est sit amet nulla. Vestibulum lacinia mollis  ' +
+  'accumsan. Vivamus porta cursus libero vitae mattis. ' +
+  'In gravida bibendum orci, id faucibus felis molestie ac.  ' +
+  'Etiam vel elit cursus, scelerisque dui quis, auctor risus.</p>');
+
+const sampleEditorContent = ContentState.createFromBlockArray(contentBlocks);
+const content= EditorState.createWithContent(sampleEditorContent)
 
 
-
-    const[ editorState, setEditorState] = useState(EditorState.createEmpty())
-
-    const [editedData, setEditedData] = useState();
-    //stores editor content in json format suitable to be stored in the database
-   
-    //to toggle between edit and preview buttons
-    const [toggle, setToggle] = useState(true);
-
-
-
-    //toggler function
-    const toggleButton = () =>{
-        setToggle((prev)=>!prev);
-    }
-
-    //if true editor text wont be rendered for preview
-    const isEmpty = obj => {
-        for (var key in obj) {
-          if (obj.hasOwnProperty(key)) return false;
-        }
-        return true;
-      };
-
-
-    const onEditorStateChange = (editorState) =>{  
-        
-        setEditorState(()=>editorState)
+     const[ editorState, setEditorState] = useState(EditorState.createEmpty())
+    const onEditorStateChange = (editorState2) =>{  
+      
+        setEditorState(()=>editorState2)
         var rawJson = convertToRaw(editorState.getCurrentContent());  
-        setData(()=>draftToHtml(rawJson))
+       // setData(()=>draftToHtml(rawJson))
+        console.log(draftToHtml(rawJson))
 
     }
 
       return (
         <>
-        
-        {toggle?(
             <div style={{width:"95%"}}>
-            {/* <button onClick={toggleButton}>Preview</button> */}
-
             <div style={{
               width:"98%", 
               padding: "5px",
@@ -118,13 +115,13 @@ function TextEditor({data, setData, defaultContent=""})  {
                     minHeight:400
                   }}
                 >
-
                     <Editor
-                      editorState={editorState}
+                     
                       wrapperClassName="demo-wrapper"
+                      editorClassName="demo-editor"
                       onEditorStateChange={onEditorStateChange}
                       toolbar={toolbar}
-                      toolbarOnFocus
+
                       defaultEditorState={content}
                     />
                 </Card>
@@ -132,20 +129,7 @@ function TextEditor({data, setData, defaultContent=""})  {
 
             </div>
             </div>
-        ):(<div style={{width:"95%"}}   >
-            {isEmpty(data) ? (
-                        <EditOutlined 
-                        style={{fontSize:30}}
-                        onClick={toggleButton}/>
-                       ) : (
-                        <div>
-                        <EditOutlined 
-                        style={{fontSize:30}}
-                        onClick={toggleButton}/>
-                            <DisplayEditorContent value={data} />
-                        </div>
-                       )}
-             </div>)}
+        
         
         
        

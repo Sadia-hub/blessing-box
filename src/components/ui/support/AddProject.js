@@ -7,14 +7,19 @@ import ImageUpload from './ImageUpload';
 import apiCall from './apiCall';
 import uploadOnCloudinary from './uploadOnCloudinary';
 import ProjectCard from "./ProjectCard"
+import {useSelector} from 'react-redux'
 
 
 function AddProject() {
 
+    const ngoByUserId = useSelector((state)=> state.detailsReducer.ngo);
+
+    console.log(ngoByUserId)
     const [title, setTitle] = useState();
     const [image, setImage] = useState({});
     const [desc, setDesc] = useState();
     const [targetAmount, setTargetAmount] = useState(0);
+     
     const [visible, setVisible] = useState(false);
 
 
@@ -27,10 +32,9 @@ function AddProject() {
     }
 
     const handleSubmit = (e) => {
-        
+    
         console.log(e)
-
-    };
+     };
   
 
     const onFinish = (values) => {
@@ -44,28 +48,30 @@ function AddProject() {
         console.log('Failed:', errorInfo);
     };
 
-    
-    const uploadProject = () =>{
+     
 
-        const imageurl = uploadOnCloudinary(image.file);
-        console.log(imageurl)
+    
+    const uploadProject = async () =>{
+         const imageurl = await uploadOnCloudinary(image.file);
+
         const body = {
             title,
             imageurl,
             target:targetAmount,
             description:desc,
-            ngoId:1
+            ngoId:ngoByUserId.ngo.id
         }
 
-        console.log(body)
+        console.log("body",body)
         const token = localStorage.getItem("token")
         console.log(token)
+
         apiCall(`ngo/addproject`,JSON.stringify(body), "POST", null, token)
         .then((res)=>{
-            console.log("res is", res)
+            console.log(res)
             setVisible(false)
             if(res.id){
-                
+                setprojectID(res.id)
                 Modal.success({
                     content: 'Congratulations! your project has been added',
                 });
@@ -76,6 +82,8 @@ function AddProject() {
                     content: 'Something went wrong, check all data is provided as asked',
                 });
             }
+            
+
                
             
         })
@@ -100,7 +108,7 @@ function AddProject() {
        
 
         <Row>
-            <Col span={12}>
+            <Col span={10}>
 
             <Row justify='center'>
             <Modal

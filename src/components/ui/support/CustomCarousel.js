@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import { Row, Col } from 'antd';
 import {Button} from 'antd'; 
 import { useSelector, useDispatch } from 'react-redux';
-import { setNGOInfo } from '../../../redux/ngo/Action';
+import { setNGOInfo, setProofs } from '../../../redux/ngo/Action';
 import apiCall from './apiCall';
 import { Typography } from 'antd';
 
@@ -37,7 +37,7 @@ const CustomCarousel = () => {
   }
 
   useEffect(()=> {
-    async function getDetails(){
+    // async function getDetails(){
       apiCall('ngodetails',null, "GET", null, null)
       .then((res)=>{
         console.log(res)
@@ -47,9 +47,20 @@ const CustomCarousel = () => {
       .catch((err)=>{
         console.log(err.message)
       })
-    } 
-    getDetails();
+
+      
+      apiCall('proof',null, "GET", null, null)
+      .then((res)=>{
+        console.log("proofs", res)
+        dispatch(setProofs(res))
+      })
+      .catch((err)=>{console.log(err.message)})
+    // } 
+    // getDetails();
   },[])
+  
+
+  //proofs
   
   const contactInfo = useSelector((state)=>state.contactReducer)
    console.log(contactInfo)
