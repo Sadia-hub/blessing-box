@@ -42,27 +42,27 @@ targetAmount="9000"
 
   //Server Sent Events
     //useEffect(() => {
-      const handleServerSentEvents = () => { 
-      const fetchData = new EventSource(`http://localhost:8080/sse`) 
-        fetchData.addEventListener('open', () => {
-          console.log("Connection made ");
-        });
+    //   const handleServerSentEvents = () => { 
+    //   const fetchData = new EventSource(`http://localhost:8080/sse`) 
+    //     fetchData.addEventListener('open', () => {
+    //       console.log("Connection made ");
+    //     });
   
-        fetchData.addEventListener('message', (e) => {
-          console.log(e.data);
-          const data = JSON.parse(e.data);
-          setData(data);
+    //     fetchData.addEventListener('message', (e) => {
+    //       console.log(e.data);
+    //       const data = JSON.parse(e.data);
+    //       setData(data);
            
-        });
+    //     });
   
-        fetchData.addEventListener('error', (e) => {
-          console.error('Error: ',  e);
-        });
-        return () => {
-          fetchData.close();
-        };
+    //     fetchData.addEventListener('error', (e) => {
+    //       console.error('Error: ',  e);
+    //     });
+    //     return () => {
+    //       fetchData.close();
+    //     };
          
-    }  
+    // }  
     
     //[]);
 
@@ -83,41 +83,39 @@ targetAmount="9000"
 //       })
 //     }
 
-    const handleDonate = () =>{
-        fetch("http://localhost:8080/create-checkout-session", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            account_id, 
-            donation:inputValue, 
-            projectId
-          }),
-        })
-          .then(res => {
-            if (res.ok) {  
-              
-              return res.json() }
-            return res.json().then(json => Promise.reject(json))
-          })
-          .then(({ url }) => {
-            console.log(account_id )
-            const ody=JSON.stringify({
-              account_id, 
-              donation:inputValue, 
-              projectId
-            }
-            ) 
-               console.log("ody", ody)
-            window.open(url)
-            // handleServerSentEvents ();
-          })
-          .catch(e => {
-            console.error(e.error)
-          })
-
+const handleDonate = async() =>{
+  fetch("http://localhost:8080/create-checkout-session", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      account_id, 
+      donation:inputValue, 
+      projectId
+    }),
+  })
+    .then(res => {
+      if (res.ok) return res.json()
+      return res.json().then(json => Promise.reject(json))
+    })
+    .then(({ url }) => {
+      console.log(account_id)
+      const ody=JSON.stringify({
+        account_id, 
+        donation:inputValue, 
+        projectId
       }
+      )
+      console.log("ody", ody)
+      // window.open(url)
+      window.open(`http://localhost:3000/blessings/${inputValue}`)
+      console.log(url)
+    })
+    .catch(e => {
+      console.error(e.error)
+    })
+}
 
       console.log(data)
     return<div className={styles.main}>
@@ -130,7 +128,7 @@ targetAmount="9000"
               <Row justify='center'> Target: {targetAmount} Rs</Row>
               <Progress 
                 strokeColor="rgba(41,4,142,1)"
-                percent={data} 
+                percent={percent} 
                 status={status}/>
                
           </Col>

@@ -1,14 +1,46 @@
 import React from 'react'
-import { useRouter } from 'next/router'
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import CustomLayout from '../../src/components/layouts/customLayout';
+import {Row, Col } from 'antd';
+import apiCall from '../../src/components/ui/support/apiCall';
 
-function Id() {
-
+const  Id = () => {
     const router = useRouter()
-    const { donation } = router.query
+    const   donation    = router.query.inputValue;
 
+//     const body ={
+//     donation: donation,
+//     date  : '2018-06-22 07:07:54',
+//     projectId, 
+//     userId:1
+//  }
+
+//  console.log("res of donation is",300)
+//  useEffect(() => {   
+//    apiCall('adddonation', JSON.stringify(body), "POST", null, null)
+//       .then((res)=>{
+//         console.log("res of donation is",res)
+//       })
+//       .catch((err)=>{
+//         console.log("res of donation is",err.message)
+//       })
+      
+//   }, [])
   return (
-    <div><h1>Congratulations, You earned 100's of Blessings just in {donation} Rupees</h1></div>
+    <>
+      {/* <Row justify='center'>
+      <p>Congratulations, You earned 100's of Blessings just in  Rupees</p>
+      </Row> */}
+
+  <CustomLayout>
+  <p>Congratulations, You earned 100's of Blessings just in  Rupees</p>
+    </CustomLayout>
+    
+      </>
   )
 }
 
 export default Id
+
+  

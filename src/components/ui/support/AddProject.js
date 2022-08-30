@@ -71,7 +71,7 @@ function AddProject() {
             console.log(res)
             setVisible(false)
             if(res.id){
-                setprojectID(res.id)
+                 
                 Modal.success({
                     content: 'Congratulations! your project has been added',
                 });

@@ -91,9 +91,7 @@ const NgoDesc = () => {
                         <div style={{width:"95%"}}> <DisplayEditorContent value={ngos[0].projects}/></div>
                     </Row>
 
-                    
-                    
-
+ 
                     <Row justify="center">
                         {
                             projects.map((project)=>{
@@ -103,6 +101,7 @@ const NgoDesc = () => {
                                 targetAmount={project.target}
                                 desc={project.description}
                                 projectId={project.id}
+                                percent={project.amountRecieved}
                                 account_id={ngos[0].account_id}
                                 />
                             })
