@@ -1,4 +1,4 @@
-import Image from "next/Image";
+import Image from "next/image";
 
 export const MyImage=({src,width,height,layout})=>{
     return(<>

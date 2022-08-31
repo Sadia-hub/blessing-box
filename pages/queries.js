@@ -2,7 +2,7 @@ import { Layout } from 'antd';
 const {  Content} = Layout;
 import QueriesTable from '../src/components/ui/support/QueriesTable';
 import CustomFooter from '../src/components/layouts/footer';
-import SuperAdminNavbar from '../src/components/layouts/superAdminNavbar'; 
+import SuperAdminNavbar from '../src/components/layouts/SuperAdminNavbar'; 
 const queries = () =>{
     return ( 
         <Layout className="layout">

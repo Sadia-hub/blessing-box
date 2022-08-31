@@ -109,7 +109,7 @@ const handleDonate = async() =>{
       )
       console.log("ody", ody)
       // window.open(url)
-      window.open(`http://localhost:3000/blessings/${inputValue}`)
+      window.open(url )
       console.log(url)
     })
     .catch(e => {

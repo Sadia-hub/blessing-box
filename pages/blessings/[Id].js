@@ -7,7 +7,7 @@ import apiCall from '../../src/components/ui/support/apiCall';
 
 const  Id = () => {
     const router = useRouter()
-    const   donation    = router.query.inputValue;
+ //   const   donation    = router.query.inputValue;
 
 //     const body ={
 //     donation: donation,
@@ -33,9 +33,9 @@ const  Id = () => {
       <p>Congratulations, You earned 100's of Blessings just in  Rupees</p>
       </Row> */}
 
-  <CustomLayout>
-  <p>Congratulations, You earned 100's of Blessings just in  Rupees</p>
-    </CustomLayout>
+  {/* <CustomLayout> */}
+  <p>Congratulations, You earned 100's of Blessings just in in innnn Rupees</p>
+    {/* </CustomLayout> */}
     
       </>
   )
