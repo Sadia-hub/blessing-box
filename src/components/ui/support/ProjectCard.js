@@ -22,7 +22,7 @@ targetAmount="9000"
             setStatus("success");
         }
     },[]);
-
+ 
     const { Title } = Typography;
     // const [status, setStatus] = useState("active");
     // const [percent, setPercent] =useState(90);

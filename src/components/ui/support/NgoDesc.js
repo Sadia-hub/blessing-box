@@ -22,8 +22,7 @@ const NgoDesc = () => {
 
     //fetching ngo details for donor 
     useEffect(()=>{
-        
-        apiCall(`ngo/${id}`,null, "GET", null, null)
+         apiCall(`ngo/${id}`,null, "GET", null, null)
         .then((res)=>{
         console.log(res)
         if(res.success){
@@ -32,9 +31,9 @@ const NgoDesc = () => {
                 if(res.ngoDetail){
                    setNgoDetail(()=>res.ngoDetail)
                 }
-                if(res.projects){
-                    setProjects(()=>res.projects);
-                }      
+                // if(res.projects){
+                //     setProjects(()=>res.projects);
+                // }      
         }        
         })
         .catch((err)=>{
@@ -42,6 +41,30 @@ const NgoDesc = () => {
         })       
     },[id]);
 
+    
+    //Server Sent Events
+    useEffect(() => {
+        const fetchData = new EventSource(`http://localhost:8080/sse/${id}  `) 
+          fetchData.addEventListener('open', () => {
+            console.log("Connection made ");
+          });
+    
+          fetchData.addEventListener('message', (e) => {
+            console.log(e.data);
+            const data = JSON.parse(e.data);
+            setProjects(()=>data);
+          });
+    
+          fetchData.addEventListener('error', (e) => {
+            console.error('Error: ',  e);
+          });
+          return () => {
+            fetchData.close();
+          };
+           
+      }, []);
+   
+ 
     const myState = useSelector((state)=> state.detailsReducer);
     const ngos = myState[category].filter((ngo)=>ngo.ngo.id==id)
 
