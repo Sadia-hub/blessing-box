@@ -84,11 +84,11 @@ const GetPendingNgos = () => {
           ngoName: ngo.name,
           approve:    <CustomButton  label="Approve" className={style.approve} onClick={()=>approveNgo(ngo.id, 1)} disabled={false} shape='round'/>,    
           disapprove: <CustomButton label="Disapprove" className={style.disApprove} onClick={()=>approveNgo( ngo.id, 0)} disabled={false} shape='round'/>,      
-          view:      <CustomButton label="View NGO" className={style.view} onClick={()=>router.push(`blessing/donation/300/project/1`) } disabled={false} shape='round'/>,
+          view:      <CustomButton label="View NGO" className={style.view} onClick={()=>router.push(`viewngo/${ngo.id}`) } disabled={false} shape='round'/>,
           certificate: <CustomButton label="View Certificate" className={style.view} onClick={()=>window.open(ngo.certificate) } disabled={false} shape='round'/>
         }
       }) 
-      //  //()=>router.push(`product/1/review/1`)  `viewngo/${ngo.id}`
+      //    `viewngo/${ngo.id}`
       console.log("details are",details)
       
         const columns = useMemo(()=> Columns, [])

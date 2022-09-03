@@ -5,38 +5,49 @@
  function Project() {
     const router = useRouter()
     const {donationId, projectId} =router.query;
+    console.log(router.query.donationId)
        
     const body ={
-    donation: donationId,
+    donation: router.query.donationId,
     date  : '2018-06-22 07:07:54',
     projectId : projectId, 
     userId:1
    }
 
-   useEffect(()=>{
-   
-   apiCall('adddonation', JSON.stringify(body), "POST", null, null)
+   {  donationId? 
+     useEffect(()=>{
+    apiCall('adddonation', JSON.stringify(body), "POST", null, null)
       .then((res)=>{
-        console.log("res of donation is",res)
+        console.log("res of donation is",res.donation )
+        if(res.donation){
+    apiCall(`getdonation/${projectId}`, null, "GET", null, null)
+         .then((res)=>{
+           console.log("res of donation is",res)
+         })
+         .catch((err)=>{
+           console.log("res of donation is",err.message)
+        })  
+        }
       })
       .catch((err)=>{
         console.log("res of donation is",err.message)
       })
-    
-  }, [])
+     }, []) : ''
+  }
 
-  useEffect(() => {   
-    apiCall(`getdonation/${projectId}`, null, "GET", null, null)
-       .then((res)=>{
-         console.log("res of donation is",res)
-       })
-       .catch((err)=>{
-         console.log("res of donation is",err.message)
-       })  
+  // useEffect(() => {   
+  //   apiCall(`getdonation/${projectId}`, null, "GET", null, null)
+  //      .then((res)=>{
+  //        console.log("res of donation is",res)
+  //      })
+  //      .catch((err)=>{
+  //        console.log("res of donation is",err.message)
+  //      })  
        
-   }, [])
+  //  }, [])
 
     return (
+     
         <div><h1>Congratulations, You earned 100's of Blessings just in {donationId} Rupees</h1></div>
       )
 } 
