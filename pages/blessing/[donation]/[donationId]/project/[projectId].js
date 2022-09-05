@@ -1,12 +1,11 @@
  import apiCall from '../../../../../src/components/ui/support/apiCall';
  import { useRouter } from 'next/router';
- import { useEffect, useState } from 'react';
+ import { useEffect, useState, useMemo } from 'react';
   
  function Project() {
     const router = useRouter()
     const {donationId, projectId} =router.query;
-    console.log(router.query.donationId)
-       
+    
     const body ={
     donation: router.query.donationId,
     date  : '2018-06-22 07:07:54',
@@ -14,8 +13,9 @@
     userId:1
    }
 
-   {  donationId? 
+   
      useEffect(()=>{
+      if(donationId) { 
     apiCall('adddonation', JSON.stringify(body), "POST", null, null)
       .then((res)=>{
         console.log("res of donation is",res.donation )
@@ -32,19 +32,10 @@
       .catch((err)=>{
         console.log("res of donation is",err.message)
       })
-     }, []) : ''
-  }
-
-  // useEffect(() => {   
-  //   apiCall(`getdonation/${projectId}`, null, "GET", null, null)
-  //      .then((res)=>{
-  //        console.log("res of donation is",res)
-  //      })
-  //      .catch((err)=>{
-  //        console.log("res of donation is",err.message)
-  //      })  
-       
-  //  }, [])
+    }
+     }, [donationId]) 
+     
+ 
 
     return (
      
