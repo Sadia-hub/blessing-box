@@ -8,11 +8,11 @@ function LeftMenu({ngoId=1}){
   
     <nav className={styles.navbar}>
       <ul className={styles.menulist}>
-        <li>
+        {/* <li>
         <Link href="/ngodetails">
           <a>Chippa NGO</a>
         </Link>
-        </li>
+        </li> */}
 
         <li>
         <Link href="#about">

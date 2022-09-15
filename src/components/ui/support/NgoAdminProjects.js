@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-
+import { useSelector } from 'react-redux'
 
 import apiCall from './apiCall'
 
@@ -14,11 +14,12 @@ function NgoAdminProjects() {
 
     //stores projects list
     const [projects, setProjects] = useState([]);
-
+    const ngoId= useSelector((state)=>state.detailsReducer.ngo.ngo.id )
+    console.log('ngo data is',ngoId)
     //performs fetching from api 
     useEffect(()=>{
 
-        apiCall(`ngos/1/project`,null, "GET", null, null)
+        apiCall(`ngos/${ngoId}/project`,null, "GET", null, null)
         .then((res)=>{
             setProjects(()=>res.ngoProjects)        
         })
