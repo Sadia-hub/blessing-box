@@ -51,7 +51,7 @@ function NgoAdminProjects() {
                                       <ProjectCard
                                         title={project.title}
                                         traget={project.target}
-                                        pic={project.pic}
+                                        pic={project.imageurl}
                                         desc={project.description}
                                     />
                                 </Col>

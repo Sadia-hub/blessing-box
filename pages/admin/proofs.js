@@ -120,7 +120,7 @@ const showConfirm = (projectId) => {
 <Button disabled={disabled} onClick={()=>uploadReport()}>Upload</Button>
 
 const projects = useSelector((state)=>state.detailsReducer.ngo.projects)
-const updatedProject = projects.filter((project)=>project.target<=project.amountRecieved);
+const updatedProject = projects.filter((project)=>project.amountRecieved >= 100);
 console.log("projects", projects)
    
         var details = updatedProject.map(({id, title, target})=>{ 

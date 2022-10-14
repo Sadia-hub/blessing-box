@@ -118,7 +118,7 @@ const handleDonate = async() =>{
 }
 
       console.log(data)
-    return<div className={styles.main} style={{width:"600px", background:"rgba(42, 5, 143, 0.75)", color:"white"}}>
+    return<div className={styles.main} style={{width:"700px", background:"rgba(42, 5, 143, 0.75)", color:"white"}}>
        
 
         <Row justify='center'>

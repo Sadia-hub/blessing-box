@@ -119,7 +119,7 @@ const NgoDesc = () => {
                     <Row justify="center">
                         {
                             projects.map((project)=>{
-                                return <> <Col>{project.target > project.amountRecieved ?<ProjectCard 
+                                return <> <Col>{project.amountRecieved <100?<ProjectCard 
                                 title={project.title}
                                 pic={project.imageurl}
                                 targetAmount={project.target}

@@ -39,7 +39,15 @@
 
     return (
      
-        <div><h1>Congratulations, You earned 100's of Blessings just in {donationId} Rupees</h1></div>
+      <div>
+      <div style={{marginLeft: "500px"}}>
+      <Image 
+        height={350}
+        width={350}
+        src="/BlessingBox.png"
+        className=''></Image>
+        </div>
+    <h1 style={{textAlign:"center" }}>Congratulations, You earned 100's of Blessings just in {donationId} Rupees</h1></div>
       )
 } 
 
