@@ -84,7 +84,7 @@ const NgoDesc = () => {
                 <Title className={styles.title} ellipsis>{ ngo.name} </Title>
             </Row>
             <Row justify='center'>
-                <LeftMenu />
+                <LeftMenu/>
             </Row>
             <Row justify="center" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} className={styles.container}>
 

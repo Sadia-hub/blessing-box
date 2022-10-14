@@ -153,7 +153,7 @@ const handleDonate = async() =>{
                             max={targetAmount}
                             onChange={onChange}
                             value={typeof inputValue === 'number' ? inputValue : 0}
-                            trackStyle={{color:"blue"}}
+                            trackStyle={{color:"pink"}}
                           />
                         </Col>
                         <Col span={4}>

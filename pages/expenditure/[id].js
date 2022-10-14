@@ -6,6 +6,7 @@ import style from '../../styles/queriestable.module.css';
 import { useTable, usePagination } from 'react-table';
 import { Button, Row, Typography } from 'antd';
 import { useRouter } from 'next/router'
+
 const Columns = [  
     {
         Header: 'Project Id',
@@ -32,9 +33,9 @@ function Id() {
 
     
     const projects = useSelector((state)=>state.detailsReducer.proofs.projects)
-  
+    console.log("details", projects)
         var details = projects.map(({id,ngoId, title, target, proof})=>{ 
-          if(ngoId==router.query.id){
+          if(true){
             return {
               id,
               title,
@@ -45,6 +46,7 @@ function Id() {
            
          })   
 
+         
            const columns = useMemo(()=> Columns, [])
            const data = useMemo(()=> details, [projects])
 

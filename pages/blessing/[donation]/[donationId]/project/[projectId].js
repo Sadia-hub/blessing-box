@@ -1,7 +1,7 @@
  import apiCall from '../../../../../src/components/ui/support/apiCall';
  import { useRouter } from 'next/router';
  import { useEffect, useState, useMemo } from 'react';
-  
+ import Image from 'next/image';
  function Project() {
     const router = useRouter()
     const {donationId, projectId} =router.query;
