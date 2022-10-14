@@ -44,10 +44,11 @@ function NgoAdminProjects() {
                 <h3>Add Project</h3>
         </Row>
          <Row justify="center">
+             
                         {
                             projects.map((project)=>{
-                                return <Col>
-                                    <ProjectCard
+                                return <Col sm={{span:24}} md={{offset:1, span:11}} lg={{offset:1, span:11}}>
+                                      <ProjectCard
                                         title={project.title}
                                         traget={project.target}
                                         pic={project.pic}
@@ -56,6 +57,7 @@ function NgoAdminProjects() {
                                 </Col>
                             })
                         }
+             
         </Row>
     </div>
   )

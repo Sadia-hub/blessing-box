@@ -17,7 +17,7 @@ export default function DisplayEditorContent({value}) {
       console.log(value)
       if(value){
         const blocksFromHTML = convertFromHTML(value);
-      const state = ContentState.createFromBlockArray(
+        const state = ContentState.createFromBlockArray(
         blocksFromHTML.contentBlocks,
         blocksFromHTML.entityMap,
       );

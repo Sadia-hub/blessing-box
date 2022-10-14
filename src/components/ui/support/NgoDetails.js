@@ -19,7 +19,7 @@ const NgoDetails = ({  id }) => {
     const ngoByUserId = useSelector((state)=> state.detailsReducer.ngo);
     const {ngo, ngoDetail, projects} = ngoByUserId;
 
-    console.log(ngoDetail)
+    console.log("detail",ngoDetail)
     const[token, setToken] = useState("")
 
     const { Title } = Typography;
@@ -90,7 +90,8 @@ const NgoDetails = ({  id }) => {
             <Row align="middle" justify="center">
                 <Title className={styles.title} ellipsis> { ngo.name} </Title>
             </Row>
-
+            <Button type="primary" onClick={uploadNgoDetails}>Upload</Button>
+            <Button type="primary" onClick={addProjectDetails}>Add Account Details</Button>
 
             <Row justify="center" gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }} className={styles.container}>
 
@@ -104,27 +105,26 @@ const NgoDetails = ({  id }) => {
                     <Row justify="start" id="about">
 
                         <Title level={3} >About Us</Title>
-                        <TextEditor />
+                        <TextEditor data={ngoDetail.about_us}/>
                                       
                     </Row>
 
                     <Row justify="start" id="services">
 
                         <Title  level={3}>Our Services</Title>                       
-                        <TextEditor />
+                        <TextEditor data={ngoDetail.services}/>
 
                     </Row>
 
                     <Row justify="start" id="projects" style={{ margin: "5px" }}>
 
                         <Title level={3}>Projects</Title>                     
-                        <TextEditor />
+                        <TextEditor data={ngoDetail.projects}/>
 
                     </Row>
   
                       
-                      <Button type="primary" onClick={uploadNgoDetails}>Upload</Button>
-                      <Button type="primary" onClick={addProjectDetails}>Add Account Details</Button>
+                      
                    
                    
 

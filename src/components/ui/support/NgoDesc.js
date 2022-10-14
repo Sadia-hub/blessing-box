@@ -18,6 +18,7 @@ const NgoDesc = () => {
 
     const [ngoDetail, setNgoDetail] = useState({});
     const [projects, setProjects] = useState([])
+    console.log("projects", projects)
     const [ngo, setNgo] = useState({})
 
     //fetching ngo details for donor 
@@ -49,9 +50,9 @@ const NgoDesc = () => {
             console.log("Connection made ");
           });
     
-          fetchData.addEventListener('message', (e) => {
+          fetchData.addEventListener('message', async (e) => {
             console.log(e.data);
-            const data = JSON.parse(e.data);
+            const data = await JSON.parse(e.data);
             setProjects(()=>data);
           });
     
@@ -118,7 +119,7 @@ const NgoDesc = () => {
                     <Row justify="center">
                         {
                             projects.map((project)=>{
-                                return <ProjectCard 
+                                return <> <Col>{project.target > project.amountRecieved ?<ProjectCard 
                                 title={project.title}
                                 pic={project.imageurl}
                                 targetAmount={project.target}
@@ -126,7 +127,7 @@ const NgoDesc = () => {
                                 projectId={project.id}
                                 percent={project.amountRecieved}
                                 account_id={ngos[0].account_id}
-                                />
+                                /> : null}</Col></>
                             })
                         }
                         

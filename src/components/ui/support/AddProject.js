@@ -53,7 +53,7 @@ function AddProject() {
     
     const uploadProject = async () =>{
          const imageurl = await uploadOnCloudinary(image.file);
-
+        console.log("imageurl", imageurl);
         const body = {
             title,
             imageurl,

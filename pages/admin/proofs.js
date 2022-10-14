@@ -69,12 +69,14 @@ const showConfirm = (projectId) => {
       const file = await res.json();
 
         if(file.secure_url){
-          console.log(file.secure_url)
+          console.log("doc",file.secure_url)
 
           const body = {
             document:file.secure_url,
             projectId
           }
+
+          console.log("body", body)
 
           apiCall(`proof`,JSON.stringify(body), "POST", null, null)
           .then((res)=>{
@@ -87,7 +89,7 @@ const showConfirm = (projectId) => {
               
           })
           .catch((err)=>{
-             
+             console.log(error)
           })
         }
         else{
@@ -118,8 +120,10 @@ const showConfirm = (projectId) => {
 <Button disabled={disabled} onClick={()=>uploadReport()}>Upload</Button>
 
 const projects = useSelector((state)=>state.detailsReducer.ngo.projects)
+const updatedProject = projects.filter((project)=>project.target<=project.amountRecieved);
+console.log("projects", projects)
    
-        var details = projects.map(({id, title, target})=>{ 
+        var details = updatedProject.map(({id, title, target})=>{ 
            return {
               id,
               title,

@@ -118,12 +118,12 @@ const handleDonate = async() =>{
 }
 
       console.log(data)
-    return<div className={styles.main}>
+    return<div className={styles.main} style={{width:"600px", background:"rgba(42, 5, 143, 0.75)", color:"white"}}>
        
 
         <Row justify='center'>
           <Col span={8}>
-            <Row justify='center'><Image src={pic} height={180} width={260} alt="project image"/></Row>
+            <Row justify='center'><Image src={pic} height={180} width={200} alt="project image"/></Row>
               
               <Row justify='center'> Target: {targetAmount} Rs</Row>
               <Progress 
