@@ -10,7 +10,7 @@ import ContactUS from '../src/components/ui/support/ContactUs'
 export default function Home() {
   return<CustomLayout>
     <CustomCarousel/>
-    <InfoCard/>
+    {/* <InfoCard/> */}
     <WhyChooseUs/>
     <ProvideServices/>
     <Categories />

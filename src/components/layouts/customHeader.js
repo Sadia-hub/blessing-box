@@ -155,7 +155,7 @@ else {
           <div className={styles.logo}>
 
             <Link href='/'>
-              <a>Blessing Box</a>
+              <a style={{color:"white"}}>Blessing Box</a>
             </Link>
           </div>
           <li className={styles.side} >

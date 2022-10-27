@@ -1,7 +1,7 @@
- import apiCall from '../../../../../src/components/ui/support/apiCall';
+import apiCall from '../../../../../src/components/ui/support/apiCall';
  import { useRouter } from 'next/router';
  import { useEffect, useState, useMemo } from 'react';
- import Image from 'next/image';
+ import Image from 'next/image'; 
  function Project() {
     const router = useRouter()
     const {donationId, projectId} =router.query;
@@ -39,15 +39,15 @@
 
     return (
      
-      <div>
-      <div style={{marginLeft: "500px"}}>
-      <Image 
-        height={350}
-        width={350}
-        src="/BlessingBox.png"
-        className=''></Image>
-        </div>
-    <h1 style={{textAlign:"center" }}>Congratulations, You earned 100's of Blessings just in {donationId} Rupees</h1></div>
+        <div>
+            <div style={{marginLeft: "500px"}}>
+            <Image 
+              height={350}
+              width={350}
+              src="/BlessingBox.png"
+              className=''></Image>
+              </div>
+          <h1 style={{textAlign:"center" }}>Congratulations, You earned 100's of Blessings just in {donationId} Rupees</h1></div>
       )
 } 
 
